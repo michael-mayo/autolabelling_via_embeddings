@@ -246,13 +246,17 @@ class ImageProber(ABC):
 def select_boxes(
     boxes_xyxy: torch.Tensor, scores: torch.Tensor, threshold: float, nms_iou: float, max_boxes: int
 ) -> list[DetectedBox]:
-    """Keep boxes scoring at least `threshold`, suppress overlaps above `nms_iou`, return the best `max_boxes`."""
+    """Keep boxes scoring at least `threshold`, suppress overlaps above `nms_iou`, return the best `max_boxes`.
+
+    Coordinates are rounded to 0.1 px; scores keep full precision, since
+    near-saturated calibrated scores would otherwise tie and lose their ranking.
+    """
     keep = scores >= threshold
     boxes_xyxy, scores = boxes_xyxy[keep].float(), scores[keep].float()
     if not len(scores):
         return []
     order = torchvision.ops.nms(boxes_xyxy, scores, nms_iou)[:max_boxes]
-    return [DetectedBox(*(round(v, 1) for v in boxes_xyxy[i].tolist()), score=round(scores[i].item(), 4))
+    return [DetectedBox(*(round(v, 1) for v in boxes_xyxy[i].tolist()), score=scores[i].item())
             for i in order.tolist()]
 
 
@@ -374,7 +378,7 @@ def evaluate_dataset(prober: ImageProber, dataset_dir: Path, box_iou: float) -> 
         "per_class": per_class,
         "results": {
             Path(img).name: {Path(p).name: {"probability": round(r.probability, 4),
-                                            "boxes": [[b.x0, b.y0, b.x1, b.y1, b.score] for b in r.boxes]}
+                                            "boxes": [[b.x0, b.y0, b.x1, b.y1, round(b.score, 6)] for b in r.boxes]}
                              for p, r in per_probe.items()}
             for img, per_probe in results.items()
         },

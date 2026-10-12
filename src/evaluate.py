@@ -4,7 +4,10 @@
 the boxes of all probes that share a class with weighted boxes fusion
 (`merge_boxes`, the one merging step used for every model), and scores the
 merged boxes against ground truth with per-class average precision at a
-single IoU threshold (25% by default).
+single IoU threshold (25% by default). It also scores per-image
+classification: an image is predicted to contain a class when one of its
+merged boxes of that class scores above a threshold, chosen per class to
+maximise F1.
 """
 
 from collections.abc import Sequence
@@ -35,6 +38,24 @@ class GroundTruthBox:
     y0: float
     x1: float
     y1: float
+
+
+@dataclass(frozen=True)
+class ClassificationStats:
+    """Per-image classification quality for one class.
+
+    `precision`, `recall` and `f1` are at the F1-maximising threshold;
+    `baseline_f1` is the F1 of labelling every image positive (2p / (1 + p)
+    for prevalence p), the score to beat; `auroc` is threshold-free.
+    """
+
+    threshold: float | None  # images whose best box scores above this are positive (None: no useful threshold)
+    precision: float
+    recall: float
+    f1: float                # threshold-tuned F1
+    baseline_f1: float       # every-image-positive F1
+    auroc: float | None      # area under the ROC curve (None if no image lacks the class)
+    positives: int           # images that contain the class
 
 
 @dataclass(frozen=True)
@@ -104,7 +125,7 @@ class Evaluate:
             by_label.setdefault(probe_labels[key], []).append(
                 [(b.x0, b.y0, b.x1, b.y1, b.score) for b in result.boxes])
         return {
-            label: [DetectedBox(round(f.x0, 1), round(f.y0, 1), round(f.x1, 1), round(f.y1, 1), round(f.score, 4))
+            label: [DetectedBox(round(f.x0, 1), round(f.y0, 1), round(f.x1, 1), round(f.y1, 1), f.score)
                     for f in self.wbf.fuse(sources)]
             for label, sources in by_label.items()
         }
@@ -123,6 +144,43 @@ class Evaluate:
         as in PASCAL VOC 2010+).
         """
         return {label: self._class_ap(predictions, ground_truth, label) for label in labels}
+
+    def classification(
+        self, predictions: Predictions, ground_truth: dict[ResultKey, list[GroundTruthBox]], labels: Sequence[str]
+    ) -> dict[str, ClassificationStats | None]:
+        """Return per-image classification stats per class (None for a class no image contains).
+
+        An image is truly positive for a class if it has a ground-truth box of
+        that class, and predicted positive if its score (`image_scores`)
+        exceeds a threshold T. T is chosen per class from 0 and the distinct
+        image scores to maximise F1; ties keep the higher T. Also reported:
+        the every-image-positive F1 baseline and the threshold-free AUROC of
+        the image scores.
+        """
+        images = list(ground_truth)
+        stats = {}
+        for label in labels:
+            truth = [any(g.label == label for g in ground_truth[image]) for image in images]
+            positives = sum(truth)
+            if positives == 0:
+                stats[label] = None
+                continue
+            scores = image_scores(predictions, images, label)
+            prevalence = positives / len(images)
+            baseline_f1 = 2 * prevalence / (1 + prevalence)
+            auroc = roc_auc(scores, truth)
+            best = ClassificationStats(None, 0.0, 0.0, 0.0, baseline_f1, auroc, positives)
+            for threshold in sorted({0.0, *scores}, reverse=True):
+                predicted = [score > threshold for score in scores]
+                tp = sum(p and t for p, t in zip(predicted, truth))
+                if tp == 0:
+                    continue
+                precision, recall = tp / sum(predicted), tp / positives
+                f1 = 2 * precision * recall / (precision + recall)
+                if f1 > best.f1:
+                    best = ClassificationStats(threshold, precision, recall, f1, baseline_f1, auroc, positives)
+            stats[label] = best
+        return stats
 
     def _class_ap(
         self, predictions: Predictions, ground_truth: dict[ResultKey, list[GroundTruthBox]], label: str
@@ -156,8 +214,26 @@ class Evaluate:
         return sum(p for p, hit in zip(precisions, hits) if hit) / total
 
 
+def roc_auc(scores: Sequence[float], truth: Sequence[bool]) -> float | None:
+    """Area under the ROC curve: the chance a random positive image outscores a random negative one.
+
+    Ties count half (images with no box all score 0). None if either class is empty.
+    """
+    pos = sorted(s for s, t in zip(scores, truth) if t)
+    neg = sorted(s for s, t in zip(scores, truth) if not t)
+    if not pos or not neg:
+        return None
+    wins = sum((p > n) + 0.5 * (p == n) for p in pos for n in neg)
+    return wins / (len(pos) * len(neg))
+
+
+def image_scores(predictions: Predictions, images: Sequence[ResultKey], label: str) -> list[float]:
+    """Return each image's score for `label`: its best merged box's score, or 0 if it has none."""
+    return [max((b.score for b in predictions.get(image, {}).get(label, [])), default=0.0) for image in images]
+
+
 def predictions_to_dict(predictions: Predictions) -> dict[str, Any]:
     """Convert merged predictions to plain lists for YAML: {image: {label: [[x0, y0, x1, y1, score], ...]}}."""
-    return {str(image): {label: [[b.x0, b.y0, b.x1, b.y1, b.score] for b in boxes]
+    return {str(image): {label: [[b.x0, b.y0, b.x1, b.y1, round(b.score, 6)] for b in boxes]
                          for label, boxes in per_label.items()}
             for image, per_label in predictions.items()}

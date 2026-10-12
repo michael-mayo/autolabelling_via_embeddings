@@ -169,7 +169,7 @@ class ImageProber_DINOv3(ImageProber):
                 score = max(prob_map[r, c].item() for r, c in cells)
                 boxes.append(DetectedBox(round(min(cs) * cell[0], 1), round(min(rs) * cell[1], 1),
                                          round((max(cs) + 1) * cell[0], 1), round((max(rs) + 1) * cell[1], 1),
-                                         round(score, 4)))
+                                         score))
         return sorted(boxes, key=lambda b: -b.score)[:self.max_boxes]
 
 

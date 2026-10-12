@@ -84,16 +84,24 @@ using only the public `ImageProber` interface. `Evaluate.predict` runs each
 prober, `Evaluate.merge_boxes` merges the boxes of all probes of the same
 class with weighted boxes fusion (`WBF`; the same merge for every model, with
 each probe one WBF source), and `Evaluate.average_precision` scores the merged
-boxes with per-class box AP at IoU 0.25. Outputs:
+boxes with per-class box AP at IoU 0.25. `Evaluate.classification` then scores
+per-image classification: an image is predicted to contain a class when its
+best merged box of that class scores above a threshold T (0 if it has no such
+box), with T chosen per class to maximise F1. Reported per class: the
+every-image-positive F1 baseline (2p / (1 + p) for prevalence p, the score to
+beat), the threshold-tuned F1 with its T, precision and recall, and the
+threshold-free AUROC of the image scores. Outputs:
 
 - at the end of the run, a table per dataset on the console (rows: models; columns: classes and
-  mean AP) and a models × datasets summary, with the best value in each column highlighted;
-- `scratch/evaluation.yaml`: the AP table, the WBF settings and every model's
+  mean AP) and a models × datasets summary, then per-image classification tables (rows: model × class;
+  columns: images, baseline F1, tuned F1, AUROC, T, precision, recall) and a summary of mean tuned F1
+  and AUROC per dataset under an every-image-positive baseline row, with the best values highlighted;
+- `scratch/evaluation.yaml`: the AP and classification tables, the WBF settings and every model's
   merged (final) predictions, `{model: {dataset: {image: {label: [[x0, y0, x1, y1, score], ...]}}}}`;
 - `scratch/<dataset>_ground_truth.pdf`: a cover summarising all datasets
   (totals, background and multi-label counts, and per class: boxes, support,
-  % of images, probes), a box-AP page, then each image with its ground truth;
-- `scratch/<dataset>_<model>.pdf`: the box-AP page with the model's row
+  % of images, probes), a box-AP page, a classification page, then each image with its ground truth;
+- `scratch/<dataset>_<model>.pdf`: the box-AP and classification pages with the model's row
   shaded, then each image with ground truth (thin) and the model's top
   `draw_top_k` merged predictions per class (thick, with scores).
 
@@ -318,6 +326,7 @@ classDiagram
         +predict(prober, images, probes, probe_labels) dict
         +merge_boxes(probe_results, probe_labels) dict
         +average_precision(predictions, ground_truth, labels) dict
+        +classification(predictions, ground_truth, labels) dict
     }
     class WBF {
         +fuse(sources, weights) list~FusedBox~
@@ -342,7 +351,7 @@ classDiagram
 │   ├── image_prober_yoloe.py   # ImageProber_YOLOE
 │   ├── image_prober_embeddinggemma2.py  # ImageProber_EmbeddingGemma2
 │   ├── wbf.py                  # WBF: weighted boxes fusion
-│   ├── evaluate.py             # Evaluate: WBF merge per class, box AP per class
+│   ├── evaluate.py             # Evaluate: WBF merge per class, box AP and per-image P/R/F1 per class
 │   └── test.py                 # evaluates every model on every dataset; console table, PDF/YAML reports
 ├── sample_datasets/   # generated sample datasets (probes + images)
 ├── scratch/           # generated output (git-ignored)
