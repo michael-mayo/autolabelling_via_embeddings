@@ -28,7 +28,6 @@ It then:
 
 import argparse
 import gc
-import importlib
 import math
 import sys
 from dataclasses import asdict
@@ -50,20 +49,14 @@ from .evaluate import Dataset
 from .evaluate import Evaluate
 from .evaluate import Predictions
 from .evaluate import predictions_to_dict
+from .image_prober import MODELS
 from .image_prober import ImageProber
+from .image_prober import load_prober
 from .wbf import WBF
 
 # Distinct, colour-blind-friendly colours assigned to labels in order.
 PALETTE = ["#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7", "#999999"]
 # Model name (as used in config.yaml `test.models`) -> (module in this package, class name).
-MODELS = {
-    "owlv2": ("image_prober_owlv2", "ImageProber_OwlV2"),
-    "sam3": ("image_prober_sam3", "ImageProber_SAM3"),
-    "dinov3": ("image_prober_dinov3", "ImageProber_DINOv3"),
-    "dinov2": ("image_prober_dinov2", "ImageProber_DINOv2"),
-    "yoloe": ("image_prober_yoloe", "ImageProber_YOLOE"),
-    "embeddinggemma2": ("image_prober_embeddinggemma2", "ImageProber_EmbeddingGemma2"),
-}
 # Box AP per model, dataset and class: {model: {dataset: {label: AP or None}}}.
 APTable = dict[str, dict[str, dict[str, float | None]]]
 # Per-image classification stats per model, dataset and class.
@@ -120,19 +113,6 @@ def dataset_stats(dataset_dir: Path) -> DatasetStats:
 
 
 # ----- evaluation -------------------------------------------------------------------
-
-
-def load_prober(name: str, config: dict[str, Any], box_threshold: float | None = None) -> ImageProber:
-    """Import and build the prober registered as `name` in MODELS from `config`.
-
-    A non-None `box_threshold` replaces the model's own `box_threshold` for
-    this run; the model's config section is otherwise used unchanged.
-    """
-    module_name, class_name = MODELS[name]
-    cls = getattr(importlib.import_module(f".{module_name}", package=__package__), class_name)
-    if box_threshold is not None:
-        config = {**config, cls.config_section: {**config[cls.config_section], "box_threshold": box_threshold}}
-    return cls.from_config(config)
 
 
 def mean_ap(per_class: dict[str, float | None]) -> float | None:

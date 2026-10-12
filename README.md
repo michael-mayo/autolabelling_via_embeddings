@@ -14,6 +14,10 @@ probabilities of a class's probes are combined into one confidence per image,
 the mean of the best two (`topk_mean`, k = 2), and the image gets every
 class whose confidence passes a threshold.
 
+`python -m src.autolabeller` does this for any folder of probes and folder of
+images, and writes the labels in a format Label Studio can import, for review
+and correction.
+
 The approach is evaluated on three small sample datasets from different
 domains. Each has **20 labelled probes**, split evenly across its classes, and
 **80 unlabelled images**. Hidden labels are kept for scoring only.
@@ -147,6 +151,7 @@ used, then reused.
 Run all commands from the project root.
 
 ```bash
+python -m src.autolabeller                            # label images for Label Studio (options: autolabeller.yaml)
 python -m src.test                                    # evaluate every model on every dataset; tables + reports
 python -m src.test --models dinov2 --datasets coco_objects   # a subset
 python -m src.sample_data                             # (re)build the sample datasets
@@ -158,6 +163,27 @@ python -m src.image_prober_dinov2                     # per-probe evaluation of 
 `scratch/embedding_cache/`, so repeat runs take about two minutes.
 
 ## Programs and command-line parameters
+
+### `python -m src.autolabeller`
+
+Labels every image in `images_dir` from the labelled probes in `probes_dir`
+(labels from `probes_yaml`, or from sub-folder names), using one model and
+one probe-combining method. Writes `scratch/labels.json`: Label Studio tasks
+with the labels as pre-annotations and per-class confidences. It also writes a
+matching `scratch/label_config.xml` labelling interface. With an `output`
+ending in `.csv`, it writes one row per image instead. All options are in
+`autolabeller.yaml`; by default it labels the `coco_objects` images with
+DINOv2. Options and Label Studio import steps:
+[docs/autolabeller.md](docs/autolabeller.md).
+
+| Flag       | Type | Required | Default             | Description          |
+|------------|------|----------|---------------------|----------------------|
+| `--config` | path | no       | `autolabeller.yaml` | Options file to read |
+
+```bash
+python -m src.autolabeller                              # defaults: coco_objects, dinov2, scratch/labels.json
+python -m src.autolabeller --config my_project.yaml     # your own probes, images, model and output
+```
 
 ### `python -m src.test`
 
@@ -193,8 +219,9 @@ Evaluates one model's raw per-probe output on the sample datasets. Details:
 | `--config`   | path     | no       | `config.yaml` | Config file to read          |
 | `--datasets` | names... | no       | all           | Evaluate only these datasets |
 
-All settings live in `config.yaml`, one section per module; see
-[docs/configuration.md](docs/configuration.md).
+Model and evaluation settings live in `config.yaml`, one section per module;
+see [docs/configuration.md](docs/configuration.md). The autolabeller's
+options live in `autolabeller.yaml`.
 
 ## System diagram
 
@@ -210,6 +237,10 @@ flowchart LR
     evaluate --> wbf["wbf.WBF<br/>box predictions"]
     test --> out["scratch/evaluation.yaml · PDF reports · console tables"]
     builder[src/sample_data] --> data
+    alcfg[autolabeller.yaml] --> al[src/autolabeller.py<br/>AutoLabeller]
+    userdata[probes + unlabelled images] --> al
+    al --> probers
+    al --> lsout["scratch/labels.json or .csv<br/>+ label_config.xml → Label Studio"]
     builder <--> hf[(Hugging Face)]
 ```
 
@@ -219,10 +250,12 @@ flowchart LR
 .
 ├── README.md
 ├── docs/              # technical documentation: models, evaluation, datasets, configuration
-├── config.yaml        # all parameters, one subsection per module
+├── config.yaml        # model and evaluation parameters, one subsection per module
+├── autolabeller.yaml  # autolabeller options: probes, images, model, combining, thresholds, output
 ├── requirements.txt   # pinned pip dependencies
 ├── src/
-│   ├── image_prober.py          # ImageProber base class (public API, caching, weights)
+│   ├── autolabeller.py          # AutoLabeller: label images from probes, export for Label Studio
+│   ├── image_prober.py          # ImageProber base class (public API, caching, weights, model registry)
 │   ├── image_prober_*.py        # one module per model
 │   ├── evaluate.py              # Evaluate: image labelling and box metrics
 │   ├── wbf.py                   # WBF: weighted boxes fusion for box predictions

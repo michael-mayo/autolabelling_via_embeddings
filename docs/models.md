@@ -16,6 +16,8 @@ results[image][probe].boxes                     # [DetectedBox(x0, y0, x1, y1, s
 Result keys are the input paths as strings, or list indexes for in-memory
 images. A prober is built from `config.yaml` with `ProberClass.from_config(config)`.
 That reads the shared `image_prober` section plus the model's own section.
+`load_prober(name, config)` builds one by its registry name (`MODELS` in
+`src/image_prober.py`, e.g. `dinov2`), as `src.test` and `src.autolabeller` do.
 
 The base class provides the shared machinery:
 

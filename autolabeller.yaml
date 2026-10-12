@@ -1,0 +1,43 @@
+# Options for the autolabeller (python -m src.autolabeller).
+# Relative paths are relative to the directory the command is run from (the project root).
+
+# Model: a registry name from src/image_prober.py MODELS. Its settings (and the shared
+# image_prober settings: device, batch size, embedding cache) are read from model_config.
+model: dinov2                     # owlv2 | sam3 | dinov3 | dinov2 | yoloe | embeddinggemma2
+model_config: config.yaml
+
+# Labelled probes: cropped images, each showing one object of a known class.
+probes_dir: sample_datasets/coco_objects/probes
+# Probe labels: a YAML file with `probes: [{file: ..., label: ...}, ...]` (extra keys are ignored).
+# Each `file` is looked up under probes_dir, then relative to this file's folder.
+# null: take each probe's label from its sub-folder name instead (probes_dir/<label>/*.jpg).
+probes_yaml: sample_datasets/coco_objects/probes.yaml
+
+# Unlabelled images to label.
+images_dir: sample_datasets/coco_objects/images
+recursive: false                  # also search sub-folders of images_dir
+extensions: [.jpg, .jpeg, .png, .bmp, .tif, .tiff, .webp]
+
+# Combining a class's probe probabilities into one image confidence.
+label_method: topk_mean           # max | mean | topk_mean
+label_top_k: 2                    # k for topk_mean
+# An image gets every class whose confidence exceeds its threshold.
+threshold: 0.5
+class_thresholds: {}              # per-class overrides, e.g. {dog: 0.6, bus: 0.4}
+
+# Output, in Label Studio import format; the format follows the extension:
+#   .json: tasks with the labels as pre-annotations (predictions) and per-class confidences;
+#   .csv:  one row per image (image, labels, confidence_<class>); Label Studio imports CSV
+#          rows as task data only, so labels are not shown as pre-annotations.
+output: scratch/labels.json
+# A Label Studio labelling interface matching the output, written next to it (null: skip).
+label_config: label_config.xml
+
+# Label Studio fields: the image's data key and the Choices control's name.
+image_key: image
+choices_name: label
+# Image URLs: url_prefix + the image path relative to url_root. The default suits Label
+# Studio local-file serving with LABEL_STUDIO_LOCAL_FILES_DOCUMENT_ROOT set to url_root.
+# For images served elsewhere, use e.g. url_prefix: "https://host/images/" and url_root: images_dir.
+url_prefix: "/data/local-files/?d="
+url_root: .

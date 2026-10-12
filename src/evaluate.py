@@ -143,25 +143,12 @@ class Evaluate:
         self, probe_results: dict[ResultKey, ProbeResult], probe_labels: dict[ResultKey, str],
         method: str | None = None, top_k: int | None = None,
     ) -> dict[str, float]:
-        """Combine one image's probe probabilities into one confidence per class.
+        """Combine one image's probe probabilities into one confidence per class (see `label_confidences`).
 
-        For a class probed with P0..PN-1: `max` takes the highest probability
-        (one matching probe suffices), `mean` the average (rewards agreement,
-        robust to one bad probe), `topk_mean` the average of the best k
-        (`top_k`, capped at N). `method` and `top_k` default to the values
-        given at construction. Boxes play no part.
+        `method` and `top_k` default to the values given at construction.
         """
-        method = method or self.label_method
-        top_k = top_k or self.label_top_k
-        by_label: dict[str, list[float]] = {}
-        for key, result in probe_results.items():
-            by_label.setdefault(probe_labels[key], []).append(result.probability)
-        combine = {
-            "max": max,
-            "mean": lambda ps: sum(ps) / len(ps),
-            "topk_mean": lambda ps: sum(sorted(ps, reverse=True)[:top_k]) / min(top_k, len(ps)),
-        }[method]
-        return {label: combine(probs) for label, probs in by_label.items()}
+        return label_confidences(probe_results, probe_labels, method or self.label_method,
+                                 top_k or self.label_top_k)
 
     def merge_boxes(
         self, probe_results: dict[ResultKey, ProbeResult], probe_labels: dict[ResultKey, str]
@@ -264,6 +251,30 @@ class Evaluate:
         for i in range(len(precisions) - 2, -1, -1):
             precisions[i] = max(precisions[i], precisions[i + 1])
         return sum(p for p, hit in zip(precisions, hits) if hit) / total
+
+
+def label_confidences(
+    probe_results: dict[ResultKey, ProbeResult], probe_labels: dict[ResultKey, str],
+    method: str = "topk_mean", top_k: int = 2,
+) -> dict[str, float]:
+    """Combine one image's probe probabilities into one confidence per class.
+
+    For a class probed with P0..PN-1: `max` takes the highest probability
+    (one matching probe suffices), `mean` the average (rewards agreement,
+    robust to one bad probe), `topk_mean` the average of the best k
+    (`top_k`, capped at N). Boxes play no part.
+    """
+    if method not in LABEL_METHODS:
+        raise ValueError(f"label_method must be one of {LABEL_METHODS}, not {method!r}")
+    by_label: dict[str, list[float]] = {}
+    for key, result in probe_results.items():
+        by_label.setdefault(probe_labels[key], []).append(result.probability)
+    combine = {
+        "max": max,
+        "mean": lambda ps: sum(ps) / len(ps),
+        "topk_mean": lambda ps: sum(sorted(ps, reverse=True)[:top_k]) / min(top_k, len(ps)),
+    }[method]
+    return {label: combine(probs) for label, probs in by_label.items()}
 
 
 def roc_auc(scores: Sequence[float], truth: Sequence[bool]) -> float | None:

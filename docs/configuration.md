@@ -2,7 +2,8 @@
 
 All key parameters live in `config.yaml`, with one section per module. Each
 sample dataset's own build settings live in its `dataset.yaml`
-([sample_datasets.md](sample_datasets.md)).
+([sample_datasets.md](sample_datasets.md)). The autolabeller's options live in
+`autolabeller.yaml` ([autolabeller.md](autolabeller.md)).
 
 | Section | Key | Description |
 |---|---|---|

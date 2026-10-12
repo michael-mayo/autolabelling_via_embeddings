@@ -25,7 +25,7 @@ evaluate:
 
 # test: evaluates every model's boxes on every sample dataset and writes PDF/YAML reports to general.output_dir.
 test:
-  models: [owlv2, sam3, dinov3, dinov2, yoloe, embeddinggemma2]   # registry names in src/test.py MODELS
+  models: [owlv2, sam3, dinov3, dinov2, yoloe, embeddinggemma2]   # registry names in src/image_prober.py MODELS
   draw_top_k: 3                   # merged predictions drawn per class per image in the model reports
   box_threshold: null             # if set, overrides every model's box_threshold during evaluation
   pdf_suffix: _ground_truth   # PDF name is <dataset><suffix>.pdf

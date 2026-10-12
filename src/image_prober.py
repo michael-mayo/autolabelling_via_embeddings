@@ -18,6 +18,7 @@ shared machinery:
 
 import argparse
 import hashlib
+import importlib
 import time
 from abc import ABC
 from abc import abstractmethod
@@ -42,6 +43,15 @@ ImageInput = str | Path | Image.Image
 ResultKey = str | int
 # Marker file written once a weight download has finished.
 DOWNLOAD_MARKER = ".download_complete"
+# Registry of concrete probers: name -> (module in this package, class name). Imported lazily.
+MODELS = {
+    "owlv2": ("image_prober_owlv2", "ImageProber_OwlV2"),
+    "sam3": ("image_prober_sam3", "ImageProber_SAM3"),
+    "dinov3": ("image_prober_dinov3", "ImageProber_DINOv3"),
+    "dinov2": ("image_prober_dinov2", "ImageProber_DINOv2"),
+    "yoloe": ("image_prober_yoloe", "ImageProber_YOLOE"),
+    "embeddinggemma2": ("image_prober_embeddinggemma2", "ImageProber_EmbeddingGemma2"),
+}
 
 
 @dataclass(frozen=True)
@@ -241,6 +251,21 @@ class ImageProber(ABC):
                 self.cache.put(keys[i], value)
                 found[i] = value
         return found
+
+
+def load_prober(name: str, config: dict[str, Any], box_threshold: float | None = None) -> "ImageProber":
+    """Import and build the prober registered as `name` in MODELS from a parsed `config.yaml`.
+
+    A non-None `box_threshold` replaces the model's own `box_threshold` for
+    this call; the model's config section is otherwise used unchanged.
+    """
+    if name not in MODELS:
+        raise ValueError(f"unknown model {name!r}; choices: {', '.join(MODELS)}")
+    module_name, class_name = MODELS[name]
+    cls = getattr(importlib.import_module(f".{module_name}", package=__package__), class_name)
+    if box_threshold is not None:
+        config = {**config, cls.config_section: {**config[cls.config_section], "box_threshold": box_threshold}}
+    return cls.from_config(config)
 
 
 def select_boxes(
