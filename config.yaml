@@ -17,4 +17,5 @@ test:
   page_size: [1920, 540]      # fixed page (px); 32:9 fills ~half a 16:9 screen at fit-to-width
   line_width: 4               # box outline width (px, at page scale)
   font_size: 24               # label and header text size (px)
+  cover_font_size: 20         # text size on the summary cover page (px)
   dpi: 150                    # PDF resolution; sets physical page size

@@ -57,7 +57,12 @@ Reads `general.weights_dir` and `sample_data.datasets_dir` from `config.yaml`, p
 
 Reads each dataset's `images.yaml` and draws the ground-truth boxes and labels
 on its images. Writes one PDF per dataset, one image per page, to
-`scratch/<name>_ground_truth.pdf`.
+`scratch/<name>_ground_truth.pdf`. Each PDF opens with a cover page that
+summarises all sample datasets side by side, with the PDF's own dataset shaded.
+For each dataset it shows image, box and probe totals, background (no-label)
+and multi-label image counts, and boxes per image. A per-class table gives box
+count, support (images containing the class), image coverage (support as a %
+of images) and probe count.
 
 | Flag       | Type | Required | Default       | Description         |
 |------------|------|----------|---------------|---------------------|
@@ -105,6 +110,7 @@ All key parameters live in `config.yaml`, with one subsection per module.
 | `test`        | `page_size`         | Fixed page size (px); images are fitted and centred. 32:9 fills about half a 16:9 screen at fit-to-width |
 | `test`        | `line_width`        | Box outline width (px)                                   |
 | `test`        | `font_size`         | Label and header text size (px)                          |
+| `test`        | `cover_font_size`   | Text size on the summary cover page (px)                 |
 | `test`        | `dpi`               | PDF resolution                                           |
 
 ### `dataset.yaml` (per sample dataset)
