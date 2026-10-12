@@ -1,0 +1,5 @@
+# Pinned pip dependencies for the `auto` conda environment (Python 3.14).
+# Regenerate pins with: pip list --format=freeze
+pillow==12.3.0
+PyYAML==6.0.3
+requests==2.34.2

@@ -1,0 +1,687 @@
+source: dronefreak/RDD2022
+license: CC BY-SA 4.0
+note: Hidden image labels for evaluation only; not an input to labelling.
+labels: [longitudinal_crack, transverse_crack, alligator_crack]
+images:
+- file: images/image1.jpg
+  source_id: valid/shard_000/Japan_000114.jpg
+  labels: [transverse_crack]
+  boxes:
+  - label: transverse_crack
+    bbox_xywh: [45.0, 437.0, 160.0, 21.0]
+  - label: transverse_crack
+    bbox_xywh: [159.0, 423.0, 176.0, 28.0]
+  - label: transverse_crack
+    bbox_xywh: [5.0, 478.0, 83.0, 55.0]
+- file: images/image2.jpg
+  source_id: valid/shard_000/Czech_001437.jpg
+  labels: [longitudinal_crack]
+  boxes:
+  - label: longitudinal_crack
+    bbox_xywh: [180.0, 435.0, 33.0, 89.0]
+- file: images/image3.jpg
+  source_id: valid/shard_000/Japan_005301.jpg
+  labels: [alligator_crack, transverse_crack]
+  boxes:
+  - label: alligator_crack
+    bbox_xywh: [202.0, 395.0, 151.0, 148.0]
+  - label: transverse_crack
+    bbox_xywh: [417.0, 417.0, 181.0, 34.0]
+- file: images/image4.jpg
+  source_id: valid/shard_000/China_MotorBike_001001.jpg
+  labels: [longitudinal_crack, transverse_crack]
+  boxes:
+  - label: transverse_crack
+    bbox_xywh: [5.0, 204.0, 142.0, 24.0]
+  - label: transverse_crack
+    bbox_xywh: [246.0, 346.0, 94.0, 17.0]
+  - label: longitudinal_crack
+    bbox_xywh: [224.0, 356.0, 26.0, 156.0]
+  - label: longitudinal_crack
+    bbox_xywh: [151.0, 81.0, 10.0, 40.0]
+- file: images/image5.jpg
+  source_id: valid/shard_000/China_Drone_002275.jpg
+  labels: [alligator_crack, longitudinal_crack, transverse_crack]
+  boxes:
+  - label: longitudinal_crack
+    bbox_xywh: [194.0, 78.0, 43.0, 406.0]
+  - label: longitudinal_crack
+    bbox_xywh: [437.0, 269.0, 75.0, 243.0]
+  - label: transverse_crack
+    bbox_xywh: [1.0, 23.0, 197.0, 48.0]
+  - label: transverse_crack
+    bbox_xywh: [313.0, 59.0, 114.0, 30.0]
+  - label: alligator_crack
+    bbox_xywh: [422.0, 26.0, 78.0, 69.0]
+- file: images/image6.jpg
+  source_id: valid/shard_000/India_007497.jpg
+  labels: [alligator_crack]
+  boxes:
+  - label: alligator_crack
+    bbox_xywh: [1.0, 531.0, 577.0, 167.0]
+- file: images/image7.jpg
+  source_id: valid/shard_000/Czech_003265.jpg
+  labels: []
+  boxes: []
+- file: images/image8.jpg
+  source_id: valid/shard_000/Japan_006096.jpg
+  labels: [alligator_crack, longitudinal_crack, transverse_crack]
+  boxes:
+  - label: alligator_crack
+    bbox_xywh: [86.0, 389.0, 246.0, 38.0]
+  - label: longitudinal_crack
+    bbox_xywh: [328.0, 509.0, 34.0, 91.0]
+  - label: transverse_crack
+    bbox_xywh: [94.0, 476.0, 242.0, 29.0]
+- file: images/image9.jpg
+  source_id: valid/shard_000/China_MotorBike_001375.jpg
+  labels: [longitudinal_crack]
+  boxes:
+  - label: longitudinal_crack
+    bbox_xywh: [88.0, 162.0, 34.0, 68.0]
+  - label: longitudinal_crack
+    bbox_xywh: [50.0, 158.0, 150.0, 352.0]
+  - label: longitudinal_crack
+    bbox_xywh: [349.0, 372.0, 30.0, 137.0]
+  - label: longitudinal_crack
+    bbox_xywh: [388.0, 256.0, 52.0, 103.0]
+  - label: longitudinal_crack
+    bbox_xywh: [434.0, 155.0, 73.0, 68.0]
+- file: images/image10.jpg
+  source_id: valid/shard_000/Japan_002816.jpg
+  labels: []
+  boxes: []
+- file: images/image11.jpg
+  source_id: valid/shard_000/Czech_003238.jpg
+  labels: []
+  boxes: []
+- file: images/image12.jpg
+  source_id: valid/shard_000/China_MotorBike_000135.jpg
+  labels: [alligator_crack]
+  boxes:
+  - label: alligator_crack
+    bbox_xywh: [1.0, 172.0, 511.0, 339.0]
+  - label: alligator_crack
+    bbox_xywh: [93.0, 3.0, 221.0, 168.0]
+- file: images/image13.jpg
+  source_id: valid/shard_000/Czech_002605.jpg
+  labels: []
+  boxes: []
+- file: images/image14.jpg
+  source_id: valid/shard_000/Japan_002144.jpg
+  labels: [longitudinal_crack]
+  boxes:
+  - label: longitudinal_crack
+    bbox_xywh: [171.0, 453.0, 11.0, 33.0]
+- file: images/image15.jpg
+  source_id: valid/shard_000/Japan_003309.jpg
+  labels: [alligator_crack, longitudinal_crack, transverse_crack]
+  boxes:
+  - label: longitudinal_crack
+    bbox_xywh: [32.0, 560.0, 202.0, 32.0]
+  - label: alligator_crack
+    bbox_xywh: [330.0, 449.0, 191.0, 151.0]
+  - label: transverse_crack
+    bbox_xywh: [94.0, 461.0, 151.0, 26.0]
+  - label: transverse_crack
+    bbox_xywh: [192.0, 531.0, 104.0, 21.0]
+- file: images/image16.jpg
+  source_id: valid/shard_000/China_Drone_000649.jpg
+  labels: [transverse_crack]
+  boxes:
+  - label: transverse_crack
+    bbox_xywh: [1.0, 76.0, 147.0, 28.0]
+- file: images/image17.jpg
+  source_id: valid/shard_000/Czech_003033.jpg
+  labels: [transverse_crack]
+  boxes:
+  - label: transverse_crack
+    bbox_xywh: [19.0, 490.0, 186.0, 23.0]
+- file: images/image18.jpg
+  source_id: valid/shard_000/India_008261.jpg
+  labels: [alligator_crack, longitudinal_crack]
+  boxes:
+  - label: longitudinal_crack
+    bbox_xywh: [117.0, 553.0, 109.0, 78.0]
+  - label: alligator_crack
+    bbox_xywh: [442.0, 563.0, 109.0, 78.0]
+- file: images/image19.jpg
+  source_id: valid/shard_000/Japan_000978.jpg
+  labels: [transverse_crack]
+  boxes:
+  - label: transverse_crack
+    bbox_xywh: [296.0, 471.0, 167.0, 26.0]
+- file: images/image20.jpg
+  source_id: valid/shard_000/China_Drone_000501.jpg
+  labels: [transverse_crack]
+  boxes:
+  - label: transverse_crack
+    bbox_xywh: [126.0, 274.0, 386.0, 86.0]
+- file: images/image21.jpg
+  source_id: valid/shard_000/Japan_003019.jpg
+  labels: [alligator_crack, longitudinal_crack]
+  boxes:
+  - label: longitudinal_crack
+    bbox_xywh: [422.0, 405.0, 159.0, 174.0]
+  - label: alligator_crack
+    bbox_xywh: [14.0, 433.0, 183.0, 167.0]
+- file: images/image22.jpg
+  source_id: valid/shard_000/China_Drone_001077.jpg
+  labels: [transverse_crack]
+  boxes:
+  - label: transverse_crack
+    bbox_xywh: [23.0, 12.0, 281.0, 43.0]
+- file: images/image23.jpg
+  source_id: valid/shard_000/Japan_006217.jpg
+  labels: [alligator_crack, longitudinal_crack]
+  boxes:
+  - label: longitudinal_crack
+    bbox_xywh: [157.0, 282.0, 56.0, 43.0]
+  - label: longitudinal_crack
+    bbox_xywh: [288.0, 426.0, 195.0, 155.0]
+  - label: alligator_crack
+    bbox_xywh: [72.0, 359.0, 133.0, 136.0]
+- file: images/image24.jpg
+  source_id: valid/shard_000/Japan_004392.jpg
+  labels: [alligator_crack, longitudinal_crack, transverse_crack]
+  boxes:
+  - label: alligator_crack
+    bbox_xywh: [347.0, 446.0, 116.0, 115.0]
+  - label: longitudinal_crack
+    bbox_xywh: [471.0, 433.0, 77.0, 63.0]
+  - label: alligator_crack
+    bbox_xywh: [30.0, 406.0, 136.0, 53.0]
+  - label: alligator_crack
+    bbox_xywh: [2.0, 563.0, 60.0, 37.0]
+  - label: transverse_crack
+    bbox_xywh: [145.0, 540.0, 276.0, 36.0]
+  - label: transverse_crack
+    bbox_xywh: [416.0, 564.0, 139.0, 20.0]
+  - label: transverse_crack
+    bbox_xywh: [170.0, 513.0, 425.0, 46.0]
+- file: images/image25.jpg
+  source_id: valid/shard_000/Japan_002863.jpg
+  labels: [alligator_crack, transverse_crack]
+  boxes:
+  - label: alligator_crack
+    bbox_xywh: [302.0, 401.0, 130.0, 58.0]
+  - label: transverse_crack
+    bbox_xywh: [155.0, 417.0, 103.0, 18.0]
+  - label: alligator_crack
+    bbox_xywh: [334.0, 497.0, 159.0, 50.0]
+- file: images/image26.jpg
+  source_id: valid/shard_000/Japan_005221.jpg
+  labels: [alligator_crack, longitudinal_crack, transverse_crack]
+  boxes:
+  - label: longitudinal_crack
+    bbox_xywh: [27.0, 214.0, 105.0, 218.0]
+  - label: alligator_crack
+    bbox_xywh: [362.0, 153.0, 234.0, 74.0]
+  - label: longitudinal_crack
+    bbox_xywh: [487.0, 213.0, 87.0, 113.0]
+  - label: transverse_crack
+    bbox_xywh: [283.0, 353.0, 317.0, 63.0]
+  - label: longitudinal_crack
+    bbox_xywh: [478.0, 402.0, 55.0, 50.0]
+- file: images/image27.jpg
+  source_id: valid/shard_000/Japan_001363.jpg
+  labels: [alligator_crack, transverse_crack]
+  boxes:
+  - label: alligator_crack
+    bbox_xywh: [516.0, 554.0, 83.0, 46.0]
+  - label: transverse_crack
+    bbox_xywh: [159.0, 569.0, 140.0, 27.0]
+  - label: transverse_crack
+    bbox_xywh: [474.0, 456.0, 109.0, 29.0]
+  - label: alligator_crack
+    bbox_xywh: [227.0, 409.0, 229.0, 59.0]
+- file: images/image28.jpg
+  source_id: valid/shard_000/China_Drone_001464.jpg
+  labels: [alligator_crack, longitudinal_crack, transverse_crack]
+  boxes:
+  - label: alligator_crack
+    bbox_xywh: [375.0, 29.0, 69.0, 58.0]
+  - label: transverse_crack
+    bbox_xywh: [234.0, 35.0, 138.0, 41.0]
+  - label: longitudinal_crack
+    bbox_xywh: [425.0, 152.0, 68.0, 355.0]
+- file: images/image29.jpg
+  source_id: valid/shard_000/India_005901.jpg
+  labels: []
+  boxes: []
+- file: images/image30.jpg
+  source_id: valid/shard_000/China_MotorBike_000306.jpg
+  labels: [longitudinal_crack, transverse_crack]
+  boxes:
+  - label: transverse_crack
+    bbox_xywh: [348.0, 478.0, 164.0, 34.0]
+  - label: longitudinal_crack
+    bbox_xywh: [187.0, 1.0, 53.0, 511.0]
+- file: images/image31.jpg
+  source_id: valid/shard_000/Japan_003703.jpg
+  labels: [alligator_crack, transverse_crack]
+  boxes:
+  - label: transverse_crack
+    bbox_xywh: [57.0, 328.0, 336.0, 114.0]
+  - label: alligator_crack
+    bbox_xywh: [367.0, 285.0, 123.0, 105.0]
+- file: images/image32.jpg
+  source_id: valid/shard_000/India_006592.jpg
+  labels: [alligator_crack]
+  boxes:
+  - label: alligator_crack
+    bbox_xywh: [364.0, 477.0, 137.0, 179.0]
+  - label: alligator_crack
+    bbox_xywh: [517.0, 487.0, 136.0, 171.0]
+- file: images/image33.jpg
+  source_id: valid/shard_000/China_Drone_000905.jpg
+  labels: [longitudinal_crack]
+  boxes:
+  - label: longitudinal_crack
+    bbox_xywh: [215.0, 146.0, 35.0, 113.0]
+- file: images/image34.jpg
+  source_id: valid/shard_000/Japan_004428.jpg
+  labels: [longitudinal_crack, transverse_crack]
+  boxes:
+  - label: longitudinal_crack
+    bbox_xywh: [430.0, 388.0, 170.0, 97.0]
+  - label: longitudinal_crack
+    bbox_xywh: [325.0, 369.0, 80.0, 90.0]
+  - label: transverse_crack
+    bbox_xywh: [256.0, 468.0, 262.0, 26.0]
+  - label: transverse_crack
+    bbox_xywh: [34.0, 425.0, 164.0, 32.0]
+- file: images/image35.jpg
+  source_id: valid/shard_000/Japan_000433.jpg
+  labels: [alligator_crack, transverse_crack]
+  boxes:
+  - label: alligator_crack
+    bbox_xywh: [182.0, 339.0, 104.0, 127.0]
+  - label: transverse_crack
+    bbox_xywh: [416.0, 435.0, 170.0, 32.0]
+  - label: alligator_crack
+    bbox_xywh: [383.0, 426.0, 73.0, 77.0]
+- file: images/image36.jpg
+  source_id: valid/shard_000/China_MotorBike_000495.jpg
+  labels: [alligator_crack, longitudinal_crack]
+  boxes:
+  - label: alligator_crack
+    bbox_xywh: [209.0, 235.0, 303.0, 207.0]
+  - label: alligator_crack
+    bbox_xywh: [209.0, 114.0, 124.0, 71.0]
+  - label: longitudinal_crack
+    bbox_xywh: [5.0, 447.0, 27.0, 65.0]
+- file: images/image37.jpg
+  source_id: valid/shard_000/Japan_003250.jpg
+  labels: [alligator_crack, transverse_crack]
+  boxes:
+  - label: alligator_crack
+    bbox_xywh: [322.0, 246.0, 268.0, 291.0]
+  - label: alligator_crack
+    bbox_xywh: [141.0, 188.0, 108.0, 238.0]
+  - label: transverse_crack
+    bbox_xywh: [185.0, 344.0, 212.0, 25.0]
+  - label: transverse_crack
+    bbox_xywh: [308.0, 288.0, 84.0, 16.0]
+- file: images/image38.jpg
+  source_id: valid/shard_000/India_004686.jpg
+  labels: [longitudinal_crack]
+  boxes:
+  - label: longitudinal_crack
+    bbox_xywh: [96.0, 623.0, 133.0, 93.0]
+  - label: longitudinal_crack
+    bbox_xywh: [230.0, 495.0, 98.0, 123.0]
+- file: images/image39.jpg
+  source_id: valid/shard_000/India_006238.jpg
+  labels: [alligator_crack, longitudinal_crack]
+  boxes:
+  - label: longitudinal_crack
+    bbox_xywh: [161.0, 488.0, 36.0, 85.0]
+  - label: longitudinal_crack
+    bbox_xywh: [489.0, 391.0, 153.0, 170.0]
+  - label: alligator_crack
+    bbox_xywh: [618.0, 538.0, 102.0, 166.0]
+  - label: alligator_crack
+    bbox_xywh: [619.0, 379.0, 74.0, 139.0]
+- file: images/image40.jpg
+  source_id: valid/shard_000/Czech_003056.jpg
+  labels: [longitudinal_crack]
+  boxes:
+  - label: longitudinal_crack
+    bbox_xywh: [261.0, 440.0, 52.0, 80.0]
+  - label: longitudinal_crack
+    bbox_xywh: [293.0, 423.0, 79.0, 51.0]
+  - label: longitudinal_crack
+    bbox_xywh: [214.0, 394.0, 35.0, 54.0]
+- file: images/image41.jpg
+  source_id: valid/shard_000/Japan_005986.jpg
+  labels: [alligator_crack, transverse_crack]
+  boxes:
+  - label: alligator_crack
+    bbox_xywh: [10.0, 415.0, 253.0, 185.0]
+  - label: transverse_crack
+    bbox_xywh: [256.0, 448.0, 126.0, 20.0]
+- file: images/image42.jpg
+  source_id: valid/shard_000/Japan_000108.jpg
+  labels: [alligator_crack]
+  boxes:
+  - label: alligator_crack
+    bbox_xywh: [393.0, 306.0, 169.0, 124.0]
+- file: images/image43.jpg
+  source_id: valid/shard_000/India_001236.jpg
+  labels: [alligator_crack, longitudinal_crack]
+  boxes:
+  - label: longitudinal_crack
+    bbox_xywh: [10.0, 464.0, 251.0, 78.0]
+  - label: alligator_crack
+    bbox_xywh: [28.0, 475.0, 521.0, 213.0]
+- file: images/image44.jpg
+  source_id: valid/shard_000/India_007201.jpg
+  labels: []
+  boxes: []
+- file: images/image45.jpg
+  source_id: valid/shard_000/Japan_005888.jpg
+  labels: [alligator_crack, transverse_crack]
+  boxes:
+  - label: alligator_crack
+    bbox_xywh: [125.0, 451.0, 273.0, 65.0]
+  - label: transverse_crack
+    bbox_xywh: [372.0, 543.0, 98.0, 57.0]
+- file: images/image46.jpg
+  source_id: valid/shard_000/Japan_001703.jpg
+  labels: []
+  boxes: []
+- file: images/image47.jpg
+  source_id: valid/shard_000/China_MotorBike_001161.jpg
+  labels: [transverse_crack]
+  boxes:
+  - label: transverse_crack
+    bbox_xywh: [1.0, 301.0, 420.0, 66.0]
+  - label: transverse_crack
+    bbox_xywh: [282.0, 70.0, 183.0, 22.0]
+- file: images/image48.jpg
+  source_id: valid/shard_000/India_009178.jpg
+  labels: [alligator_crack, longitudinal_crack]
+  boxes:
+  - label: alligator_crack
+    bbox_xywh: [345.0, 488.0, 171.0, 140.0]
+  - label: longitudinal_crack
+    bbox_xywh: [325.0, 560.0, 60.0, 126.0]
+  - label: alligator_crack
+    bbox_xywh: [559.0, 505.0, 161.0, 143.0]
+- file: images/image49.jpg
+  source_id: valid/shard_000/China_Drone_001240.jpg
+  labels: [transverse_crack]
+  boxes:
+  - label: transverse_crack
+    bbox_xywh: [43.0, 475.0, 76.0, 28.0]
+- file: images/image50.jpg
+  source_id: valid/shard_000/India_006713.jpg
+  labels: [longitudinal_crack]
+  boxes:
+  - label: longitudinal_crack
+    bbox_xywh: [432.0, 510.0, 35.0, 137.0]
+  - label: longitudinal_crack
+    bbox_xywh: [524.0, 539.0, 60.0, 114.0]
+- file: images/image51.jpg
+  source_id: valid/shard_000/Japan_005962.jpg
+  labels: [alligator_crack, longitudinal_crack, transverse_crack]
+  boxes:
+  - label: longitudinal_crack
+    bbox_xywh: [228.0, 389.0, 47.0, 211.0]
+  - label: transverse_crack
+    bbox_xywh: [294.0, 482.0, 169.0, 16.0]
+  - label: alligator_crack
+    bbox_xywh: [409.0, 336.0, 83.0, 37.0]
+- file: images/image52.jpg
+  source_id: valid/shard_000/India_009029.jpg
+  labels: [alligator_crack]
+  boxes:
+  - label: alligator_crack
+    bbox_xywh: [378.0, 486.0, 318.0, 211.0]
+- file: images/image53.jpg
+  source_id: valid/shard_000/China_Drone_002070.jpg
+  labels: [longitudinal_crack, transverse_crack]
+  boxes:
+  - label: transverse_crack
+    bbox_xywh: [1.0, 323.0, 96.0, 35.0]
+  - label: longitudinal_crack
+    bbox_xywh: [83.0, 386.0, 136.0, 78.0]
+  - label: longitudinal_crack
+    bbox_xywh: [1.0, 191.0, 239.0, 125.0]
+  - label: transverse_crack
+    bbox_xywh: [23.0, 23.0, 87.0, 37.0]
+  - label: longitudinal_crack
+    bbox_xywh: [1.0, 1.0, 26.0, 90.0]
+  - label: transverse_crack
+    bbox_xywh: [333.0, 392.0, 106.0, 31.0]
+- file: images/image54.jpg
+  source_id: valid/shard_000/India_003841.jpg
+  labels: [longitudinal_crack, transverse_crack]
+  boxes:
+  - label: transverse_crack
+    bbox_xywh: [344.0, 553.0, 89.0, 25.0]
+  - label: longitudinal_crack
+    bbox_xywh: [276.0, 500.0, 110.0, 181.0]
+- file: images/image55.jpg
+  source_id: valid/shard_000/China_MotorBike_001371.jpg
+  labels: [alligator_crack, longitudinal_crack, transverse_crack]
+  boxes:
+  - label: longitudinal_crack
+    bbox_xywh: [90.0, 1.0, 60.0, 257.0]
+  - label: alligator_crack
+    bbox_xywh: [40.0, 314.0, 82.0, 64.0]
+  - label: longitudinal_crack
+    bbox_xywh: [9.0, 376.0, 44.0, 136.0]
+  - label: transverse_crack
+    bbox_xywh: [127.0, 309.0, 273.0, 32.0]
+  - label: alligator_crack
+    bbox_xywh: [399.0, 315.0, 66.0, 145.0]
+- file: images/image56.jpg
+  source_id: valid/shard_000/Japan_001547.jpg
+  labels: [longitudinal_crack]
+  boxes:
+  - label: longitudinal_crack
+    bbox_xywh: [373.0, 506.0, 45.0, 70.0]
+- file: images/image57.jpg
+  source_id: valid/shard_000/Czech_001752.jpg
+  labels: [longitudinal_crack, transverse_crack]
+  boxes:
+  - label: longitudinal_crack
+    bbox_xywh: [171.0, 423.0, 39.0, 25.0]
+  - label: longitudinal_crack
+    bbox_xywh: [242.0, 432.0, 43.0, 86.0]
+  - label: longitudinal_crack
+    bbox_xywh: [345.0, 435.0, 90.0, 79.0]
+  - label: transverse_crack
+    bbox_xywh: [5.0, 451.0, 210.0, 32.0]
+  - label: transverse_crack
+    bbox_xywh: [167.0, 414.0, 210.0, 32.0]
+- file: images/image58.jpg
+  source_id: valid/shard_000/China_MotorBike_000047.jpg
+  labels: [alligator_crack, longitudinal_crack, transverse_crack]
+  boxes:
+  - label: alligator_crack
+    bbox_xywh: [306.0, 48.0, 31.0, 41.0]
+  - label: longitudinal_crack
+    bbox_xywh: [293.0, 110.0, 59.0, 120.0]
+  - label: longitudinal_crack
+    bbox_xywh: [287.0, 235.0, 82.0, 271.0]
+  - label: transverse_crack
+    bbox_xywh: [346.0, 333.0, 107.0, 63.0]
+  - label: transverse_crack
+    bbox_xywh: [356.0, 443.0, 144.0, 50.0]
+- file: images/image59.jpg
+  source_id: valid/shard_000/Japan_003912.jpg
+  labels: [alligator_crack, transverse_crack]
+  boxes:
+  - label: alligator_crack
+    bbox_xywh: [211.0, 445.0, 305.0, 152.0]
+  - label: transverse_crack
+    bbox_xywh: [182.0, 366.0, 50.0, 11.0]
+- file: images/image60.jpg
+  source_id: valid/shard_000/India_002784.jpg
+  labels: [alligator_crack, longitudinal_crack]
+  boxes:
+  - label: longitudinal_crack
+    bbox_xywh: [2.0, 505.0, 154.0, 92.0]
+  - label: alligator_crack
+    bbox_xywh: [40.0, 493.0, 369.0, 177.0]
+- file: images/image61.jpg
+  source_id: valid/shard_000/Czech_002285.jpg
+  labels: [longitudinal_crack]
+  boxes:
+  - label: longitudinal_crack
+    bbox_xywh: [168.0, 392.0, 78.0, 117.0]
+- file: images/image62.jpg
+  source_id: valid/shard_000/China_Drone_001035.jpg
+  labels: [alligator_crack, longitudinal_crack, transverse_crack]
+  boxes:
+  - label: transverse_crack
+    bbox_xywh: [211.0, 394.0, 289.0, 85.0]
+  - label: longitudinal_crack
+    bbox_xywh: [312.0, 171.0, 32.0, 245.0]
+  - label: alligator_crack
+    bbox_xywh: [305.0, 98.0, 52.0, 72.0]
+  - label: longitudinal_crack
+    bbox_xywh: [319.0, 4.0, 27.0, 90.0]
+- file: images/image63.jpg
+  source_id: valid/shard_000/China_MotorBike_000475.jpg
+  labels: [longitudinal_crack]
+  boxes:
+  - label: longitudinal_crack
+    bbox_xywh: [207.0, 88.0, 61.0, 423.0]
+  - label: longitudinal_crack
+    bbox_xywh: [301.0, 70.0, 17.0, 39.0]
+  - label: longitudinal_crack
+    bbox_xywh: [325.0, 37.0, 35.0, 57.0]
+  - label: longitudinal_crack
+    bbox_xywh: [394.0, 160.0, 106.0, 190.0]
+- file: images/image64.jpg
+  source_id: valid/shard_000/Czech_002168.jpg
+  labels: [longitudinal_crack, transverse_crack]
+  boxes:
+  - label: longitudinal_crack
+    bbox_xywh: [247.0, 444.0, 26.0, 86.0]
+  - label: transverse_crack
+    bbox_xywh: [152.0, 454.0, 150.0, 29.0]
+  - label: transverse_crack
+    bbox_xywh: [311.0, 459.0, 150.0, 29.0]
+- file: images/image65.jpg
+  source_id: valid/shard_000/Japan_000197.jpg
+  labels: [alligator_crack]
+  boxes:
+  - label: alligator_crack
+    bbox_xywh: [8.0, 345.0, 366.0, 255.0]
+- file: images/image66.jpg
+  source_id: valid/shard_000/China_Drone_001650.jpg
+  labels: [transverse_crack]
+  boxes:
+  - label: transverse_crack
+    bbox_xywh: [97.0, 63.0, 189.0, 40.0]
+- file: images/image67.jpg
+  source_id: valid/shard_000/Japan_005286.jpg
+  labels: [alligator_crack, longitudinal_crack]
+  boxes:
+  - label: alligator_crack
+    bbox_xywh: [74.0, 334.0, 239.0, 194.0]
+  - label: longitudinal_crack
+    bbox_xywh: [461.0, 547.0, 29.0, 51.0]
+- file: images/image68.jpg
+  source_id: valid/shard_000/China_MotorBike_000522.jpg
+  labels: [longitudinal_crack, transverse_crack]
+  boxes:
+  - label: longitudinal_crack
+    bbox_xywh: [383.0, 127.0, 14.0, 43.0]
+  - label: longitudinal_crack
+    bbox_xywh: [416.0, 33.0, 96.0, 104.0]
+  - label: transverse_crack
+    bbox_xywh: [183.0, 298.0, 329.0, 64.0]
+  - label: longitudinal_crack
+    bbox_xywh: [256.0, 290.0, 9.0, 37.0]
+  - label: transverse_crack
+    bbox_xywh: [1.0, 380.0, 142.0, 21.0]
+- file: images/image69.jpg
+  source_id: valid/shard_000/China_Drone_001433.jpg
+  labels: [longitudinal_crack, transverse_crack]
+  boxes:
+  - label: transverse_crack
+    bbox_xywh: [73.0, 333.0, 123.0, 28.0]
+  - label: longitudinal_crack
+    bbox_xywh: [100.0, 211.0, 49.0, 227.0]
+- file: images/image70.jpg
+  source_id: valid/shard_000/Japan_004621.jpg
+  labels: [alligator_crack, transverse_crack]
+  boxes:
+  - label: alligator_crack
+    bbox_xywh: [152.0, 117.0, 214.0, 317.0]
+  - label: transverse_crack
+    bbox_xywh: [46.0, 248.0, 99.0, 25.0]
+- file: images/image71.jpg
+  source_id: valid/shard_000/Japan_000340.jpg
+  labels: [transverse_crack]
+  boxes:
+  - label: transverse_crack
+    bbox_xywh: [287.0, 510.0, 307.0, 54.0]
+- file: images/image72.jpg
+  source_id: valid/shard_000/Czech_000926.jpg
+  labels: [alligator_crack]
+  boxes:
+  - label: alligator_crack
+    bbox_xywh: [249.0, 428.0, 196.0, 92.0]
+  - label: alligator_crack
+    bbox_xywh: [95.0, 430.0, 150.0, 84.0]
+- file: images/image73.jpg
+  source_id: valid/shard_000/India_003245.jpg
+  labels: [alligator_crack]
+  boxes:
+  - label: alligator_crack
+    bbox_xywh: [183.0, 481.0, 527.0, 164.0]
+- file: images/image74.jpg
+  source_id: valid/shard_000/China_Drone_002156.jpg
+  labels: [longitudinal_crack, transverse_crack]
+  boxes:
+  - label: transverse_crack
+    bbox_xywh: [79.0, 246.0, 154.0, 45.0]
+  - label: longitudinal_crack
+    bbox_xywh: [159.0, 282.0, 27.0, 217.0]
+- file: images/image75.jpg
+  source_id: valid/shard_000/India_008684.jpg
+  labels: [alligator_crack, longitudinal_crack]
+  boxes:
+  - label: alligator_crack
+    bbox_xywh: [261.0, 467.0, 388.0, 169.0]
+  - label: longitudinal_crack
+    bbox_xywh: [394.0, 495.0, 39.0, 104.0]
+- file: images/image76.jpg
+  source_id: valid/shard_000/Japan_003140.jpg
+  labels: [alligator_crack, transverse_crack]
+  boxes:
+  - label: alligator_crack
+    bbox_xywh: [62.0, 404.0, 145.0, 194.0]
+  - label: transverse_crack
+    bbox_xywh: [278.0, 452.0, 107.0, 17.0]
+- file: images/image77.jpg
+  source_id: valid/shard_000/India_007309.jpg
+  labels: []
+  boxes: []
+- file: images/image78.jpg
+  source_id: valid/shard_000/China_Drone_001704.jpg
+  labels: [alligator_crack]
+  boxes:
+  - label: alligator_crack
+    bbox_xywh: [220.0, 113.0, 40.0, 121.0]
+- file: images/image79.jpg
+  source_id: valid/shard_000/India_003701.jpg
+  labels: [alligator_crack]
+  boxes:
+  - label: alligator_crack
+    bbox_xywh: [187.0, 472.0, 533.0, 176.0]
+- file: images/image80.jpg
+  source_id: valid/shard_000/Japan_001938.jpg
+  labels: [alligator_crack]
+  boxes:
+  - label: alligator_crack
+    bbox_xywh: [361.0, 110.0, 161.0, 303.0]
+  - label: alligator_crack
+    bbox_xywh: [53.0, 49.0, 287.0, 387.0]

@@ -1,0 +1,49 @@
+# Central configuration for autolabelling_via_embeddings.
+# One top-level subsection per module; add a new section whenever a module is created.
+
+# Settings shared across all modules.
+general:
+  output_dir: scratch     # all generated output is written here
+  weights_dir: weights    # transient downloaded data (e.g. model weights)
+  random_seed: 42         # seed for reproducible runs
+
+# sample_data: builds sample datasets of labelled probe crops + unlabelled images.
+sample_data:
+  output_dir: sample_datasets              # one sub-folder per dataset is written here
+  cache_dir: weights/sample_data_cache     # transient downloads (annotations, raw images)
+  num_probes: 20                           # probe crops per dataset, split evenly across labels
+  num_images: 80                           # full images per dataset
+  negative_fraction: 0.1                   # share of images containing none of the labels (if available)
+  probe_padding: 0.1                       # context added around each probe box, as a fraction of box size
+  probe_min_side: 48                       # min shorter side (px) of a box to be used as a probe
+  jpeg_quality: 95                         # JPEG quality for probe crops and any re-encoded images
+  datasets:
+    coco_objects:                          # everyday objects in cluttered scenes
+      source: hf_rows
+      dataset: rafaelpadilla/coco2017
+      config: default
+      split: val
+      max_rows: 2000                       # rows scanned from the start of the split
+      label_field: label
+      labels: [dog, cat, bicycle, bus, umbrella]
+      probe_min_side: 96                   # larger floor gives clearer, less occluded probes
+      license: CC BY 4.0 (COCO annotations); images under Flickr terms
+    road_cracks:                           # road surface damage from vehicle/drone cameras
+      source: rdd2022
+      dataset: dronefreak/RDD2022
+      shards: [valid/shard_000]
+      category_names: [longitudinal_crack, transverse_crack, alligator_crack, pothole]
+      # Class 3 ('pothole') is omitted: in this mirror it is mostly line blur, crosswalks and manholes.
+      labels: [longitudinal_crack, transverse_crack, alligator_crack]
+      probe_min_side: 64                   # avoids thin, near-invisible crack strips
+      license: CC BY-SA 4.0
+    dental_xray:                           # DENTEX panoramic dental X-rays
+      source: yolo_hub
+      dataset: liodon-ai/dental-panoramic-xray-yolo
+      image_dir: images/train
+      label_dir: labels/train
+      file_prefix: train_                  # DENTEX images only (CC BY 4.0); skips OralXrays-9
+      category_names: [caries, periapical_lesion, impacted_tooth]
+      labels: [caries, periapical_lesion, impacted_tooth]
+      max_image_side: 1600                 # downscale large panoramics; ground-truth boxes are scaled to match
+      license: CC BY 4.0 (DENTEX)
