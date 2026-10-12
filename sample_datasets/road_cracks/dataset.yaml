@@ -1,0 +1,21 @@
+# Sample dataset: road surface cracks from vehicle/drone cameras (RDD2022).
+# Build settings for `python -m src.sample_data`; this folder is self-contained.
+
+# Source.
+source: rdd2022
+dataset: dronefreak/RDD2022
+shards: [valid/shard_000]
+category_names: [longitudinal_crack, transverse_crack, alligator_crack, pothole]
+# Class 3 ('pothole') is omitted: in this mirror it is mostly line blur, crosswalks and manholes.
+labels: [longitudinal_crack, transverse_crack, alligator_crack]
+license: CC BY-SA 4.0
+
+# Selection and output settings.
+num_probes: 20            # probe crops, split evenly across labels
+num_images: 80            # full images
+image_width: 1280         # every image is resized to this width, keeping aspect ratio
+negative_fraction: 0.1    # share of images containing none of the labels (if the source has any)
+probe_padding: 0.1        # context added around each probe box, as a fraction of box size
+probe_min_side: 64        # min shorter side of a probe box, in source-image pixels
+jpeg_quality: 95          # JPEG quality for saved images and probe crops
+seed: 42                  # random seed for reproducible selection

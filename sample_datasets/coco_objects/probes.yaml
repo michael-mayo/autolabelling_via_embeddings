@@ -5,80 +5,80 @@ probes:
 - file: probes/probe1.jpg
   label: dog
   source_id: rafaelpadilla/coco2017:52891
-  bbox_xywh: [146.1, 125.3, 372.5, 301.7]
+  source_bbox_xywh: [146.1, 125.3, 372.5, 301.7]
 - file: probes/probe2.jpg
   label: dog
   source_id: rafaelpadilla/coco2017:554002
-  bbox_xywh: [427.6, 77.9, 188.9, 285.9]
+  source_bbox_xywh: [427.6, 77.9, 188.9, 285.9]
 - file: probes/probe3.jpg
   label: dog
   source_id: rafaelpadilla/coco2017:273642
-  bbox_xywh: [8.1, 6.1, 366.9, 494.0]
+  source_bbox_xywh: [8.1, 6.1, 366.9, 494.0]
 - file: probes/probe4.jpg
   label: dog
   source_id: rafaelpadilla/coco2017:149568
-  bbox_xywh: [125.1, 114.7, 328.7, 369.7]
+  source_bbox_xywh: [125.1, 114.7, 328.7, 369.7]
 - file: probes/probe5.jpg
   label: cat
   source_id: rafaelpadilla/coco2017:574315
-  bbox_xywh: [181.8, 105.3, 251.7, 235.7]
+  source_bbox_xywh: [181.8, 105.3, 251.7, 235.7]
 - file: probes/probe6.jpg
   label: cat
   source_id: rafaelpadilla/coco2017:572388
-  bbox_xywh: [0.0, 1.5, 185.3, 451.5]
+  source_bbox_xywh: [0.0, 1.5, 185.3, 451.5]
 - file: probes/probe7.jpg
   label: cat
   source_id: rafaelpadilla/coco2017:219578
-  bbox_xywh: [420.6, 148.2, 217.2, 128.8]
+  source_bbox_xywh: [420.6, 148.2, 217.2, 128.8]
 - file: probes/probe8.jpg
   label: cat
   source_id: rafaelpadilla/coco2017:213445
-  bbox_xywh: [105.6, 105.6, 201.1, 286.5]
+  source_bbox_xywh: [105.6, 105.6, 201.1, 286.5]
 - file: probes/probe9.jpg
   label: bicycle
   source_id: rafaelpadilla/coco2017:101762
-  bbox_xywh: [41.5, 0.0, 472.9, 344.8]
+  source_bbox_xywh: [41.5, 0.0, 472.9, 344.8]
 - file: probes/probe10.jpg
   label: bicycle
   source_id: rafaelpadilla/coco2017:256941
-  bbox_xywh: [107.8, 226.0, 174.6, 274.0]
+  source_bbox_xywh: [107.8, 226.0, 174.6, 274.0]
 - file: probes/probe11.jpg
   label: bicycle
   source_id: rafaelpadilla/coco2017:424162
-  bbox_xywh: [305.6, 230.4, 117.1, 243.9]
+  source_bbox_xywh: [305.6, 230.4, 117.1, 243.9]
 - file: probes/probe12.jpg
   label: bicycle
   source_id: rafaelpadilla/coco2017:279278
-  bbox_xywh: [483.1, 23.7, 120.8, 121.8]
+  source_bbox_xywh: [483.1, 23.7, 120.8, 121.8]
 - file: probes/probe13.jpg
   label: bus
   source_id: rafaelpadilla/coco2017:545219
-  bbox_xywh: [113.3, 90.6, 477.8, 323.6]
+  source_bbox_xywh: [113.3, 90.6, 477.8, 323.6]
 - file: probes/probe14.jpg
   label: bus
   source_id: rafaelpadilla/coco2017:333402
-  bbox_xywh: [100.7, 49.4, 417.3, 314.7]
+  source_bbox_xywh: [100.7, 49.4, 417.3, 314.7]
 - file: probes/probe15.jpg
   label: bus
   source_id: rafaelpadilla/coco2017:311909
-  bbox_xywh: [0.0, 46.8, 639.8, 401.3]
+  source_bbox_xywh: [0.0, 46.8, 639.8, 401.3]
 - file: probes/probe16.jpg
   label: bus
   source_id: rafaelpadilla/coco2017:106048
-  bbox_xywh: [145.2, 66.4, 378.0, 253.0]
+  source_bbox_xywh: [145.2, 66.4, 378.0, 253.0]
 - file: probes/probe17.jpg
   label: umbrella
   source_id: rafaelpadilla/coco2017:401446
-  bbox_xywh: [155.3, 2.2, 215.7, 133.8]
+  source_bbox_xywh: [155.3, 2.2, 215.7, 133.8]
 - file: probes/probe18.jpg
   label: umbrella
   source_id: rafaelpadilla/coco2017:455157
-  bbox_xywh: [243.8, 135.8, 202.2, 172.8]
+  source_bbox_xywh: [243.8, 135.8, 202.2, 172.8]
 - file: probes/probe19.jpg
   label: umbrella
   source_id: rafaelpadilla/coco2017:360960
-  bbox_xywh: [74.4, 77.4, 315.0, 153.2]
+  source_bbox_xywh: [74.4, 77.4, 315.0, 153.2]
 - file: probes/probe20.jpg
   label: umbrella
   source_id: rafaelpadilla/coco2017:233771
-  bbox_xywh: [173.0, 356.4, 312.3, 102.1]
+  source_bbox_xywh: [173.0, 356.4, 312.3, 102.1]

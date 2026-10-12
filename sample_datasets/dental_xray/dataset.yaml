@@ -1,0 +1,22 @@
+# Sample dataset: DENTEX panoramic dental X-rays.
+# Build settings for `python -m src.sample_data`; this folder is self-contained.
+
+# Source.
+source: yolo_hub
+dataset: liodon-ai/dental-panoramic-xray-yolo
+image_dir: images/train
+label_dir: labels/train
+file_prefix: train_       # DENTEX images only (CC BY 4.0); skips OralXrays-9
+category_names: [caries, periapical_lesion, impacted_tooth]
+labels: [caries, periapical_lesion, impacted_tooth]
+license: CC BY 4.0 (DENTEX)
+
+# Selection and output settings.
+num_probes: 20            # probe crops, split evenly across labels
+num_images: 80            # full images
+image_width: 1280         # every image is resized to this width, keeping aspect ratio
+negative_fraction: 0.1    # share of images containing none of the labels (if the source has any)
+probe_padding: 0.1        # context added around each probe box, as a fraction of box size
+probe_min_side: 48        # min shorter side of a probe box, in source-image pixels
+jpeg_quality: 95          # JPEG quality for saved images and probe crops
+seed: 42                  # random seed for reproducible selection

@@ -8,1156 +8,1156 @@ images:
   labels: [caries, impacted_tooth, periapical_lesion]
   boxes:
   - label: impacted_tooth
-    bbox_xywh: [376.1, 247.8, 153.3, 115.0]
+    bbox_xywh: [300.9, 198.2, 122.7, 92.0]
   - label: impacted_tooth
-    bbox_xywh: [387.8, 455.6, 128.9, 151.1]
+    bbox_xywh: [310.2, 364.4, 103.1, 120.9]
   - label: caries
-    bbox_xywh: [493.3, 408.3, 118.9, 178.3]
+    bbox_xywh: [394.7, 326.7, 95.1, 142.7]
   - label: impacted_tooth
-    bbox_xywh: [1155.6, 394.4, 171.7, 144.4]
+    bbox_xywh: [924.4, 315.6, 137.3, 115.6]
   - label: caries
-    bbox_xywh: [993.9, 415.6, 91.1, 190.6]
+    bbox_xywh: [795.1, 332.4, 72.9, 152.4]
   - label: caries
-    bbox_xywh: [1073.9, 410.6, 88.9, 194.4]
+    bbox_xywh: [859.1, 328.4, 71.1, 155.6]
   - label: caries
-    bbox_xywh: [1129.4, 271.1, 97.8, 173.9]
+    bbox_xywh: [903.6, 216.9, 78.2, 139.1]
   - label: periapical_lesion
-    bbox_xywh: [683.7, 404.0, 153.8, 299.1]
+    bbox_xywh: [546.9, 323.2, 123.1, 239.3]
   - label: periapical_lesion
-    bbox_xywh: [623.8, 413.6, 125.0, 251.1]
+    bbox_xywh: [499.1, 330.9, 100.0, 200.9]
 - file: images/image2.jpg
   source_id: images/train/train_11.png
   labels: [caries, periapical_lesion]
   boxes:
   - label: periapical_lesion
-    bbox_xywh: [1007.2, 477.4, 137.6, 198.3]
+    bbox_xywh: [805.8, 381.9, 110.1, 158.7]
   - label: caries
-    bbox_xywh: [1078.6, 473.0, 153.2, 170.5]
+    bbox_xywh: [862.8, 378.4, 122.6, 136.4]
   - label: caries
-    bbox_xywh: [952.1, 486.9, 102.0, 177.7]
+    bbox_xywh: [761.7, 389.5, 81.6, 142.2]
   - label: caries
-    bbox_xywh: [512.5, 481.3, 139.3, 185.0]
+    bbox_xywh: [410.0, 385.1, 111.4, 148.0]
   - label: caries
-    bbox_xywh: [369.4, 441.2, 127.6, 153.2]
+    bbox_xywh: [295.5, 353.0, 102.1, 122.6]
   - label: caries
-    bbox_xywh: [888.0, 310.3, 49.6, 187.2]
+    bbox_xywh: [710.4, 248.2, 39.7, 149.7]
   - label: caries
-    bbox_xywh: [1046.8, 302.5, 96.4, 176.0]
+    bbox_xywh: [837.4, 242.0, 77.1, 140.8]
   - label: caries
-    bbox_xywh: [540.9, 305.3, 90.8, 172.7]
+    bbox_xywh: [432.8, 244.2, 72.6, 138.2]
 - file: images/image3.jpg
   source_id: images/train/train_353.png
   labels: [impacted_tooth]
   boxes:
   - label: impacted_tooth
-    bbox_xywh: [422.8, 419.7, 107.7, 178.7]
+    bbox_xywh: [338.2, 335.8, 86.1, 143.0]
   - label: impacted_tooth
-    bbox_xywh: [1130.0, 424.4, 113.9, 192.3]
+    bbox_xywh: [904.0, 339.5, 91.2, 153.9]
   - label: impacted_tooth
-    bbox_xywh: [489.2, 216.6, 107.5, 141.3]
+    bbox_xywh: [391.4, 173.3, 86.0, 113.0]
   - label: impacted_tooth
-    bbox_xywh: [1057.1, 219.4, 109.7, 146.3]
+    bbox_xywh: [845.7, 175.5, 87.8, 117.0]
 - file: images/image4.jpg
   source_id: images/train/train_187.png
   labels: [caries, impacted_tooth, periapical_lesion]
   boxes:
   - label: impacted_tooth
-    bbox_xywh: [324.5, 415.5, 116.0, 121.6]
+    bbox_xywh: [259.6, 332.4, 92.8, 97.3]
   - label: impacted_tooth
-    bbox_xywh: [394.5, 223.9, 109.1, 108.6]
+    bbox_xywh: [315.6, 179.2, 87.3, 86.8]
   - label: impacted_tooth
-    bbox_xywh: [1093.6, 234.7, 97.2, 102.9]
+    bbox_xywh: [874.9, 187.8, 77.8, 82.3]
   - label: impacted_tooth
-    bbox_xywh: [1149.3, 412.6, 102.9, 104.0]
+    bbox_xywh: [919.4, 330.1, 82.3, 83.2]
   - label: caries
-    bbox_xywh: [934.4, 449.0, 92.6, 163.7]
+    bbox_xywh: [747.5, 359.2, 74.1, 131.0]
   - label: caries
-    bbox_xywh: [988.4, 442.2, 129.6, 171.7]
+    bbox_xywh: [790.7, 353.8, 103.7, 137.3]
   - label: caries
-    bbox_xywh: [1057.2, 417.2, 121.6, 143.8]
+    bbox_xywh: [845.8, 333.8, 97.3, 115.0]
   - label: caries
-    bbox_xywh: [972.5, 279.1, 63.1, 165.4]
+    bbox_xywh: [778.0, 223.3, 50.5, 132.3]
   - label: caries
-    bbox_xywh: [501.9, 266.6, 90.4, 179.0]
+    bbox_xywh: [401.5, 213.3, 72.3, 143.2]
   - label: periapical_lesion
-    bbox_xywh: [987.3, 441.1, 129.6, 171.7]
+    bbox_xywh: [789.8, 352.9, 103.7, 137.3]
   - label: caries
-    bbox_xywh: [621.4, 296.7, 42.4, 119.7]
+    bbox_xywh: [497.1, 237.4, 34.0, 95.8]
 - file: images/image5.jpg
   source_id: images/train/train_514.png
   labels: [caries, impacted_tooth]
   boxes:
   - label: caries
-    bbox_xywh: [1024.0, 253.0, 60.7, 141.4]
+    bbox_xywh: [819.2, 202.4, 48.5, 113.1]
   - label: caries
-    bbox_xywh: [450.8, 361.4, 150.6, 152.8]
+    bbox_xywh: [360.6, 289.1, 120.5, 122.2]
   - label: impacted_tooth
-    bbox_xywh: [400.3, 357.3, 98.6, 114.4]
+    bbox_xywh: [320.3, 285.8, 78.9, 91.5]
 - file: images/image6.jpg
   source_id: images/train/train_703.png
   labels: [impacted_tooth]
   boxes:
   - label: impacted_tooth
-    bbox_xywh: [1072.8, 200.6, 108.3, 142.8]
+    bbox_xywh: [858.2, 160.5, 86.7, 114.2]
   - label: impacted_tooth
-    bbox_xywh: [1101.6, 365.1, 127.5, 163.6]
+    bbox_xywh: [881.3, 292.1, 102.0, 130.9]
   - label: impacted_tooth
-    bbox_xywh: [379.3, 358.2, 150.9, 157.9]
+    bbox_xywh: [303.4, 286.6, 120.7, 126.4]
 - file: images/image7.jpg
   source_id: images/train/train_398.png
   labels: [impacted_tooth]
   boxes:
   - label: impacted_tooth
-    bbox_xywh: [1077.8, 218.0, 96.6, 144.4]
+    bbox_xywh: [862.3, 174.4, 77.3, 115.5]
 - file: images/image8.jpg
   source_id: images/train/train_453.png
   labels: [caries]
   boxes:
   - label: caries
-    bbox_xywh: [1245.2, 443.1, 122.6, 150.6]
+    bbox_xywh: [996.1, 354.5, 98.1, 120.5]
 - file: images/image9.jpg
   source_id: images/train/train_553.png
   labels: [caries, periapical_lesion]
   boxes:
   - label: caries
-    bbox_xywh: [1065.2, 446.8, 136.5, 183.3]
+    bbox_xywh: [852.1, 357.4, 109.2, 146.6]
   - label: caries
-    bbox_xywh: [974.4, 449.6, 110.3, 182.7]
+    bbox_xywh: [779.5, 359.7, 88.2, 146.2]
   - label: periapical_lesion
-    bbox_xywh: [449.0, 450.1, 139.3, 198.3]
+    bbox_xywh: [359.2, 360.1, 111.4, 158.7]
 - file: images/image10.jpg
   source_id: images/train/train_427.png
   labels: [caries]
   boxes:
   - label: caries
-    bbox_xywh: [564.2, 136.1, 59.8, 226.9]
+    bbox_xywh: [451.3, 108.9, 47.9, 181.5]
   - label: caries
-    bbox_xywh: [503.3, 160.9, 84.6, 211.4]
+    bbox_xywh: [402.7, 128.7, 67.7, 169.1]
   - label: caries
-    bbox_xywh: [490.1, 362.6, 112.4, 203.5]
+    bbox_xywh: [392.1, 290.1, 89.9, 162.8]
 - file: images/image11.jpg
   source_id: images/train/train_455.png
   labels: [periapical_lesion]
   boxes:
   - label: periapical_lesion
-    bbox_xywh: [963.8, 410.0, 95.8, 189.4]
+    bbox_xywh: [771.0, 328.0, 76.7, 151.5]
 - file: images/image12.jpg
   source_id: images/train/train_306.png
   labels: [periapical_lesion]
   boxes:
   - label: periapical_lesion
-    bbox_xywh: [951.7, 293.0, 137.6, 178.2]
+    bbox_xywh: [761.3, 234.4, 110.1, 142.6]
 - file: images/image13.jpg
   source_id: images/train/train_523.png
   labels: [caries, periapical_lesion]
   boxes:
   - label: periapical_lesion
-    bbox_xywh: [980.6, 325.2, 188.7, 190.9]
+    bbox_xywh: [784.4, 260.2, 151.0, 152.7]
   - label: caries
-    bbox_xywh: [1067.0, 301.3, 155.0, 174.0]
+    bbox_xywh: [853.6, 241.0, 124.0, 139.2]
   - label: caries
-    bbox_xywh: [1147.0, 254.5, 141.9, 153.9]
+    bbox_xywh: [917.6, 203.6, 113.6, 123.1]
   - label: caries
-    bbox_xywh: [479.1, 127.8, 94.6, 177.3]
+    bbox_xywh: [383.3, 102.2, 75.7, 141.8]
   - label: periapical_lesion
-    bbox_xywh: [552.0, 143.0, 90.3, 183.8]
+    bbox_xywh: [441.6, 114.4, 72.2, 147.1]
   - label: caries
-    bbox_xywh: [611.8, 146.8, 70.7, 192.0]
+    bbox_xywh: [489.5, 117.5, 56.6, 153.6]
   - label: caries
-    bbox_xywh: [1124.1, 108.2, 100.1, 174.6]
+    bbox_xywh: [899.3, 86.6, 80.1, 139.7]
   - label: caries
-    bbox_xywh: [1148.1, 262.7, 137.6, 140.9]
+    bbox_xywh: [918.4, 210.1, 110.1, 112.7]
   - label: caries
-    bbox_xywh: [990.9, 180.0, 97.9, 129.4]
+    bbox_xywh: [792.7, 144.0, 78.3, 103.5]
 - file: images/image14.jpg
   source_id: images/train/train_647.png
   labels: [caries]
   boxes:
   - label: caries
-    bbox_xywh: [679.1, 157.2, 61.6, 209.0]
+    bbox_xywh: [543.3, 125.8, 49.3, 167.2]
   - label: caries
-    bbox_xywh: [487.4, 220.8, 93.8, 124.1]
+    bbox_xywh: [389.9, 176.6, 75.0, 99.3]
   - label: caries
-    bbox_xywh: [991.5, 184.9, 56.5, 181.7]
+    bbox_xywh: [793.2, 147.9, 45.2, 145.4]
   - label: caries
-    bbox_xywh: [845.7, 364.2, 46.4, 196.9]
+    bbox_xywh: [676.5, 291.3, 37.2, 157.5]
   - label: caries
-    bbox_xywh: [883.0, 369.2, 43.4, 219.1]
+    bbox_xywh: [706.4, 295.4, 34.7, 175.3]
   - label: caries
-    bbox_xywh: [914.3, 382.3, 56.5, 194.8]
+    bbox_xywh: [731.4, 305.9, 45.2, 155.9]
   - label: caries
-    bbox_xywh: [959.7, 377.2, 51.5, 190.8]
+    bbox_xywh: [767.8, 301.8, 41.2, 152.7]
   - label: caries
-    bbox_xywh: [1019.0, 357.6, 144.4, 170.5]
+    bbox_xywh: [815.2, 286.1, 115.5, 136.4]
   - label: caries
-    bbox_xywh: [1091.0, 336.4, 162.5, 148.9]
+    bbox_xywh: [872.8, 269.1, 130.0, 119.2]
   - label: caries
-    bbox_xywh: [453.0, 344.0, 118.1, 174.6]
+    bbox_xywh: [362.4, 275.2, 94.5, 139.7]
 - file: images/image15.jpg
   source_id: images/train/train_202.png
   labels: [caries]
   boxes:
   - label: caries
-    bbox_xywh: [420.8, 327.8, 141.9, 122.5]
+    bbox_xywh: [336.7, 262.3, 113.5, 98.0]
   - label: caries
-    bbox_xywh: [479.4, 192.9, 87.6, 155.9]
+    bbox_xywh: [383.5, 154.4, 70.1, 124.7]
   - label: caries
-    bbox_xywh: [1034.6, 206.9, 102.7, 149.4]
+    bbox_xywh: [827.7, 165.5, 82.1, 119.5]
 - file: images/image16.jpg
   source_id: images/train/train_655.png
   labels: [caries, impacted_tooth]
   boxes:
   - label: caries
-    bbox_xywh: [499.1, 297.6, 82.4, 167.6]
+    bbox_xywh: [399.3, 238.1, 65.9, 134.1]
   - label: caries
-    bbox_xywh: [868.9, 300.0, 50.0, 182.4]
+    bbox_xywh: [695.1, 240.0, 40.0, 145.9]
   - label: caries
-    bbox_xywh: [905.1, 318.6, 57.4, 170.7]
+    bbox_xywh: [724.1, 254.9, 45.9, 136.6]
   - label: caries
-    bbox_xywh: [968.3, 495.8, 70.1, 156.0]
+    bbox_xywh: [774.6, 396.6, 56.1, 124.8]
   - label: caries
-    bbox_xywh: [1003.1, 476.7, 112.2, 161.4]
+    bbox_xywh: [802.4, 381.3, 89.8, 129.1]
   - label: caries
-    bbox_xywh: [608.2, 497.9, 74.7, 164.8]
+    bbox_xywh: [486.5, 398.3, 59.7, 131.9]
   - label: caries
-    bbox_xywh: [516.3, 476.3, 124.6, 179.0]
+    bbox_xywh: [413.0, 381.0, 99.7, 143.2]
   - label: caries
-    bbox_xywh: [427.9, 452.7, 136.4, 164.1]
+    bbox_xywh: [342.3, 362.2, 109.1, 131.3]
   - label: impacted_tooth
-    bbox_xywh: [412.3, 245.2, 95.9, 114.3]
+    bbox_xywh: [329.9, 196.2, 76.7, 91.4]
   - label: impacted_tooth
-    bbox_xywh: [1105.0, 249.2, 95.9, 117.2]
+    bbox_xywh: [884.0, 199.4, 76.7, 93.7]
   - label: impacted_tooth
-    bbox_xywh: [1157.8, 451.4, 113.7, 122.3]
+    bbox_xywh: [926.2, 361.1, 91.0, 97.9]
 - file: images/image17.jpg
   source_id: images/train/train_258.png
   labels: [caries, impacted_tooth, periapical_lesion]
   boxes:
   - label: periapical_lesion
-    bbox_xywh: [631.2, 236.2, 96.4, 178.3]
+    bbox_xywh: [505.0, 189.0, 77.1, 142.6]
   - label: impacted_tooth
-    bbox_xywh: [386.6, 424.5, 128.1, 153.2]
+    bbox_xywh: [309.3, 339.6, 102.5, 122.6]
   - label: caries
-    bbox_xywh: [486.9, 434.0, 112.0, 147.1]
+    bbox_xywh: [389.5, 347.2, 89.6, 117.7]
   - label: caries
-    bbox_xywh: [936.5, 455.2, 83.0, 176.6]
+    bbox_xywh: [749.2, 364.1, 66.4, 141.3]
   - label: caries
-    bbox_xywh: [983.8, 452.9, 132.0, 177.7]
+    bbox_xywh: [787.1, 362.3, 105.6, 142.2]
   - label: impacted_tooth
-    bbox_xywh: [1086.9, 432.9, 174.9, 136.5]
+    bbox_xywh: [869.5, 346.3, 139.9, 109.2]
   - label: caries
-    bbox_xywh: [1075.2, 274.7, 80.8, 188.3]
+    bbox_xywh: [860.2, 219.7, 64.6, 150.6]
   - label: caries
-    bbox_xywh: [692.5, 233.4, 54.6, 231.2]
+    bbox_xywh: [554.0, 186.7, 43.7, 185.0]
   - label: caries
-    bbox_xywh: [985.5, 261.8, 111.4, 194.4]
+    bbox_xywh: [788.4, 209.5, 89.1, 155.5]
   - label: caries
-    bbox_xywh: [515.9, 275.2, 92.5, 174.4]
+    bbox_xywh: [412.7, 220.2, 74.0, 139.5]
   - label: caries
-    bbox_xywh: [578.3, 260.7, 103.6, 185.0]
+    bbox_xywh: [462.6, 208.6, 82.9, 148.0]
 - file: images/image18.jpg
   source_id: images/train/train_555.png
   labels: [caries, impacted_tooth]
   boxes:
   - label: impacted_tooth
-    bbox_xywh: [425.1, 203.3, 127.7, 145.1]
+    bbox_xywh: [340.0, 162.7, 102.1, 116.1]
   - label: caries
-    bbox_xywh: [908.1, 281.7, 55.1, 150.9]
+    bbox_xywh: [726.5, 225.3, 44.1, 120.7]
   - label: caries
-    bbox_xywh: [986.5, 233.8, 107.4, 184.2]
+    bbox_xywh: [789.2, 187.0, 85.9, 147.4]
   - label: impacted_tooth
-    bbox_xywh: [1070.6, 197.5, 140.7, 149.4]
+    bbox_xywh: [856.5, 158.0, 112.6, 119.5]
   - label: caries
-    bbox_xywh: [638.3, 451.4, 68.2, 172.6]
+    bbox_xywh: [510.6, 361.1, 54.5, 138.1]
   - label: caries
-    bbox_xywh: [504.8, 409.3, 137.8, 175.5]
+    bbox_xywh: [403.9, 327.5, 110.3, 140.4]
   - label: caries
-    bbox_xywh: [445.4, 373.1, 139.3, 166.8]
+    bbox_xywh: [356.3, 298.4, 111.4, 133.5]
 - file: images/image19.jpg
   source_id: images/train/train_554.png
   labels: [caries, impacted_tooth]
   boxes:
   - label: caries
-    bbox_xywh: [470.8, 318.6, 137.5, 146.7]
+    bbox_xywh: [376.6, 254.9, 110.0, 117.4]
   - label: impacted_tooth
-    bbox_xywh: [1098.7, 289.1, 117.8, 152.2]
+    bbox_xywh: [878.9, 231.3, 94.3, 121.8]
   - label: caries
-    bbox_xywh: [1006.5, 297.3, 135.8, 151.1]
+    bbox_xywh: [805.2, 237.8, 108.7, 120.9]
 - file: images/image20.jpg
   source_id: images/train/train_238.png
   labels: [periapical_lesion]
   boxes:
   - label: periapical_lesion
-    bbox_xywh: [468.5, 434.1, 117.5, 131.4]
+    bbox_xywh: [374.8, 347.3, 94.0, 105.1]
 - file: images/image21.jpg
   source_id: images/train/train_483.png
   labels: [impacted_tooth]
   boxes:
   - label: impacted_tooth
-    bbox_xywh: [419.5, 247.8, 104.9, 114.1]
+    bbox_xywh: [335.6, 198.2, 83.9, 91.3]
   - label: impacted_tooth
-    bbox_xywh: [1066.8, 386.7, 93.0, 84.7]
+    bbox_xywh: [853.4, 309.4, 74.4, 67.8]
   - label: impacted_tooth
-    bbox_xywh: [423.1, 393.1, 89.1, 97.2]
+    bbox_xywh: [338.5, 314.4, 71.3, 77.7]
   - label: impacted_tooth
-    bbox_xywh: [1043.7, 213.0, 81.0, 117.4]
+    bbox_xywh: [835.0, 170.4, 64.8, 93.9]
 - file: images/image22.jpg
   source_id: images/train/train_199.png
   labels: [impacted_tooth]
   boxes:
   - label: impacted_tooth
-    bbox_xywh: [1052.5, 404.3, 119.0, 95.8]
+    bbox_xywh: [842.0, 323.4, 95.2, 76.7]
 - file: images/image23.jpg
   source_id: images/train/train_469.png
   labels: [periapical_lesion]
   boxes:
   - label: periapical_lesion
-    bbox_xywh: [953.9, 388.3, 133.2, 148.8]
+    bbox_xywh: [763.1, 310.7, 106.6, 119.0]
 - file: images/image24.jpg
   source_id: images/train/train_182.png
   labels: [caries]
   boxes:
   - label: caries
-    bbox_xywh: [536.9, 229.5, 68.6, 165.0]
+    bbox_xywh: [429.5, 183.6, 54.9, 132.0]
   - label: caries
-    bbox_xywh: [871.9, 234.6, 56.4, 156.8]
+    bbox_xywh: [697.6, 187.7, 45.1, 125.4]
 - file: images/image25.jpg
   source_id: images/train/train_67.png
   labels: [caries, impacted_tooth, periapical_lesion]
   boxes:
   - label: impacted_tooth
-    bbox_xywh: [1074.1, 151.0, 97.5, 157.1]
+    bbox_xywh: [859.3, 120.8, 78.0, 125.7]
   - label: periapical_lesion
-    bbox_xywh: [425.6, 393.9, 132.0, 151.5]
+    bbox_xywh: [340.5, 315.1, 105.6, 121.2]
   - label: caries
-    bbox_xywh: [449.0, 388.9, 110.3, 105.8]
+    bbox_xywh: [359.2, 311.1, 88.2, 84.7]
   - label: periapical_lesion
-    bbox_xywh: [469.6, 430.6, 155.4, 166.6]
+    bbox_xywh: [375.7, 344.5, 124.3, 133.3]
   - label: caries
-    bbox_xywh: [481.9, 426.2, 149.3, 162.1]
+    bbox_xywh: [385.5, 340.9, 119.4, 129.7]
   - label: periapical_lesion
-    bbox_xywh: [563.8, 471.3, 107.0, 151.5]
+    bbox_xywh: [451.0, 377.0, 85.6, 121.2]
   - label: caries
-    bbox_xywh: [584.4, 484.7, 80.8, 132.6]
+    bbox_xywh: [467.5, 387.7, 64.6, 106.1]
   - label: caries
-    bbox_xywh: [693.6, 468.0, 71.9, 175.5]
+    bbox_xywh: [554.9, 374.4, 57.5, 140.4]
   - label: caries
-    bbox_xywh: [937.6, 463.5, 115.9, 159.9]
+    bbox_xywh: [750.1, 370.8, 92.7, 127.9]
   - label: caries
-    bbox_xywh: [980.5, 445.1, 121.4, 159.3]
+    bbox_xywh: [784.4, 356.1, 97.2, 127.5]
   - label: caries
-    bbox_xywh: [1020.6, 413.4, 178.3, 176.6]
+    bbox_xywh: [816.5, 330.7, 142.6, 141.3]
   - label: caries
-    bbox_xywh: [1102.5, 374.4, 115.9, 147.1]
+    bbox_xywh: [882.0, 299.5, 92.7, 117.7]
   - label: impacted_tooth
-    bbox_xywh: [1180.5, 406.1, 138.7, 120.9]
+    bbox_xywh: [944.4, 324.9, 111.0, 96.7]
   - label: caries
-    bbox_xywh: [1111.2, 234.9, 100.3, 153.2]
+    bbox_xywh: [889.0, 187.9, 80.2, 122.6]
   - label: caries
-    bbox_xywh: [1034.0, 247.9, 96.4, 181.6]
+    bbox_xywh: [827.2, 198.3, 77.1, 145.3]
   - label: caries
-    bbox_xywh: [456.2, 255.2, 56.5, 143.8]
+    bbox_xywh: [365.0, 204.2, 45.2, 115.0]
 - file: images/image26.jpg
   source_id: images/train/train_557.png
   labels: [caries, periapical_lesion]
   boxes:
   - label: caries
-    bbox_xywh: [595.4, 225.7, 71.4, 139.6]
+    bbox_xywh: [476.4, 180.5, 57.1, 111.7]
   - label: caries
-    bbox_xywh: [533.6, 232.0, 77.7, 131.6]
+    bbox_xywh: [426.9, 185.6, 62.2, 105.3]
   - label: caries
-    bbox_xywh: [966.6, 209.8, 69.8, 134.8]
+    bbox_xywh: [773.3, 167.8, 55.8, 107.9]
   - label: caries
-    bbox_xywh: [1001.4, 195.5, 93.8, 145.3]
+    bbox_xywh: [801.1, 156.4, 75.1, 116.2]
   - label: caries
-    bbox_xywh: [941.6, 347.3, 102.5, 140.2]
+    bbox_xywh: [753.2, 277.8, 82.0, 112.2]
   - label: periapical_lesion
-    bbox_xywh: [600.2, 388.3, 75.0, 197.4]
+    bbox_xywh: [480.2, 310.6, 60.0, 157.9]
   - label: caries
-    bbox_xywh: [460.5, 221.6, 98.7, 147.2]
+    bbox_xywh: [368.4, 177.3, 78.9, 117.8]
   - label: caries
-    bbox_xywh: [601.3, 380.7, 84.1, 156.4]
+    bbox_xywh: [481.0, 304.6, 67.3, 125.1]
   - label: caries
-    bbox_xywh: [936.2, 343.5, 114.3, 150.5]
+    bbox_xywh: [748.9, 274.8, 91.5, 120.4]
 - file: images/image27.jpg
   source_id: images/train/train_240.png
   labels: [impacted_tooth, periapical_lesion]
   boxes:
   - label: impacted_tooth
-    bbox_xywh: [387.6, 386.5, 109.7, 114.6]
+    bbox_xywh: [310.1, 309.2, 87.8, 91.7]
   - label: impacted_tooth
-    bbox_xywh: [472.4, 222.2, 96.2, 96.2]
+    bbox_xywh: [377.9, 177.7, 77.0, 77.0]
   - label: impacted_tooth
-    bbox_xywh: [1107.0, 388.6, 103.8, 117.3]
+    bbox_xywh: [885.6, 310.9, 83.0, 93.8]
   - label: impacted_tooth
-    bbox_xywh: [1018.4, 234.1, 98.4, 108.1]
+    bbox_xywh: [814.7, 187.2, 78.7, 86.5]
   - label: periapical_lesion
-    bbox_xywh: [935.7, 425.6, 142.7, 160.6]
+    bbox_xywh: [748.6, 340.5, 114.2, 128.5]
 - file: images/image28.jpg
   source_id: images/train/train_392.png
   labels: [periapical_lesion]
   boxes:
   - label: periapical_lesion
-    bbox_xywh: [981.1, 435.1, 132.6, 199.5]
+    bbox_xywh: [784.8, 348.1, 106.1, 159.6]
 - file: images/image29.jpg
   source_id: images/train/train_181.png
   labels: [caries, impacted_tooth]
   boxes:
   - label: impacted_tooth
-    bbox_xywh: [385.0, 300.8, 123.7, 107.0]
+    bbox_xywh: [308.0, 240.7, 98.9, 85.6]
   - label: caries
-    bbox_xywh: [548.7, 469.6, 102.0, 186.6]
+    bbox_xywh: [439.0, 375.7, 81.6, 149.3]
   - label: caries
-    bbox_xywh: [647.9, 295.3, 61.3, 164.3]
+    bbox_xywh: [518.3, 236.2, 49.0, 131.5]
   - label: caries
-    bbox_xywh: [1069.6, 468.5, 139.3, 182.2]
+    bbox_xywh: [855.7, 374.8, 111.4, 145.7]
   - label: caries
-    bbox_xywh: [1128.1, 299.2, 93.0, 162.7]
+    bbox_xywh: [902.5, 239.3, 74.4, 130.1]
 - file: images/image30.jpg
   source_id: images/train/train_279.png
   labels: [caries, impacted_tooth]
   boxes:
   - label: caries
-    bbox_xywh: [891.8, 423.7, 64.3, 168.6]
+    bbox_xywh: [713.4, 339.0, 51.5, 134.9]
   - label: caries
-    bbox_xywh: [930.6, 413.7, 82.1, 176.4]
+    bbox_xywh: [744.5, 331.0, 65.7, 141.1]
   - label: caries
-    bbox_xywh: [980.5, 394.9, 122.0, 183.0]
+    bbox_xywh: [784.4, 315.9, 97.6, 146.4]
   - label: caries
-    bbox_xywh: [1053.7, 376.0, 133.1, 171.9]
+    bbox_xywh: [843.0, 300.8, 106.5, 137.5]
   - label: impacted_tooth
-    bbox_xywh: [1138.0, 357.2, 112.0, 159.7]
+    bbox_xywh: [910.4, 285.7, 89.6, 127.8]
   - label: impacted_tooth
-    bbox_xywh: [327.7, 358.8, 116.0, 147.9]
+    bbox_xywh: [262.2, 287.0, 92.8, 118.3]
   - label: caries
-    bbox_xywh: [426.9, 231.9, 71.4, 140.3]
+    bbox_xywh: [341.5, 185.5, 57.1, 112.3]
   - label: impacted_tooth
-    bbox_xywh: [403.3, 174.8, 111.8, 91.6]
+    bbox_xywh: [322.7, 139.8, 89.4, 73.3]
   - label: impacted_tooth
-    bbox_xywh: [1058.8, 177.3, 123.5, 113.4]
+    bbox_xywh: [847.0, 141.8, 98.8, 90.8]
 - file: images/image31.jpg
   source_id: images/train/train_489.png
   labels: [impacted_tooth]
   boxes:
   - label: impacted_tooth
-    bbox_xywh: [1073.6, 275.7, 80.3, 165.5]
+    bbox_xywh: [858.9, 220.6, 64.3, 132.4]
 - file: images/image32.jpg
   source_id: images/train/train_297.png
   labels: [caries]
   boxes:
   - label: caries
-    bbox_xywh: [317.5, 359.9, 182.7, 149.3]
+    bbox_xywh: [254.0, 287.9, 146.2, 119.4]
 - file: images/image33.jpg
   source_id: images/train/train_241.png
   labels: [caries, periapical_lesion]
   boxes:
   - label: caries
-    bbox_xywh: [1059.1, 480.2, 129.8, 171.6]
+    bbox_xywh: [847.2, 384.2, 103.8, 137.3]
   - label: caries
-    bbox_xywh: [561.6, 336.5, 79.7, 177.7]
+    bbox_xywh: [449.2, 269.2, 63.7, 142.2]
   - label: caries
-    bbox_xywh: [626.2, 374.9, 49.6, 136.5]
+    bbox_xywh: [500.9, 299.9, 39.7, 109.2]
   - label: caries
-    bbox_xywh: [660.7, 359.3, 59.6, 148.7]
+    bbox_xywh: [528.6, 287.5, 47.7, 119.0]
   - label: caries
-    bbox_xywh: [486.9, 346.5, 81.3, 159.3]
+    bbox_xywh: [389.5, 277.2, 65.1, 127.5]
   - label: caries
-    bbox_xywh: [972.7, 338.2, 59.6, 153.2]
+    bbox_xywh: [778.2, 270.5, 47.7, 122.6]
   - label: periapical_lesion
-    bbox_xywh: [982.2, 502.0, 137.6, 177.7]
+    bbox_xywh: [785.7, 401.6, 110.1, 142.2]
 - file: images/image34.jpg
   source_id: images/train/train_173.png
   labels: [impacted_tooth]
   boxes:
   - label: impacted_tooth
-    bbox_xywh: [1053.8, 348.4, 108.7, 137.4]
+    bbox_xywh: [843.0, 278.7, 87.0, 109.9]
 - file: images/image35.jpg
   source_id: images/train/train_227.png
   labels: [caries]
   boxes:
   - label: caries
-    bbox_xywh: [946.3, 451.7, 127.0, 144.1]
+    bbox_xywh: [757.0, 361.3, 101.6, 115.3]
 - file: images/image36.jpg
   source_id: images/train/train_490.png
   labels: [caries]
   boxes:
   - label: caries
-    bbox_xywh: [948.7, 278.7, 36.0, 175.9]
+    bbox_xywh: [759.0, 223.0, 28.8, 140.7]
   - label: caries
-    bbox_xywh: [981.7, 276.8, 75.8, 167.2]
+    bbox_xywh: [785.4, 221.4, 60.6, 133.7]
   - label: caries
-    bbox_xywh: [981.7, 443.9, 117.6, 197.3]
+    bbox_xywh: [785.4, 355.1, 94.1, 157.8]
   - label: caries
-    bbox_xywh: [633.8, 454.6, 87.5, 182.7]
+    bbox_xywh: [507.1, 363.7, 70.0, 146.2]
   - label: caries
-    bbox_xywh: [548.3, 445.9, 119.5, 171.0]
+    bbox_xywh: [438.6, 356.7, 95.6, 136.8]
   - label: caries
-    bbox_xywh: [405.4, 393.4, 170.1, 137.0]
+    bbox_xywh: [324.4, 314.7, 136.1, 109.6]
 - file: images/image37.jpg
   source_id: images/train/train_228.png
   labels: [periapical_lesion]
   boxes:
   - label: periapical_lesion
-    bbox_xywh: [935.5, 388.1, 133.6, 157.3]
+    bbox_xywh: [748.4, 310.4, 106.9, 125.8]
 - file: images/image38.jpg
   source_id: images/train/train_324.png
   labels: [periapical_lesion]
   boxes:
   - label: periapical_lesion
-    bbox_xywh: [622.0, 327.8, 65.6, 160.4]
+    bbox_xywh: [497.6, 262.2, 52.4, 128.3]
 - file: images/image39.jpg
   source_id: images/train/train_68.png
   labels: [caries]
   boxes:
   - label: caries
-    bbox_xywh: [651.0, 112.8, 63.9, 164.7]
+    bbox_xywh: [520.8, 90.3, 51.1, 131.8]
   - label: caries
-    bbox_xywh: [981.7, 102.4, 74.4, 196.6]
+    bbox_xywh: [785.3, 81.9, 59.5, 157.3]
 - file: images/image40.jpg
   source_id: images/train/train_614.png
   labels: [impacted_tooth]
   boxes:
   - label: impacted_tooth
-    bbox_xywh: [351.0, 500.3, 124.8, 108.6]
+    bbox_xywh: [280.8, 400.2, 99.8, 86.9]
   - label: impacted_tooth
-    bbox_xywh: [1186.1, 487.5, 143.7, 113.6]
+    bbox_xywh: [948.9, 390.0, 115.0, 90.9]
 - file: images/image41.jpg
   source_id: images/train/train_224.png
   labels: [caries, impacted_tooth]
   boxes:
   - label: impacted_tooth
-    bbox_xywh: [332.0, 324.0, 140.2, 109.6]
+    bbox_xywh: [265.6, 259.2, 112.2, 87.7]
   - label: caries
-    bbox_xywh: [1009.0, 347.6, 137.0, 158.5]
+    bbox_xywh: [807.2, 278.1, 109.6, 126.8]
   - label: caries
-    bbox_xywh: [966.0, 379.3, 77.9, 144.5]
+    bbox_xywh: [772.8, 303.5, 62.3, 115.6]
   - label: impacted_tooth
-    bbox_xywh: [1146.5, 315.9, 87.6, 92.4]
+    bbox_xywh: [917.2, 252.7, 70.1, 73.9]
   - label: impacted_tooth
-    bbox_xywh: [1088.5, 135.9, 79.0, 106.4]
+    bbox_xywh: [870.8, 108.7, 63.2, 85.1]
   - label: caries
-    bbox_xywh: [988.0, 163.3, 92.4, 163.9]
+    bbox_xywh: [790.4, 130.7, 73.9, 131.1]
   - label: caries
-    bbox_xywh: [611.4, 370.2, 77.9, 164.9]
+    bbox_xywh: [489.1, 296.1, 62.3, 132.0]
 - file: images/image42.jpg
   source_id: images/train/train_1.png
   labels: [impacted_tooth]
   boxes:
   - label: impacted_tooth
-    bbox_xywh: [424.5, 415.2, 97.0, 171.7]
+    bbox_xywh: [339.6, 332.1, 77.6, 137.3]
   - label: impacted_tooth
-    bbox_xywh: [1150.9, 421.2, 84.2, 175.2]
+    bbox_xywh: [920.7, 337.0, 67.4, 140.1]
 - file: images/image43.jpg
   source_id: images/train/train_479.png
   labels: [caries, impacted_tooth, periapical_lesion]
   boxes:
   - label: impacted_tooth
-    bbox_xywh: [1177.7, 505.3, 112.0, 109.7]
+    bbox_xywh: [942.2, 404.2, 89.6, 87.8]
   - label: periapical_lesion
-    bbox_xywh: [739.8, 456.8, 50.7, 196.1]
+    bbox_xywh: [591.9, 365.5, 40.6, 156.9]
   - label: periapical_lesion
-    bbox_xywh: [857.9, 455.7, 74.1, 196.7]
+    bbox_xywh: [686.4, 364.6, 59.3, 157.3]
   - label: caries
-    bbox_xywh: [1041.2, 474.7, 114.2, 157.1]
+    bbox_xywh: [833.0, 379.7, 91.4, 125.7]
   - label: caries
-    bbox_xywh: [996.1, 286.9, 63.0, 167.1]
+    bbox_xywh: [796.9, 229.5, 50.4, 133.7]
   - label: caries
-    bbox_xywh: [700.8, 284.7, 68.5, 159.9]
+    bbox_xywh: [560.7, 227.7, 54.8, 127.9]
   - label: caries
-    bbox_xywh: [898.6, 289.1, 63.0, 169.9]
+    bbox_xywh: [718.9, 231.3, 50.4, 135.9]
   - label: caries
-    bbox_xywh: [952.1, 463.0, 59.6, 179.4]
+    bbox_xywh: [761.7, 370.4, 47.7, 143.5]
   - label: caries
-    bbox_xywh: [1169.4, 310.3, 81.3, 152.6]
+    bbox_xywh: [935.5, 248.2, 65.1, 122.1]
   - label: caries
-    bbox_xywh: [607.2, 299.2, 78.0, 176.0]
+    bbox_xywh: [485.8, 239.3, 62.4, 140.8]
 - file: images/image44.jpg
   source_id: images/train/train_30.png
   labels: [caries, impacted_tooth]
   boxes:
   - label: impacted_tooth
-    bbox_xywh: [358.1, 301.2, 100.6, 101.2]
+    bbox_xywh: [286.5, 241.0, 80.5, 80.9]
   - label: impacted_tooth
-    bbox_xywh: [501.3, 117.1, 105.2, 97.2]
+    bbox_xywh: [401.1, 93.7, 84.1, 77.8]
   - label: caries
-    bbox_xywh: [1107.2, 292.7, 109.1, 109.7]
+    bbox_xywh: [885.8, 234.2, 87.3, 87.8]
   - label: caries
-    bbox_xywh: [977.6, 80.7, 105.2, 102.9]
+    bbox_xywh: [782.1, 64.6, 84.1, 82.3]
   - label: caries
-    bbox_xywh: [969.7, 141.5, 121.1, 155.2]
+    bbox_xywh: [775.7, 113.2, 96.9, 124.1]
 - file: images/image45.jpg
   source_id: images/train/train_363.png
   labels: [periapical_lesion]
   boxes:
   - label: periapical_lesion
-    bbox_xywh: [473.9, 423.6, 187.5, 237.2]
+    bbox_xywh: [379.1, 338.9, 150.0, 189.8]
 - file: images/image46.jpg
   source_id: images/train/train_78.png
   labels: [impacted_tooth]
   boxes:
   - label: impacted_tooth
-    bbox_xywh: [405.3, 189.8, 92.3, 155.9]
+    bbox_xywh: [324.2, 151.8, 73.8, 124.7]
   - label: impacted_tooth
-    bbox_xywh: [1014.1, 215.5, 178.9, 132.4]
+    bbox_xywh: [811.3, 172.4, 143.1, 105.9]
 - file: images/image47.jpg
   source_id: images/train/train_40.png
   labels: [caries]
   boxes:
   - label: caries
-    bbox_xywh: [947.4, 231.9, 113.6, 151.9]
+    bbox_xywh: [757.9, 185.5, 90.8, 121.6]
   - label: caries
-    bbox_xywh: [448.4, 350.3, 163.1, 112.5]
+    bbox_xywh: [358.7, 280.2, 130.5, 90.0]
   - label: caries
-    bbox_xywh: [526.2, 235.1, 102.9, 117.8]
+    bbox_xywh: [421.0, 188.1, 82.3, 94.3]
 - file: images/image48.jpg
   source_id: images/train/train_477.png
   labels: [caries]
   boxes:
   - label: caries
-    bbox_xywh: [313.0, 439.9, 120.2, 154.0]
+    bbox_xywh: [250.4, 351.9, 96.2, 123.2]
   - label: caries
-    bbox_xywh: [378.4, 472.0, 128.0, 167.9]
+    bbox_xywh: [302.7, 377.6, 102.4, 134.3]
   - label: caries
-    bbox_xywh: [571.7, 300.8, 60.9, 172.9]
+    bbox_xywh: [457.4, 240.7, 48.8, 138.3]
   - label: caries
-    bbox_xywh: [623.8, 301.4, 64.3, 181.7]
+    bbox_xywh: [499.1, 241.1, 51.4, 145.4]
   - label: caries
-    bbox_xywh: [664.3, 265.4, 70.4, 226.0]
+    bbox_xywh: [531.4, 212.3, 56.3, 180.8]
   - label: caries
-    bbox_xywh: [716.9, 301.4, 69.3, 186.7]
+    bbox_xywh: [573.5, 241.1, 55.4, 149.4]
   - label: caries
-    bbox_xywh: [778.9, 322.4, 69.3, 166.2]
+    bbox_xywh: [623.2, 258.0, 55.4, 133.0]
   - label: caries
-    bbox_xywh: [844.9, 314.1, 77.0, 178.4]
+    bbox_xywh: [675.9, 251.3, 61.6, 142.7]
   - label: caries
-    bbox_xywh: [906.4, 302.5, 66.5, 187.8]
+    bbox_xywh: [725.1, 242.0, 53.2, 150.2]
   - label: caries
-    bbox_xywh: [960.7, 270.4, 88.6, 236.0]
+    bbox_xywh: [768.5, 216.3, 70.9, 188.8]
   - label: caries
-    bbox_xywh: [1165.7, 479.2, 126.9, 173.4]
+    bbox_xywh: [932.5, 383.4, 101.5, 138.7]
   - label: caries
-    bbox_xywh: [1062.6, 493.6, 129.6, 165.7]
+    bbox_xywh: [850.1, 394.9, 103.7, 132.5]
   - label: caries
-    bbox_xywh: [1075.9, 309.1, 67.6, 185.0]
+    bbox_xywh: [860.7, 247.3, 54.1, 148.0]
   - label: caries
-    bbox_xywh: [357.1, 344.0, 69.5, 105.4]
+    bbox_xywh: [285.7, 275.2, 55.6, 84.3]
 - file: images/image49.jpg
   source_id: images/train/train_550.png
   labels: [caries, impacted_tooth, periapical_lesion]
   boxes:
   - label: impacted_tooth
-    bbox_xywh: [363.8, 267.4, 74.7, 164.9]
+    bbox_xywh: [291.0, 213.9, 59.7, 131.9]
   - label: caries
-    bbox_xywh: [440.7, 448.5, 151.0, 163.8]
+    bbox_xywh: [352.5, 358.8, 120.8, 131.0]
   - label: periapical_lesion
-    bbox_xywh: [946.0, 466.3, 99.7, 201.7]
+    bbox_xywh: [756.8, 373.0, 79.8, 161.3]
   - label: caries
-    bbox_xywh: [1051.8, 452.4, 159.9, 202.2]
+    bbox_xywh: [841.4, 361.9, 127.9, 161.8]
   - label: caries
-    bbox_xywh: [1142.1, 444.6, 159.3, 176.0]
+    bbox_xywh: [913.6, 355.7, 127.5, 140.8]
   - label: caries
-    bbox_xywh: [1174.4, 256.8, 88.0, 185.0]
+    bbox_xywh: [939.5, 205.5, 70.4, 148.0]
 - file: images/image50.jpg
   source_id: images/train/train_452.png
   labels: [caries, impacted_tooth, periapical_lesion]
   boxes:
   - label: periapical_lesion
-    bbox_xywh: [961.0, 465.7, 108.1, 198.3]
+    bbox_xywh: [768.8, 372.6, 86.5, 158.7]
   - label: caries
-    bbox_xywh: [954.3, 462.4, 94.7, 172.1]
+    bbox_xywh: [763.5, 369.9, 75.8, 137.7]
   - label: impacted_tooth
-    bbox_xywh: [1163.8, 397.8, 104.2, 152.6]
+    bbox_xywh: [931.0, 318.2, 83.3, 122.1]
   - label: caries
-    bbox_xywh: [1042.9, 225.6, 93.0, 189.4]
+    bbox_xywh: [834.3, 180.5, 74.4, 151.5]
   - label: caries
-    bbox_xywh: [974.4, 233.4, 95.8, 195.5]
+    bbox_xywh: [779.5, 186.7, 76.7, 156.4]
   - label: caries
-    bbox_xywh: [1079.7, 421.2, 139.3, 143.7]
+    bbox_xywh: [863.7, 336.9, 111.4, 115.0]
 - file: images/image51.jpg
   source_id: images/train/train_668.png
   labels: [caries]
   boxes:
   - label: caries
-    bbox_xywh: [526.9, 247.5, 78.9, 157.8]
+    bbox_xywh: [421.5, 198.0, 63.1, 126.2]
   - label: caries
-    bbox_xywh: [913.4, 247.5, 65.9, 155.6]
+    bbox_xywh: [730.7, 198.0, 52.7, 124.5]
   - label: caries
-    bbox_xywh: [964.1, 248.3, 83.2, 156.3]
+    bbox_xywh: [771.2, 198.6, 66.6, 125.1]
   - label: caries
-    bbox_xywh: [842.5, 419.1, 59.3, 152.7]
+    bbox_xywh: [674.0, 335.2, 47.5, 122.2]
   - label: caries
-    bbox_xywh: [970.2, 411.6, 119.2, 153.5]
+    bbox_xywh: [776.2, 329.3, 95.4, 122.8]
   - label: caries
-    bbox_xywh: [597.5, 417.1, 64.0, 137.0]
+    bbox_xywh: [478.0, 333.6, 51.2, 109.6]
   - label: caries
-    bbox_xywh: [483.3, 418.9, 128.8, 149.4]
+    bbox_xywh: [386.6, 335.1, 103.1, 119.5]
 - file: images/image52.jpg
   source_id: images/train/train_335.png
   labels: [caries, impacted_tooth]
   boxes:
   - label: caries
-    bbox_xywh: [932.7, 303.5, 73.4, 201.9]
+    bbox_xywh: [746.1, 242.8, 58.7, 161.5]
   - label: caries
-    bbox_xywh: [987.1, 290.3, 62.1, 204.1]
+    bbox_xywh: [789.7, 232.2, 49.7, 163.3]
   - label: caries
-    bbox_xywh: [1039.8, 291.1, 95.0, 189.0]
+    bbox_xywh: [831.8, 232.8, 76.0, 151.2]
   - label: caries
-    bbox_xywh: [1085.7, 274.7, 97.5, 141.9]
+    bbox_xywh: [868.6, 219.8, 78.0, 113.5]
   - label: caries
-    bbox_xywh: [465.6, 313.3, 85.7, 175.3]
+    bbox_xywh: [372.5, 250.6, 68.5, 140.2]
   - label: caries
-    bbox_xywh: [913.2, 503.5, 56.9, 174.0]
+    bbox_xywh: [730.6, 402.8, 45.5, 139.2]
   - label: caries
-    bbox_xywh: [438.2, 490.2, 152.0, 194.1]
+    bbox_xywh: [350.6, 392.2, 121.6, 155.3]
   - label: impacted_tooth
-    bbox_xywh: [295.2, 456.6, 104.0, 116.9]
+    bbox_xywh: [236.1, 365.3, 83.2, 93.6]
   - label: impacted_tooth
-    bbox_xywh: [351.2, 234.3, 136.8, 124.6]
+    bbox_xywh: [281.0, 187.5, 109.5, 99.7]
   - label: impacted_tooth
-    bbox_xywh: [1113.8, 222.8, 112.0, 116.8]
+    bbox_xywh: [891.0, 178.3, 89.6, 93.4]
   - label: impacted_tooth
-    bbox_xywh: [1168.6, 432.8, 119.6, 121.8]
+    bbox_xywh: [934.9, 346.2, 95.7, 97.4]
 - file: images/image53.jpg
   source_id: images/train/train_475.png
   labels: [caries, periapical_lesion]
   boxes:
   - label: caries
-    bbox_xywh: [602.8, 480.8, 60.7, 167.7]
+    bbox_xywh: [482.2, 384.6, 48.6, 134.2]
   - label: periapical_lesion
-    bbox_xywh: [674.7, 496.4, 111.4, 166.0]
+    bbox_xywh: [539.7, 397.1, 89.1, 132.8]
 - file: images/image54.jpg
   source_id: images/train/train_32.png
   labels: [impacted_tooth]
   boxes:
   - label: impacted_tooth
-    bbox_xywh: [1108.6, 455.7, 90.5, 162.1]
+    bbox_xywh: [886.9, 364.6, 72.4, 129.7]
 - file: images/image55.jpg
   source_id: images/train/train_459.png
   labels: [caries, impacted_tooth, periapical_lesion]
   boxes:
   - label: periapical_lesion
-    bbox_xywh: [934.8, 353.8, 113.6, 203.9]
+    bbox_xywh: [747.9, 283.0, 90.9, 163.1]
   - label: caries
-    bbox_xywh: [969.4, 335.4, 152.6, 182.7]
+    bbox_xywh: [775.5, 268.3, 122.1, 146.2]
   - label: impacted_tooth
-    bbox_xywh: [1134.3, 298.1, 122.0, 149.3]
+    bbox_xywh: [907.4, 238.4, 97.6, 119.4]
   - label: caries
-    bbox_xywh: [435.1, 341.5, 166.0, 159.3]
+    bbox_xywh: [348.1, 273.2, 132.8, 127.5]
   - label: caries
-    bbox_xywh: [444.6, 158.8, 100.8, 166.6]
+    bbox_xywh: [355.7, 127.0, 80.7, 133.3]
   - label: caries
-    bbox_xywh: [935.9, 179.4, 83.0, 166.6]
+    bbox_xywh: [748.7, 143.5, 66.4, 133.3]
   - label: caries
-    bbox_xywh: [1008.4, 156.0, 124.8, 149.3]
+    bbox_xywh: [806.7, 124.8, 99.8, 119.4]
   - label: caries
-    bbox_xywh: [496.4, 177.7, 85.2, 179.9]
+    bbox_xywh: [397.1, 142.2, 68.2, 144.0]
   - label: caries
-    bbox_xywh: [1041.8, 307.5, 143.7, 157.7]
+    bbox_xywh: [833.4, 246.0, 115.0, 126.1]
 - file: images/image56.jpg
   source_id: images/train/train_255.png
   labels: [caries, impacted_tooth, periapical_lesion]
   boxes:
   - label: impacted_tooth
-    bbox_xywh: [400.3, 388.9, 139.7, 109.4]
+    bbox_xywh: [320.2, 311.1, 111.8, 87.5]
   - label: impacted_tooth
-    bbox_xywh: [1096.3, 390.5, 114.8, 102.4]
+    bbox_xywh: [877.0, 312.4, 91.9, 81.9]
   - label: periapical_lesion
-    bbox_xywh: [783.8, 425.7, 61.2, 162.0]
+    bbox_xywh: [627.0, 340.6, 49.0, 129.6]
   - label: caries
-    bbox_xywh: [899.7, 426.3, 58.5, 150.6]
+    bbox_xywh: [719.7, 341.0, 46.8, 120.5]
   - label: periapical_lesion
-    bbox_xywh: [543.8, 416.5, 149.5, 149.5]
+    bbox_xywh: [435.0, 333.2, 119.6, 119.6]
   - label: caries
-    bbox_xywh: [981.4, 260.5, 89.9, 148.4]
+    bbox_xywh: [785.2, 208.4, 71.9, 118.7]
   - label: caries
-    bbox_xywh: [959.2, 409.5, 118.6, 160.9]
+    bbox_xywh: [767.4, 327.6, 94.9, 128.7]
   - label: caries
-    bbox_xywh: [1022.1, 386.7, 102.4, 147.9]
+    bbox_xywh: [817.7, 309.4, 81.9, 118.3]
   - label: impacted_tooth
-    bbox_xywh: [524.3, 268.4, 104.6, 104.6]
+    bbox_xywh: [419.5, 214.7, 83.7, 83.7]
   - label: impacted_tooth
-    bbox_xywh: [1003.5, 263.1, 101.6, 107.6]
+    bbox_xywh: [802.8, 210.5, 81.2, 86.1]
   - label: periapical_lesion
-    bbox_xywh: [757.5, 430.1, 38.4, 149.0]
+    bbox_xywh: [606.0, 344.1, 30.7, 119.2]
 - file: images/image57.jpg
   source_id: images/train/train_34.png
   labels: [caries, impacted_tooth, periapical_lesion]
   boxes:
   - label: impacted_tooth
-    bbox_xywh: [1212.8, 466.3, 130.4, 150.4]
+    bbox_xywh: [970.3, 373.0, 104.3, 120.3]
   - label: caries
-    bbox_xywh: [1127.6, 485.2, 163.8, 174.9]
+    bbox_xywh: [902.1, 388.2, 131.0, 139.9]
   - label: caries
-    bbox_xywh: [1042.3, 510.9, 161.0, 180.5]
+    bbox_xywh: [833.9, 408.7, 128.8, 144.4]
   - label: caries
-    bbox_xywh: [481.9, 505.8, 143.7, 184.4]
+    bbox_xywh: [385.5, 404.7, 115.0, 147.5]
   - label: caries
-    bbox_xywh: [381.1, 482.5, 167.7, 176.6]
+    bbox_xywh: [304.8, 386.0, 134.2, 141.3]
   - label: periapical_lesion
-    bbox_xywh: [293.0, 436.2, 149.3, 221.2]
+    bbox_xywh: [234.4, 349.0, 119.4, 176.9]
   - label: caries
-    bbox_xywh: [459.6, 308.6, 91.9, 192.8]
+    bbox_xywh: [367.7, 246.9, 73.5, 154.2]
   - label: caries
-    bbox_xywh: [773.8, 322.0, 69.1, 193.3]
+    bbox_xywh: [619.1, 257.6, 55.3, 154.7]
   - label: caries
-    bbox_xywh: [841.2, 311.4, 68.0, 206.1]
+    bbox_xywh: [673.0, 249.1, 54.4, 164.9]
   - label: caries
-    bbox_xywh: [1075.2, 320.9, 96.9, 188.3]
+    bbox_xywh: [860.2, 256.7, 77.5, 150.6]
   - label: caries
-    bbox_xywh: [1152.6, 298.1, 87.5, 188.9]
+    bbox_xywh: [922.1, 238.4, 70.0, 151.1]
   - label: caries
-    bbox_xywh: [1207.2, 281.9, 103.1, 187.2]
+    bbox_xywh: [965.8, 225.5, 82.5, 149.7]
 - file: images/image58.jpg
   source_id: images/train/train_293.png
   labels: [caries, periapical_lesion]
   boxes:
   - label: caries
-    bbox_xywh: [548.5, 177.6, 81.2, 170.3]
+    bbox_xywh: [438.8, 142.1, 65.0, 136.2]
   - label: caries
-    bbox_xywh: [520.4, 343.4, 117.6, 181.0]
+    bbox_xywh: [416.4, 274.7, 94.1, 144.8]
   - label: caries
-    bbox_xywh: [974.2, 355.2, 148.5, 188.2]
+    bbox_xywh: [779.4, 284.1, 118.8, 150.6]
   - label: caries
-    bbox_xywh: [437.0, 152.4, 72.8, 168.6]
+    bbox_xywh: [349.6, 121.9, 58.3, 134.9]
   - label: periapical_lesion
-    bbox_xywh: [1009.2, 171.1, 102.2, 183.2]
+    bbox_xywh: [807.3, 136.9, 81.8, 146.6]
 - file: images/image59.jpg
   source_id: images/train/train_395.png
   labels: [periapical_lesion]
   boxes:
   - label: periapical_lesion
-    bbox_xywh: [567.1, 429.5, 111.4, 179.4]
+    bbox_xywh: [453.7, 343.6, 89.1, 143.5]
 - file: images/image60.jpg
   source_id: images/train/train_323.png
   labels: [periapical_lesion]
   boxes:
   - label: periapical_lesion
-    bbox_xywh: [677.3, 461.9, 75.3, 185.8]
+    bbox_xywh: [541.8, 369.5, 60.3, 148.6]
 - file: images/image61.jpg
   source_id: images/train/train_366.png
   labels: [caries, periapical_lesion]
   boxes:
   - label: periapical_lesion
-    bbox_xywh: [936.3, 424.0, 130.0, 167.9]
+    bbox_xywh: [749.0, 339.2, 104.0, 134.3]
   - label: periapical_lesion
-    bbox_xywh: [653.6, 437.6, 79.7, 163.4]
+    bbox_xywh: [522.9, 350.1, 63.8, 130.7]
   - label: caries
-    bbox_xywh: [385.0, 350.0, 153.2, 160.6]
+    bbox_xywh: [308.0, 280.0, 122.6, 128.5]
   - label: caries
-    bbox_xywh: [1004.7, 398.6, 147.0, 158.3]
+    bbox_xywh: [803.7, 318.9, 117.6, 126.6]
 - file: images/image62.jpg
   source_id: images/train/train_500.png
   labels: [impacted_tooth]
   boxes:
   - label: impacted_tooth
-    bbox_xywh: [1130.5, 401.6, 146.1, 88.6]
+    bbox_xywh: [904.4, 321.3, 116.9, 70.9]
 - file: images/image63.jpg
   source_id: images/train/train_406.png
   labels: [caries, impacted_tooth, periapical_lesion]
   boxes:
   - label: caries
-    bbox_xywh: [433.6, 361.9, 160.2, 144.5]
+    bbox_xywh: [346.9, 289.5, 128.2, 115.6]
   - label: impacted_tooth
-    bbox_xywh: [1136.7, 356.9, 114.8, 123.8]
+    bbox_xywh: [909.4, 285.5, 91.9, 99.0]
   - label: caries
-    bbox_xywh: [1038.1, 365.8, 156.9, 155.2]
+    bbox_xywh: [830.5, 292.7, 125.5, 124.1]
   - label: periapical_lesion
-    bbox_xywh: [924.4, 416.8, 105.9, 150.7]
+    bbox_xywh: [739.5, 333.4, 84.7, 120.6]
   - label: caries
-    bbox_xywh: [910.9, 415.7, 116.0, 137.3]
+    bbox_xywh: [728.7, 332.5, 92.8, 109.8]
   - label: caries
-    bbox_xywh: [951.3, 377.0, 149.0, 149.0]
+    bbox_xywh: [761.0, 301.6, 119.2, 119.2]
   - label: caries
-    bbox_xywh: [363.6, 325.5, 151.8, 125.5]
+    bbox_xywh: [290.9, 260.4, 121.5, 100.4]
 - file: images/image64.jpg
   source_id: images/train/train_673.png
   labels: [caries, impacted_tooth, periapical_lesion]
   boxes:
   - label: impacted_tooth
-    bbox_xywh: [316.0, 407.0, 128.3, 158.0]
+    bbox_xywh: [252.8, 325.6, 102.6, 126.4]
   - label: impacted_tooth
-    bbox_xywh: [1138.2, 404.1, 103.2, 157.4]
+    bbox_xywh: [910.6, 323.3, 82.6, 125.9]
   - label: caries
-    bbox_xywh: [393.6, 412.8, 141.7, 174.9]
+    bbox_xywh: [314.9, 330.3, 113.4, 139.9]
   - label: caries
-    bbox_xywh: [853.1, 422.7, 57.1, 247.8]
+    bbox_xywh: [682.4, 338.2, 45.7, 198.3]
   - label: caries
-    bbox_xywh: [895.6, 439.1, 60.1, 222.2]
+    bbox_xywh: [716.5, 351.3, 48.0, 177.7]
   - label: caries
-    bbox_xywh: [932.9, 444.3, 71.1, 196.5]
+    bbox_xywh: [746.4, 355.5, 56.9, 157.2]
   - label: caries
-    bbox_xywh: [991.8, 216.3, 84.5, 169.1]
+    bbox_xywh: [793.5, 173.1, 67.6, 135.3]
   - label: caries
-    bbox_xywh: [454.2, 219.2, 77.0, 184.8]
+    bbox_xywh: [363.4, 175.4, 61.6, 147.9]
   - label: caries
-    bbox_xywh: [972.0, 421.6, 138.2, 207.6]
+    bbox_xywh: [777.6, 337.3, 110.6, 166.1]
   - label: caries
-    bbox_xywh: [1053.1, 405.8, 138.2, 179.6]
+    bbox_xywh: [842.4, 324.7, 110.6, 143.7]
   - label: periapical_lesion
-    bbox_xywh: [819.4, 422.6, 43.9, 206.0]
+    bbox_xywh: [655.5, 338.0, 35.1, 164.8]
   - label: periapical_lesion
-    bbox_xywh: [783.8, 420.3, 45.4, 224.9]
+    bbox_xywh: [627.0, 336.2, 36.3, 179.9]
   - label: periapical_lesion
-    bbox_xywh: [751.2, 421.8, 36.3, 225.7]
+    bbox_xywh: [601.0, 337.4, 29.1, 180.5]
 - file: images/image65.jpg
   source_id: images/train/train_159.png
   labels: [caries, periapical_lesion]
   boxes:
   - label: caries
-    bbox_xywh: [455.6, 140.8, 76.0, 184.4]
+    bbox_xywh: [364.5, 112.7, 60.8, 147.5]
   - label: caries
-    bbox_xywh: [398.9, 147.9, 79.0, 133.7]
+    bbox_xywh: [319.1, 118.3, 63.2, 107.0]
   - label: caries
-    bbox_xywh: [829.5, 191.5, 59.8, 170.2]
+    bbox_xywh: [663.6, 153.2, 47.8, 136.2]
   - label: caries
-    bbox_xywh: [867.0, 157.0, 76.0, 186.4]
+    bbox_xywh: [693.6, 125.6, 60.8, 149.1]
   - label: caries
-    bbox_xywh: [964.3, 143.9, 63.8, 180.3]
+    bbox_xywh: [771.4, 115.1, 51.1, 144.3]
   - label: periapical_lesion
-    bbox_xywh: [912.6, 373.9, 83.7, 191.2]
+    bbox_xywh: [730.1, 299.1, 67.0, 153.0]
   - label: caries
-    bbox_xywh: [1022.0, 340.4, 144.9, 136.8]
+    bbox_xywh: [817.6, 272.3, 115.9, 109.4]
   - label: caries
-    bbox_xywh: [740.3, 385.0, 44.6, 161.1]
+    bbox_xywh: [592.3, 308.0, 35.7, 128.9]
   - label: caries
-    bbox_xywh: [696.8, 385.0, 59.8, 180.3]
+    bbox_xywh: [557.4, 308.0, 47.8, 144.3]
   - label: caries
-    bbox_xywh: [651.2, 371.1, 50.7, 165.1]
+    bbox_xywh: [520.9, 296.9, 40.5, 132.1]
   - label: caries
-    bbox_xywh: [590.4, 379.9, 77.0, 165.1]
+    bbox_xywh: [472.3, 304.0, 61.6, 132.1]
   - label: caries
-    bbox_xywh: [426.3, 339.3, 136.8, 148.9]
+    bbox_xywh: [341.0, 271.4, 109.4, 119.1]
   - label: caries
-    bbox_xywh: [354.6, 296.2, 133.5, 154.3]
+    bbox_xywh: [283.7, 236.9, 106.8, 123.5]
   - label: caries
-    bbox_xywh: [533.9, 385.2, 86.8, 85.1]
+    bbox_xywh: [427.1, 308.2, 69.4, 68.1]
   - label: caries
-    bbox_xywh: [920.3, 368.8, 60.7, 164.0]
+    bbox_xywh: [736.2, 295.0, 48.6, 131.2]
 - file: images/image66.jpg
   source_id: images/train/train_284.png
   labels: [caries, impacted_tooth]
   boxes:
   - label: impacted_tooth
-    bbox_xywh: [361.0, 461.8, 87.5, 96.9]
+    bbox_xywh: [288.8, 369.5, 70.0, 77.5]
   - label: impacted_tooth
-    bbox_xywh: [418.9, 234.0, 84.1, 89.1]
+    bbox_xywh: [335.2, 187.2, 67.3, 71.3]
   - label: caries
-    bbox_xywh: [468.5, 484.7, 148.2, 172.7]
+    bbox_xywh: [374.8, 387.7, 118.6, 138.2]
   - label: caries
-    bbox_xywh: [1002.8, 534.3, 118.7, 134.8]
+    bbox_xywh: [802.2, 427.4, 94.9, 107.9]
   - label: impacted_tooth
-    bbox_xywh: [1256.3, 471.3, 89.7, 102.5]
+    bbox_xywh: [1005.0, 377.0, 71.8, 82.0]
   - label: impacted_tooth
-    bbox_xywh: [1179.4, 254.0, 85.8, 83.0]
+    bbox_xywh: [943.5, 203.2, 68.6, 66.4]
   - label: caries
-    bbox_xywh: [1161.6, 299.7, 107.0, 145.4]
+    bbox_xywh: [929.2, 239.8, 85.6, 116.3]
   - label: caries
-    bbox_xywh: [991.1, 346.5, 70.2, 144.8]
+    bbox_xywh: [792.9, 277.2, 56.2, 115.9]
   - label: caries
-    bbox_xywh: [1056.3, 332.0, 63.5, 163.2]
+    bbox_xywh: [845.0, 265.6, 50.8, 130.6]
   - label: caries
-    bbox_xywh: [490.3, 274.1, 103.6, 177.7]
+    bbox_xywh: [392.2, 219.3, 82.9, 142.2]
 - file: images/image67.jpg
   source_id: images/train/train_595.png
   labels: [caries, impacted_tooth]
   boxes:
   - label: impacted_tooth
-    bbox_xywh: [1122.1, 404.9, 113.3, 137.6]
+    bbox_xywh: [897.7, 323.9, 90.7, 110.1]
   - label: caries
-    bbox_xywh: [514.0, 422.0, 126.2, 178.9]
+    bbox_xywh: [411.2, 337.6, 100.9, 143.1]
 - file: images/image68.jpg
   source_id: images/train/train_599.png
   labels: [caries, impacted_tooth, periapical_lesion]
   boxes:
   - label: impacted_tooth
-    bbox_xywh: [1217.3, 476.3, 103.6, 172.7]
+    bbox_xywh: [973.8, 381.1, 82.9, 138.2]
   - label: caries
-    bbox_xywh: [366.6, 252.9, 87.5, 198.3]
+    bbox_xywh: [293.3, 202.3, 70.0, 158.7]
   - label: caries
-    bbox_xywh: [431.8, 454.0, 117.5, 194.4]
+    bbox_xywh: [345.4, 363.2, 94.0, 155.5]
   - label: caries
-    bbox_xywh: [1133.7, 277.4, 95.3, 176.0]
+    bbox_xywh: [907.0, 221.9, 76.2, 140.8]
   - label: caries
-    bbox_xywh: [966.6, 463.0, 78.0, 213.4]
+    bbox_xywh: [773.3, 370.4, 62.4, 170.7]
   - label: periapical_lesion
-    bbox_xywh: [578.2, 227.4, 58.7, 225.1]
+    bbox_xywh: [462.5, 181.9, 47.0, 180.1]
   - label: periapical_lesion
-    bbox_xywh: [943.3, 228.1, 83.6, 216.1]
+    bbox_xywh: [754.6, 182.5, 66.9, 172.9]
 - file: images/image69.jpg
   source_id: images/train/train_295.png
   labels: [caries, impacted_tooth]
   boxes:
   - label: impacted_tooth
-    bbox_xywh: [1139.1, 401.6, 102.1, 127.3]
+    bbox_xywh: [911.3, 321.3, 81.6, 101.8]
   - label: impacted_tooth
-    bbox_xywh: [1084.2, 237.6, 91.6, 125.7]
+    bbox_xywh: [867.4, 190.1, 73.3, 100.5]
   - label: caries
-    bbox_xywh: [444.4, 261.7, 120.7, 131.1]
+    bbox_xywh: [355.6, 209.4, 96.6, 104.9]
   - label: caries
-    bbox_xywh: [1005.8, 287.0, 71.9, 153.6]
+    bbox_xywh: [804.6, 229.6, 57.5, 122.9]
   - label: caries
-    bbox_xywh: [946.5, 460.9, 76.8, 153.6]
+    bbox_xywh: [757.2, 368.7, 61.5, 122.9]
 - file: images/image70.jpg
   source_id: images/train/train_423.png
   labels: [caries, impacted_tooth]
   boxes:
   - label: impacted_tooth
-    bbox_xywh: [349.6, 461.2, 92.7, 80.7]
+    bbox_xywh: [279.7, 369.0, 74.2, 64.5]
   - label: impacted_tooth
-    bbox_xywh: [392.0, 248.4, 105.9, 86.4]
+    bbox_xywh: [313.6, 198.7, 84.7, 69.1]
   - label: impacted_tooth
-    bbox_xywh: [1151.9, 231.2, 72.1, 87.6]
+    bbox_xywh: [921.5, 185.0, 57.7, 70.0]
   - label: impacted_tooth
-    bbox_xywh: [1172.0, 437.8, 68.1, 89.8]
+    bbox_xywh: [937.6, 350.2, 54.5, 71.9]
   - label: caries
-    bbox_xywh: [1032.9, 269.5, 84.7, 170.5]
+    bbox_xywh: [826.3, 215.6, 67.8, 136.4]
   - label: caries
-    bbox_xywh: [488.1, 436.1, 139.6, 171.7]
+    bbox_xywh: [390.5, 348.8, 111.7, 137.3]
   - label: caries
-    bbox_xywh: [515.6, 289.0, 102.4, 145.4]
+    bbox_xywh: [412.5, 231.2, 81.9, 116.3]
 - file: images/image71.jpg
   source_id: images/train/train_177.png
   labels: [caries, periapical_lesion]
   boxes:
   - label: caries
-    bbox_xywh: [527.7, 226.2, 100.9, 165.5]
+    bbox_xywh: [422.2, 180.9, 80.8, 132.4]
   - label: caries
-    bbox_xywh: [1024.1, 401.2, 117.6, 172.5]
+    bbox_xywh: [819.3, 321.0, 94.0, 138.0]
   - label: caries
-    bbox_xywh: [482.3, 396.1, 131.6, 174.4]
+    bbox_xywh: [385.9, 316.9, 105.3, 139.5]
   - label: periapical_lesion
-    bbox_xywh: [1023.5, 399.1, 108.6, 159.8]
+    bbox_xywh: [818.8, 319.3, 86.9, 127.8]
 - file: images/image72.jpg
   source_id: images/train/train_433.png
   labels: [caries, periapical_lesion]
   boxes:
   - label: caries
-    bbox_xywh: [1140.0, 329.4, 114.8, 148.1]
+    bbox_xywh: [912.0, 263.5, 91.9, 118.5]
   - label: caries
-    bbox_xywh: [1073.6, 371.6, 135.7, 156.5]
+    bbox_xywh: [858.9, 297.3, 108.5, 125.2]
   - label: periapical_lesion
-    bbox_xywh: [650.2, 409.3, 63.1, 195.4]
+    bbox_xywh: [520.2, 327.4, 50.4, 156.3]
   - label: caries
-    bbox_xywh: [652.5, 409.9, 59.7, 184.1]
+    bbox_xywh: [522.0, 327.9, 47.7, 147.3]
 - file: images/image73.jpg
   source_id: images/train/train_387.png
   labels: [caries, impacted_tooth, periapical_lesion]
   boxes:
   - label: caries
-    bbox_xywh: [468.7, 267.7, 84.8, 192.9]
+    bbox_xywh: [375.0, 214.1, 67.9, 154.3]
   - label: caries
-    bbox_xywh: [965.7, 264.6, 56.6, 174.7]
+    bbox_xywh: [772.5, 211.7, 45.3, 139.8]
   - label: caries
-    bbox_xywh: [1007.1, 256.6, 77.8, 185.9]
+    bbox_xywh: [805.7, 205.3, 62.2, 148.7]
   - label: caries
-    bbox_xywh: [909.1, 451.5, 60.6, 195.0]
+    bbox_xywh: [727.3, 361.2, 48.5, 156.0]
   - label: caries
-    bbox_xywh: [958.6, 454.6, 58.6, 191.9]
+    bbox_xywh: [766.9, 363.6, 46.9, 153.5]
   - label: periapical_lesion
-    bbox_xywh: [1002.5, 451.4, 104.2, 184.3]
+    bbox_xywh: [802.0, 361.1, 83.4, 147.4]
   - label: caries
-    bbox_xywh: [1067.7, 432.3, 122.2, 174.7]
+    bbox_xywh: [854.2, 345.9, 97.8, 139.8]
   - label: impacted_tooth
-    bbox_xywh: [1150.1, 437.1, 110.1, 129.3]
+    bbox_xywh: [920.1, 349.7, 88.1, 103.4]
   - label: caries
-    bbox_xywh: [422.2, 459.6, 156.6, 168.7]
+    bbox_xywh: [337.8, 367.7, 125.3, 135.0]
   - label: caries
-    bbox_xywh: [998.9, 449.4, 104.3, 165.8]
+    bbox_xywh: [799.1, 359.5, 83.4, 132.6]
 - file: images/image74.jpg
   source_id: images/train/train_635.png
   labels: [impacted_tooth]
   boxes:
   - label: impacted_tooth
-    bbox_xywh: [1113.6, 386.6, 79.0, 142.6]
+    bbox_xywh: [890.9, 309.3, 63.2, 114.1]
   - label: impacted_tooth
-    bbox_xywh: [360.2, 382.7, 138.7, 138.7]
+    bbox_xywh: [288.2, 306.2, 111.0, 111.0]
   - label: impacted_tooth
-    bbox_xywh: [457.3, 214.4, 121.2, 91.0]
+    bbox_xywh: [365.8, 171.5, 96.9, 72.8]
 - file: images/image75.jpg
   source_id: images/train/train_214.png
   labels: [caries]
   boxes:
   - label: caries
-    bbox_xywh: [694.8, 250.1, 40.5, 174.4]
+    bbox_xywh: [555.8, 200.0, 32.4, 139.6]
   - label: caries
-    bbox_xywh: [575.9, 221.0, 47.5, 185.9]
+    bbox_xywh: [460.7, 176.8, 38.0, 148.7]
   - label: caries
-    bbox_xywh: [930.8, 228.9, 40.5, 179.3]
+    bbox_xywh: [744.6, 183.1, 32.4, 143.4]
   - label: caries
-    bbox_xywh: [621.4, 446.9, 61.5, 156.2]
+    bbox_xywh: [497.1, 357.5, 49.2, 125.0]
   - label: caries
-    bbox_xywh: [503.6, 453.4, 95.5, 106.1]
+    bbox_xywh: [402.9, 362.8, 76.4, 84.9]
 - file: images/image76.jpg
   source_id: images/train/train_600.png
   labels: [impacted_tooth, periapical_lesion]
   boxes:
   - label: impacted_tooth
-    bbox_xywh: [436.0, 310.3, 77.3, 105.2]
+    bbox_xywh: [348.8, 248.3, 61.9, 84.2]
   - label: periapical_lesion
-    bbox_xywh: [593.3, 356.5, 111.1, 162.1]
+    bbox_xywh: [474.6, 285.2, 88.9, 129.7]
 - file: images/image77.jpg
   source_id: images/train/train_166.png
   labels: [caries]
   boxes:
   - label: caries
-    bbox_xywh: [892.6, 338.2, 56.5, 171.6]
+    bbox_xywh: [714.1, 270.6, 45.2, 137.3]
   - label: caries
-    bbox_xywh: [882.3, 179.2, 51.0, 153.1]
+    bbox_xywh: [705.8, 143.3, 40.8, 122.5]
   - label: caries
-    bbox_xywh: [979.4, 334.4, 61.9, 155.3]
+    bbox_xywh: [783.6, 267.6, 49.5, 124.2]
   - label: caries
-    bbox_xywh: [817.1, 165.6, 75.5, 172.1]
+    bbox_xywh: [653.7, 132.5, 60.4, 137.7]
   - label: caries
-    bbox_xywh: [920.8, 158.5, 55.9, 174.3]
+    bbox_xywh: [736.6, 126.8, 44.7, 139.4]
   - label: caries
-    bbox_xywh: [934.9, 334.4, 54.3, 143.9]
+    bbox_xywh: [747.9, 267.6, 43.4, 115.1]
   - label: caries
-    bbox_xywh: [743.8, 168.3, 78.2, 168.8]
+    bbox_xywh: [595.0, 134.6, 62.5, 135.1]
 - file: images/image78.jpg
   source_id: images/train/train_92.png
   labels: [caries, periapical_lesion]
   boxes:
   - label: caries
-    bbox_xywh: [495.7, 431.5, 97.9, 159.3]
+    bbox_xywh: [396.6, 345.2, 78.3, 127.5]
   - label: periapical_lesion
-    bbox_xywh: [558.8, 446.5, 123.9, 174.3]
+    bbox_xywh: [447.0, 357.2, 99.1, 139.4]
   - label: periapical_lesion
-    bbox_xywh: [1014.2, 439.3, 172.6, 153.3]
+    bbox_xywh: [811.4, 351.5, 138.1, 122.6]
   - label: caries
-    bbox_xywh: [1065.6, 415.5, 157.7, 131.7]
+    bbox_xywh: [852.4, 332.4, 126.1, 105.3]
 - file: images/image79.jpg
   source_id: images/train/train_467.png
   labels: [caries, periapical_lesion]
   boxes:
   - label: caries
-    bbox_xywh: [362.8, 534.2, 119.1, 192.8]
+    bbox_xywh: [290.3, 427.3, 95.2, 154.2]
   - label: caries
-    bbox_xywh: [440.9, 530.4, 85.7, 224.9]
+    bbox_xywh: [352.8, 424.3, 68.5, 179.9]
   - label: caries
-    bbox_xywh: [879.4, 542.4, 69.9, 215.4]
+    bbox_xywh: [703.5, 433.9, 55.9, 172.3]
   - label: caries
-    bbox_xywh: [268.3, 531.0, 129.8, 202.8]
+    bbox_xywh: [214.7, 424.8, 103.8, 162.3]
   - label: caries
-    bbox_xywh: [506.5, 531.7, 75.0, 216.1]
+    bbox_xywh: [405.2, 425.3, 60.0, 172.9]
   - label: caries
-    bbox_xywh: [717.5, 536.7, 54.2, 177.6]
+    bbox_xywh: [574.0, 429.4, 43.3, 142.1]
   - label: caries
-    bbox_xywh: [961.3, 357.2, 77.5, 200.9]
+    bbox_xywh: [769.0, 285.7, 62.0, 160.8]
   - label: periapical_lesion
-    bbox_xywh: [1018.4, 377.2, 104.2, 180.7]
+    bbox_xywh: [814.7, 301.8, 83.4, 144.6]
 - file: images/image80.jpg
   source_id: images/train/train_152.png
   labels: [caries, impacted_tooth]
   boxes:
   - label: caries
-    bbox_xywh: [334.8, 480.8, 136.5, 133.1]
+    bbox_xywh: [267.9, 384.6, 109.2, 106.5]
   - label: caries
-    bbox_xywh: [424.5, 508.6, 129.8, 161.0]
+    bbox_xywh: [339.6, 406.9, 103.8, 128.8]
   - label: caries
-    bbox_xywh: [509.2, 510.3, 130.9, 172.7]
+    bbox_xywh: [407.4, 408.2, 104.7, 138.2]
   - label: impacted_tooth
-    bbox_xywh: [1199.4, 497.5, 130.9, 143.2]
+    bbox_xywh: [959.6, 398.0, 104.7, 114.5]
   - label: caries
-    bbox_xywh: [985.0, 524.2, 65.7, 184.4]
+    bbox_xywh: [788.0, 419.4, 52.6, 147.5]
   - label: caries
-    bbox_xywh: [1069.1, 364.3, 86.9, 156.5]
+    bbox_xywh: [855.3, 291.5, 69.5, 125.2]

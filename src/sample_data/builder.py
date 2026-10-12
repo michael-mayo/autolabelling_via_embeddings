@@ -3,6 +3,7 @@
 A sample dataset folder looks like:
 
     <name>/
+      dataset.yaml         build settings (source, labels, sizes) - the only hand-written file
       probes.yaml          labels list + one entry per probe crop
       probes/probeN.jpg    labelled crops of single objects
       images/imageN.jpg    full, unlabelled images
@@ -10,6 +11,8 @@ A sample dataset folder looks like:
 
 Probes are cropped from source images that are *not* used as dataset images,
 so the probes never appear verbatim in the images they are searched for.
+All images are resized to a fixed width, and probes are cropped from source
+images resized the same way so that probes and images share a common scale.
 """
 
 import io
@@ -28,19 +31,29 @@ from .sources import Box
 from .sources import fetch_image_bytes
 
 
+# Name of the hand-written settings file inside each sample dataset folder.
+DATASET_FILE = "dataset.yaml"
+# Generated outputs that are replaced on every build.
+GENERATED = ["probes", "images", "probes.yaml", "images.yaml"]
+
+
 @dataclass(frozen=True)
 class BuildSettings:
-    """Settings shared by all sample datasets (the `sample_data` config section)."""
+    """Selection and output settings read from one dataset's `dataset.yaml`."""
 
-    output_dir: Path
-    cache_dir: Path
     num_probes: int
     num_images: int
+    image_width: int
     negative_fraction: float
     probe_padding: float
     probe_min_side: int
     jpeg_quality: int
     seed: int
+
+    @classmethod
+    def from_dict(cls, cfg: dict[str, Any]) -> "BuildSettings":
+        """Build settings from a parsed `dataset.yaml`, ignoring the source-specific keys."""
+        return cls(**{f: cfg[f] for f in cls.__dataclass_fields__})
 
 
 def _split_evenly(total: int, labels: list[str]) -> dict[str, int]:
@@ -50,12 +63,12 @@ def _split_evenly(total: int, labels: list[str]) -> dict[str, int]:
 
 
 def select_probes(
-    pool: list[AnnotatedImage], labels: list[str], s: BuildSettings, min_side: int, rng: random.Random
+    pool: list[AnnotatedImage], labels: list[str], s: BuildSettings, rng: random.Random
 ) -> list[tuple[AnnotatedImage, Box]]:
     """Pick probe boxes, balanced across labels, each from a distinct source image.
 
-    Only boxes whose shorter side is at least `min_side` pixels are eligible,
-    so probes are large enough to be recognisable.
+    Only boxes whose shorter side is at least `probe_min_side` source pixels
+    are eligible, so probes are large enough to be recognisable.
     """
     quota = _split_evenly(s.num_probes, labels)
     used: set[str] = set()
@@ -65,7 +78,7 @@ def select_probes(
             (img, box)
             for img in pool
             for box in img.boxes
-            if box.label == label and min(box.w, box.h) >= min_side
+            if box.label == label and min(box.w, box.h) >= s.probe_min_side
         ]
         rng.shuffle(candidates)
         picked = 0
@@ -118,33 +131,22 @@ def select_images(pool: list[AnnotatedImage], s: BuildSettings, rng: random.Rand
     return chosen
 
 
-def _crop_probe(data: bytes, box: Box, padding: float) -> Image.Image:
-    """Crop `box` out of a JPEG with `padding` (fraction of box size) of context."""
+def _load_scaled(data: bytes, width: int) -> tuple[Image.Image, float]:
+    """Decode image bytes and resize to `width`, keeping aspect ratio; return image and scale."""
     img = Image.open(io.BytesIO(data)).convert("RGB")
-    pad_x, pad_y = box.w * padding, box.h * padding
-    left = max(0, int(box.x - pad_x))
-    top = max(0, int(box.y - pad_y))
-    right = min(img.width, int(box.x + box.w + pad_x))
-    bottom = min(img.height, int(box.y + box.h + pad_y))
+    scale = width / img.width
+    size = (width, round(img.height * scale))
+    return img.resize(size, Image.Resampling.LANCZOS), scale
+
+
+def _crop_probe(img: Image.Image, box: Box, scale: float, padding: float) -> Image.Image:
+    """Crop source-pixel `box` from `img` (resized by `scale`) with `padding` of context."""
+    x, y, w, h = (v * scale for v in (box.x, box.y, box.w, box.h))
+    left = max(0, int(x - w * padding))
+    top = max(0, int(y - h * padding))
+    right = min(img.width, int(x + w * (1 + padding)))
+    bottom = min(img.height, int(y + h * (1 + padding)))
     return img.crop((left, top, right, bottom))
-
-
-def _write_image(data: bytes, path: Path, quality: int, max_side: int | None) -> float:
-    """Write image bytes to `path` as JPEG, downscaling so neither side exceeds `max_side`.
-
-    JPEG input that needs no resizing is copied as-is to avoid re-compression.
-    Returns the scale factor applied, so box coordinates can be adjusted.
-    """
-    img = Image.open(io.BytesIO(data))
-    scale = min(1.0, max_side / max(img.size)) if max_side else 1.0
-    if scale == 1.0 and img.format == "JPEG":
-        path.write_bytes(data)
-        return scale
-    img = img.convert("RGB")
-    if scale < 1.0:
-        img = img.resize((round(img.width * scale), round(img.height * scale)), Image.Resampling.LANCZOS)
-    img.save(path, quality=quality)
-    return scale
 
 
 def _box_record(box: Box, scale: float = 1.0) -> dict[str, Any]:
@@ -152,39 +154,50 @@ def _box_record(box: Box, scale: float = 1.0) -> dict[str, Any]:
     return {"label": box.label, "bbox_xywh": [round(v * scale, 1) for v in (box.x, box.y, box.w, box.h)]}
 
 
-def build_dataset(name: str, cfg: dict[str, Any], s: BuildSettings) -> None:
-    """Build one sample dataset `name` from its config section and write it to disk.
+def build_dataset(folder: Path, cache_dir: Path) -> None:
+    """Build the sample dataset in `folder` from its `dataset.yaml`.
 
-    Any existing folder for this dataset is replaced.
+    Generated files (probes, images and their YAML indexes) are replaced;
+    `dataset.yaml` and anything else in the folder is left untouched.
     """
+    name = folder.name
+    cfg = yaml.safe_load((folder / DATASET_FILE).read_text())
+    s = BuildSettings.from_dict(cfg)
     rng = random.Random(s.seed)
-    cache_dir = s.cache_dir / name
     labels = [(cfg.get("label_map") or {}).get(n, n) for n in cfg["labels"]]
     pool = LOADERS[cfg["source"]](cfg, cache_dir)
     print(f"[{name}] {len(pool)} source images loaded")
 
-    # Datasets with small objects (e.g. platelets) can override the probe size floor.
-    probes = select_probes(pool, labels, s, cfg.get("probe_min_side", s.probe_min_side), rng)
+    probes = select_probes(pool, labels, s, rng)
     probe_ids = {img.source_id for img, _ in probes}
     images = select_images([img for img in pool if img.source_id not in probe_ids], s, rng)
 
-    out = s.output_dir / name
-    if out.exists():
-        shutil.rmtree(out)
-    (out / "probes").mkdir(parents=True)
-    (out / "images").mkdir()
+    for item in GENERATED:
+        path = folder / item
+        if path.is_dir():
+            shutil.rmtree(path)
+        elif path.exists():
+            path.unlink()
+    (folder / "probes").mkdir()
+    (folder / "images").mkdir()
 
     probe_records = []
     for i, (img, box) in enumerate(probes, start=1):
         rel = f"probes/probe{i}.jpg"
-        crop = _crop_probe(fetch_image_bytes(img, cache_dir), box, s.probe_padding)
-        crop.save(out / rel, quality=s.jpeg_quality)
-        probe_records.append({"file": rel, "label": box.label, "source_id": img.source_id, **_box_record(box)})
+        scaled, scale = _load_scaled(fetch_image_bytes(img, cache_dir), s.image_width)
+        _crop_probe(scaled, box, scale, s.probe_padding).save(folder / rel, quality=s.jpeg_quality)
+        probe_records.append({
+            "file": rel,
+            "label": box.label,
+            "source_id": img.source_id,
+            "source_bbox_xywh": _box_record(box)["bbox_xywh"],
+        })
 
     image_records = []
     for i, img in enumerate(images, start=1):
         rel = f"images/image{i}.jpg"
-        scale = _write_image(fetch_image_bytes(img, cache_dir), out / rel, s.jpeg_quality, cfg.get("max_image_side"))
+        scaled, scale = _load_scaled(fetch_image_bytes(img, cache_dir), s.image_width)
+        scaled.save(folder / rel, quality=s.jpeg_quality)
         image_records.append({
             "file": rel,
             "source_id": img.source_id,
@@ -193,8 +206,8 @@ def build_dataset(name: str, cfg: dict[str, Any], s: BuildSettings) -> None:
         })
 
     provenance = {"source": cfg["dataset"], "license": cfg["license"]}
-    _write_yaml(out / "probes.yaml", {**provenance, "labels": labels, "probes": probe_records})
-    _write_yaml(out / "images.yaml", {
+    _write_yaml(folder / "probes.yaml", {**provenance, "labels": labels, "probes": probe_records})
+    _write_yaml(folder / "images.yaml", {
         **provenance,
         "note": "Hidden image labels for evaluation only; not an input to labelling.",
         "labels": labels,
@@ -221,21 +234,20 @@ def _print_summary(
         print(f"    {lab:<20} probes={n_p:<3} images={n_i}")
 
 
+def find_datasets(datasets_dir: Path) -> list[Path]:
+    """Return every sub-folder of `datasets_dir` that contains a `dataset.yaml`, sorted by name."""
+    return sorted(p for p in datasets_dir.iterdir() if (p / DATASET_FILE).exists())
+
+
 def build_all(config: dict[str, Any], only: list[str] | None = None) -> None:
-    """Build every sample dataset in `config["sample_data"]`, or just those in `only`."""
-    section = config["sample_data"]
-    s = BuildSettings(
-        output_dir=Path(section["output_dir"]),
-        cache_dir=Path(section["cache_dir"]),
-        num_probes=section["num_probes"],
-        num_images=section["num_images"],
-        negative_fraction=section["negative_fraction"],
-        probe_padding=section["probe_padding"],
-        probe_min_side=section["probe_min_side"],
-        jpeg_quality=section["jpeg_quality"],
-        seed=config["general"]["random_seed"],
-    )
-    for name, cfg in section["datasets"].items():
-        if only and name not in only:
+    """Build every sample dataset found under `config["sample_data"]["datasets_dir"]`.
+
+    `only` restricts the build to the named dataset folders. Downloads are
+    cached per dataset under `<general.weights_dir>/sample_data_cache/`.
+    """
+    datasets_dir = Path(config["sample_data"]["datasets_dir"])
+    cache_root = Path(config["general"]["weights_dir"]) / "sample_data_cache"
+    for folder in find_datasets(datasets_dir):
+        if only and folder.name not in only:
             continue
-        build_dataset(name, cfg, s)
+        build_dataset(folder, cache_root / folder.name)

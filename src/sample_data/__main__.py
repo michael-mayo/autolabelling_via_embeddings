@@ -9,7 +9,7 @@ from .builder import build_all
 
 
 def main() -> None:
-    """Parse arguments and build the configured sample datasets."""
+    """Parse arguments and build the sample datasets found in the datasets folder."""
     parser = argparse.ArgumentParser(description="Build sample probe/image datasets from public sources.")
     parser.add_argument("--config", type=Path, default=Path("config.yaml"), help="path to config.yaml")
     parser.add_argument("--only", nargs="+", default=None, help="build only these dataset names")
