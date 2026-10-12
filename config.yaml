@@ -19,3 +19,95 @@ test:
   font_size: 24               # label and header text size (px)
   cover_font_size: 20         # text size on the summary cover page (px)
   dpi: 150                    # PDF resolution; sets physical page size
+
+# image_prober: settings shared by every ImageProber (src/image_prober.py).
+image_prober:
+  device: auto                    # auto (cuda if available) | cuda | cpu
+  batch_size: 8                   # images or probes per embedding pass
+  memory_cache_items: 256         # embeddings kept in memory (LRU)
+  cache_dir: scratch/embedding_cache   # on-disk embedding cache; null disables it
+
+# image_prober_eval: evaluation CLI (python -m src.image_prober_<model>) against the sample datasets.
+image_prober_eval:
+  box_iou: 0.5                    # IoU for a returned box to count as finding a ground-truth box
+
+# image_prober_owlv2: OWLv2 image-guided detection (src/image_prober_owlv2.py).
+image_prober_owlv2:
+  repo_id: google/owlv2-base-patch16-ensemble   # or google/owlv2-large-patch14-ensemble
+  dtype: float16                  # model precision on GPU (CPU always uses float32)
+  logit_offset: 5.0               # calibration: probability = sigmoid((logit - offset) / temperature);
+  logit_temperature: 1.0          #   offset set by eye on coco_objects (raw logits: present ~6.6, absent ~3.9)
+  box_threshold: 0.5              # min calibrated patch score for a returned box
+  nms_iou: 0.3                    # overlap above which weaker boxes are suppressed
+  max_boxes: 20                   # max boxes returned per (image, probe)
+  query_iou_fraction: 0.8         # probe query: boxes within this fraction of the best IoU with the probe extent
+
+# image_prober_sam3: SAM 3 with probe crops as cross-image exemplars (src/image_prober_sam3.py).
+# Weights are gated: accept the licence at https://huggingface.co/facebook/sam3 and run `hf auth login` first.
+image_prober_sam3:
+  repo_id: facebook/sam3
+  dtype: bfloat16                 # model precision on GPU (CPU always uses float32)
+  exemplar_mode: canvas           # canvas: probes tiled under each image as same-image exemplars (default)
+                                  # transfer: probe tokens encoded in their own frame (measured ~chance)
+  strip_columns: 10               # canvas: probe tiles per strip row (tile side = 1008 / columns px)
+  max_strip_fraction: 0.25        # canvas: max share of canvas height for the strip; more probes -> more canvases
+  probe_batch_size: 20            # probes scored together per DETR encoder/decoder pass
+  probability: max_score          # transfer only: max_score (best query x presence) | presence
+  box_threshold: 0.5              # min query score for a returned box
+  nms_iou: 0.5                    # overlap above which weaker boxes are suppressed
+  max_boxes: 20                   # max boxes returned per (image, probe)
+
+# image_prober_dinov3: training-free DINO patch-feature matching (src/image_prober_dinov3.py).
+# DINOv3 weights are gated: accept the licence at https://huggingface.co/facebook/dinov3-vitb16-pretrain-lvd1689m
+# and run `hf auth login`. Any AutoModel DINO checkpoint works, e.g. facebook/dinov2-base (ungated).
+image_prober_dinov3:
+  repo_id: facebook/dinov3-vitb16-pretrain-lvd1689m
+  dtype: float16                  # model precision on GPU (CPU always uses float32)
+  image_size: 1024                # longer side of images fed to the backbone (px)
+  probe_size: 224                 # longer side of probes fed to the backbone (px)
+  probe_border: 0.1               # fraction of probe patches trimmed at each edge before averaging
+  top_k: 3                        # presence = mean similarity of the best k patches
+  sim_offset: 0.48                # calibration: probability = sigmoid((similarity - offset) / temperature);
+                                  #   fitted by eye on coco_objects (present ~0.56, absent ~0.40)
+  sim_temperature: 0.04
+  box_threshold: 0.5              # min calibrated patch score for a patch to join a box region
+  max_boxes: 20                   # max boxes returned per (image, probe)
+
+# image_prober_dinov2: DINOv2 patch-feature matching, same method as DINOv3 (src/image_prober_dinov2.py).
+image_prober_dinov2:
+  repo_id: facebook/dinov2-base   # ungated; also dinov2-small/-large/-giant
+  dtype: float16                  # model precision on GPU (CPU always uses float32)
+  image_size: 1024                # longer side of images fed to the backbone (px)
+  probe_size: 224                 # longer side of probes fed to the backbone (px)
+  probe_border: 0.1               # fraction of probe patches trimmed at each edge before averaging
+  top_k: 3                        # presence = mean similarity of the best k patches
+  sim_offset: 0.25                # calibration: probability = sigmoid((similarity - offset) / temperature);
+                                  #   fitted by eye on coco_objects (present ~0.41, absent ~0.14)
+  sim_temperature: 0.05
+  box_threshold: 0.5              # min calibrated patch score for a patch to join a box region
+  max_boxes: 20                   # max boxes returned per (image, probe)
+
+# image_prober_yoloe: YOLOE with probe crops as visual prompts (src/image_prober_yoloe.py).
+# Weights are Ultralytics release assets (AGPL-3.0), downloaded once to <weights_dir>/ultralytics/.
+image_prober_yoloe:
+  weights_file: yoloe-11l-seg.pt  # prompt-able YOLOE with NMS: yoloe-11s/m/l-seg.pt or yoloe-v8s/m/l-seg.pt
+  dtype: float16                  # model precision on GPU (CPU always uses float32)
+  imgsz: 640                      # images are letterboxed to this square (multiple of 32)
+  probe_size: 160                 # longer side of a probe on its imgsz canvas (<= imgsz); swept 96-640, 160 best overall
+  box_threshold: 0.05             # min anchor score for a returned box (cross-image prompt scores run ~0.03-0.2)
+  nms_iou: 0.5                    # overlap above which weaker boxes are suppressed
+  max_boxes: 20                   # max boxes returned per (image, probe)
+
+# image_prober_embeddinggemma2: EmbeddingGemma 2 multimodal embeddings over image tiles (src/image_prober_embeddinggemma2.py).
+image_prober_embeddinggemma2:
+  repo_id: google/embeddinggemma-2   # Apache-2.0, ungated
+  dtype: bfloat16                 # bfloat16 or float32; the model card warns float16 yields NaN
+  embedding_dim: 768              # Matryoshka: 768 | 512 | 256 | 128
+  tile_scales: [0.5, 0.33]        # tile sides as fractions of the image's shorter side (whole image always included)
+  tile_overlap: 0.5               # overlap between neighbouring tiles
+  tile_batch_size: 32             # tiles (or probes) per encoder pass
+  sim_offset: 0.72                # calibration: probability = sigmoid((similarity - offset) / temperature);
+  sim_temperature: 0.02           #   fitted by eye on coco_objects (present ~0.745, absent ~0.689); cracks/X-rays sit ~0.88/0.95
+  box_threshold: 0.5              # min calibrated tile score for a returned box
+  nms_iou: 0.5                    # overlap above which weaker tile boxes are suppressed
+  max_boxes: 20                   # max boxes returned per (image, probe)
