@@ -5,6 +5,7 @@ huggingface_hub==1.33.0
 pillow==12.3.0
 PyYAML==6.0.3
 requests==2.34.2
+rich==15.0.0
 sentence-transformers==6.1.0
 torch==2.14.1
 torchvision==0.29.1

@@ -11,8 +11,21 @@ general:
 sample_data:
   datasets_dir: sample_datasets   # every sub-folder with a dataset.yaml is a sample dataset
 
-# test: renders each sample dataset's images with ground-truth boxes to a PDF in general.output_dir.
+# wbf: weighted boxes fusion (src/wbf.py), used to merge boxes from probes of the same class.
+wbf:
+  iou_threshold: 0.55             # overlap above which a box joins an existing fused box
+  skip_box_threshold: 0.0         # input boxes scoring below this are dropped first
+  conf_type: avg                  # avg (mean score x min(boxes, sources) / sources) | max
+
+# evaluate: box evaluation (src/evaluate.py).
+evaluate:
+  iou_threshold: 0.25             # IoU for a merged box to match a ground-truth box (AP@0.25)
+
+# test: evaluates every model's boxes on every sample dataset and writes PDF/YAML reports to general.output_dir.
 test:
+  models: [owlv2, sam3, dinov3, dinov2, yoloe, embeddinggemma2]   # registry names in src/test.py MODELS
+  draw_top_k: 3                   # merged predictions drawn per class per image in the model reports
+  box_threshold: null             # if set, overrides every model's box_threshold during evaluation
   pdf_suffix: _ground_truth   # PDF name is <dataset><suffix>.pdf
   page_size: [1920, 540]      # fixed page (px); 32:9 fills ~half a 16:9 screen at fit-to-width
   line_width: 4               # box outline width (px, at page scale)
@@ -37,7 +50,7 @@ image_prober_owlv2:
   dtype: float16                  # model precision on GPU (CPU always uses float32)
   logit_offset: 5.0               # calibration: probability = sigmoid((logit - offset) / temperature);
   logit_temperature: 1.0          #   offset set by eye on coco_objects (raw logits: present ~6.6, absent ~3.9)
-  box_threshold: 0.5              # min calibrated patch score for a returned box
+  box_threshold: 0.01              # min calibrated patch score for a returned box
   nms_iou: 0.3                    # overlap above which weaker boxes are suppressed
   max_boxes: 20                   # max boxes returned per (image, probe)
   query_iou_fraction: 0.8         # probe query: boxes within this fraction of the best IoU with the probe extent
@@ -53,7 +66,7 @@ image_prober_sam3:
   max_strip_fraction: 0.25        # canvas: max share of canvas height for the strip; more probes -> more canvases
   probe_batch_size: 20            # probes scored together per DETR encoder/decoder pass
   probability: max_score          # transfer only: max_score (best query x presence) | presence
-  box_threshold: 0.5              # min query score for a returned box
+  box_threshold: 0.01              # min query score for a returned box
   nms_iou: 0.5                    # overlap above which weaker boxes are suppressed
   max_boxes: 20                   # max boxes returned per (image, probe)
 
@@ -94,7 +107,7 @@ image_prober_yoloe:
   dtype: float16                  # model precision on GPU (CPU always uses float32)
   imgsz: 640                      # images are letterboxed to this square (multiple of 32)
   probe_size: 160                 # longer side of a probe on its imgsz canvas (<= imgsz); swept 96-640, 160 best overall
-  box_threshold: 0.05             # min anchor score for a returned box (cross-image prompt scores run ~0.03-0.2)
+  box_threshold: 0.01             # min anchor score for a returned box (cross-image prompt scores run ~0.03-0.2)
   nms_iou: 0.5                    # overlap above which weaker boxes are suppressed
   max_boxes: 20                   # max boxes returned per (image, probe)
 
@@ -108,6 +121,6 @@ image_prober_embeddinggemma2:
   tile_batch_size: 32             # tiles (or probes) per encoder pass
   sim_offset: 0.72                # calibration: probability = sigmoid((similarity - offset) / temperature);
   sim_temperature: 0.02           #   fitted by eye on coco_objects (present ~0.745, absent ~0.689); cracks/X-rays sit ~0.88/0.95
-  box_threshold: 0.5              # min calibrated tile score for a returned box
+  box_threshold: 0.01              # min calibrated tile score for a returned box
   nms_iou: 0.5                    # overlap above which weaker tile boxes are suppressed
   max_boxes: 20                   # max boxes returned per (image, probe)

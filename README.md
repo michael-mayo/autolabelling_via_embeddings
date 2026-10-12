@@ -33,7 +33,8 @@ Run all commands from the project root.
 ```bash
 python -m src.sample_data                        # (re)build all sample datasets
 python -m src.sample_data --only road_cracks     # rebuild one dataset
-python src/test.py                               # render ground-truth PDFs to scratch/
+python -m src.test                               # box AP of every model on every dataset + PDF/YAML reports
+python -m src.test --models dinov2 sam3 --datasets coco_objects   # a subset
 python -m src.image_prober_owlv2                 # evaluate OWLv2 on all sample datasets
 python -m src.image_prober_sam3 --datasets coco_objects   # evaluate SAM 3 on one dataset
 python -m src.image_prober_dinov3                # evaluate DINOv3 patch matching
@@ -76,22 +77,38 @@ generated files (`probes/`, `images/`, `probes.yaml`, `images.yaml`) and leaves
 
 Reads `general.weights_dir` and `sample_data.datasets_dir` from `config.yaml`, plus each dataset's `dataset.yaml`.
 
-### `python src/test.py`
+### `python -m src.test`
 
-Reads each dataset's `images.yaml` and draws the ground-truth boxes and labels
-on its images. Writes one PDF per dataset, one image per page, to
-`scratch/<name>_ground_truth.pdf`. Each PDF opens with a cover page that
-summarises all sample datasets side by side, with the PDF's own dataset shaded.
-For each dataset it shows image, box and probe totals, background (no-label)
-and multi-label image counts, and boxes per image. A per-class table gives box
-count, support (images containing the class), image coverage (support as a %
-of images) and probe count.
+Evaluates the boxes of every model in `test.models` on every sample dataset,
+using only the public `ImageProber` interface. `Evaluate.predict` runs each
+prober, `Evaluate.merge_boxes` merges the boxes of all probes of the same
+class with weighted boxes fusion (`WBF`; the same merge for every model, with
+each probe one WBF source), and `Evaluate.average_precision` scores the merged
+boxes with per-class box AP at IoU 0.25. Outputs:
 
-| Flag       | Type | Required | Default       | Description         |
-|------------|------|----------|---------------|---------------------|
-| `--config` | path | no       | `config.yaml` | Config file to read |
+- at the end of the run, a table per dataset on the console (rows: models; columns: classes and
+  mean AP) and a models × datasets summary, with the best value in each column highlighted;
+- `scratch/evaluation.yaml`: the AP table, the WBF settings and every model's
+  merged (final) predictions, `{model: {dataset: {image: {label: [[x0, y0, x1, y1, score], ...]}}}}`;
+- `scratch/<dataset>_ground_truth.pdf`: a cover summarising all datasets
+  (totals, background and multi-label counts, and per class: boxes, support,
+  % of images, probes), a box-AP page, then each image with its ground truth;
+- `scratch/<dataset>_<model>.pdf`: the box-AP page with the model's row
+  shaded, then each image with ground truth (thin) and the model's top
+  `draw_top_k` merged predictions per class (thick, with scores).
 
-Reads the `general`, `sample_data` (for `datasets_dir`) and `test` sections of `config.yaml`.
+Each run first deletes the previous run's `evaluation.yaml` and report PDFs, so a partial run
+(`--models`, `--datasets`) reports only its own results; the embedding cache is kept.
+Models are loaded one at a time and freed afterwards. With the embedding
+cache warm, the full run takes about 1.5 minutes; the 21 PDFs total about 140 MB.
+
+| Flag         | Type     | Required | Default       | Description                              |
+|--------------|----------|----------|---------------|------------------------------------------|
+| `--config`   | path     | no       | `config.yaml` | Config file to read                      |
+| `--models`   | names... | no       | `test.models` | Models to evaluate (registry names in `src/test.py`) |
+| `--datasets` | names... | no       | all           | Datasets to evaluate                     |
+
+Reads `general`, `sample_data`, `wbf`, `evaluate`, `test`, `image_prober` and each model's section.
 
 ### Image probers: `python -m src.image_prober_<model>` (`owlv2`, `sam3`, `dinov3`, `dinov2`, `yoloe`, `embeddinggemma2`)
 
@@ -185,7 +202,14 @@ All key parameters live in `config.yaml`, with one subsection per module.
 | `general`     | `weights_dir`       | Directory for transient downloaded data                  |
 | `general`     | `random_seed`       | Seed for reproducible runs                               |
 | `sample_data` | `datasets_dir`      | Folder of sample datasets (each sub-folder with a `dataset.yaml`) |
-| `test`        | `pdf_suffix`        | Suffix for PDF names (`<name><suffix>.pdf`)              |
+| `wbf`         | `iou_threshold`     | Overlap above which a box joins an existing fused box    |
+| `wbf`         | `skip_box_threshold` | Input boxes scoring below this are dropped              |
+| `wbf`         | `conf_type`         | `avg` (mean score × min(boxes, sources) / sources) or `max` |
+| `evaluate`    | `iou_threshold`     | IoU for a merged box to match a ground-truth box (AP@0.25) |
+| `test`        | `models`            | Models to evaluate, by registry name                     |
+| `test`        | `draw_top_k`        | Merged predictions drawn per class per image in model reports |
+| `test`        | `box_threshold`     | Replaces every model's `box_threshold` during evaluation (`null` keeps each model's own) |
+| `test`        | `pdf_suffix`        | Suffix for ground-truth PDF names (`<name><suffix>.pdf`) |
 | `test`        | `page_size`         | Fixed page size (px); images are fitted and centred. 32:9 fills about half a 16:9 screen at fit-to-width |
 | `test`        | `line_width`        | Box outline width (px)                                   |
 | `test`        | `font_size`         | Label and header text size (px)                          |
@@ -244,7 +268,10 @@ flowchart LR
     select --> out[sample_datasets/&lt;name&gt;]
     out --> test[src/test.py]
     config --> test
-    test --> pdf[scratch/&lt;name&gt;_ground_truth.pdf]
+    test --> evaluate["evaluate.Evaluate<br/>predict · merge_boxes · average_precision"]
+    evaluate --> probers
+    evaluate --> wbf[wbf.WBF]
+    test --> pdf["scratch/&lt;name&gt;_ground_truth.pdf · &lt;name&gt;_&lt;model&gt;.pdf · evaluation.yaml"]
     out --> probers["src/image_prober_owlv2 · _sam3 · _dinov3 · _dinov2 · _yoloe · _embeddinggemma2"]
     config --> probers
     probers <--> weights[weights/ model weights]
@@ -287,6 +314,16 @@ classDiagram
     ImageProber_DINOv3 <|-- ImageProber_DINOv2
     ImageProber *-- EmbeddingCache
     ImageProber ..> ProbeResult : returns
+    class Evaluate {
+        +predict(prober, images, probes, probe_labels) dict
+        +merge_boxes(probe_results, probe_labels) dict
+        +average_precision(predictions, ground_truth, labels) dict
+    }
+    class WBF {
+        +fuse(sources, weights) list~FusedBox~
+    }
+    Evaluate --> ImageProber : uses
+    Evaluate *-- WBF
 ```
 
 ## Project layout
@@ -304,7 +341,9 @@ classDiagram
 │   ├── image_prober_dinov2.py  # ImageProber_DINOv2 (DINOv3 method, DINOv2 weights)
 │   ├── image_prober_yoloe.py   # ImageProber_YOLOE
 │   ├── image_prober_embeddinggemma2.py  # ImageProber_EmbeddingGemma2
-│   └── test.py                 # renders ground-truth PDFs for visual checks
+│   ├── wbf.py                  # WBF: weighted boxes fusion
+│   ├── evaluate.py             # Evaluate: WBF merge per class, box AP per class
+│   └── test.py                 # evaluates every model on every dataset; console table, PDF/YAML reports
 ├── sample_datasets/   # generated sample datasets (probes + images)
 ├── scratch/           # generated output (git-ignored)
 ├── weights/           # transient downloaded data: model weights, dataset cache (git-ignored)
