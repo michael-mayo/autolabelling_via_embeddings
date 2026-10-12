@@ -20,6 +20,8 @@ wbf:
 # evaluate: box evaluation (src/evaluate.py).
 evaluate:
   iou_threshold: 0.25             # IoU for a merged box to match a ground-truth box (AP@0.25)
+  label_method: topk_mean         # image labels: combine a class's probe probabilities by max | mean | topk_mean
+  label_top_k: 2                  # k for topk_mean (best mean AUROC across models/datasets: 0.687 vs max 0.683, mean 0.677)
 
 # test: evaluates every model's boxes on every sample dataset and writes PDF/YAML reports to general.output_dir.
 test:

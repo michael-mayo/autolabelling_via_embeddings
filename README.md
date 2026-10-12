@@ -80,14 +80,17 @@ Reads `general.weights_dir` and `sample_data.datasets_dir` from `config.yaml`, p
 ### `python -m src.test`
 
 Evaluates the boxes of every model in `test.models` on every sample dataset,
-using only the public `ImageProber` interface. `Evaluate.predict` runs each
-prober, `Evaluate.merge_boxes` merges the boxes of all probes of the same
+using only the public `ImageProber` interface. `Evaluate.run` runs each
+prober once, `Evaluate.merge_boxes` merges the boxes of all probes of the same
 class with weighted boxes fusion (`WBF`; the same merge for every model, with
 each probe one WBF source), and `Evaluate.average_precision` scores the merged
-boxes with per-class box AP at IoU 0.25. `Evaluate.classification` then scores
-per-image classification: an image is predicted to contain a class when its
-best merged box of that class scores above a threshold T (0 if it has no such
-box), with T chosen per class to maximise F1. Reported per class: the
+boxes with per-class box AP at IoU 0.25. WBF is used for boxes only. Image
+labelling is separate: `Evaluate.label_confidences` combines the probabilities
+of a class's probes into one confidence per image (`max`, `mean`, or
+`topk_mean`, the mean of the best k; default `topk_mean` with k = 2), and
+`Evaluate.classification` scores those confidences: an image is predicted to
+contain a class when its confidence exceeds a threshold T, with T chosen per
+class to maximise F1. Reported per class: the
 every-image-positive F1 baseline (2p / (1 + p) for prevalence p, the score to
 beat), the threshold-tuned F1 with its T, precision and recall, and the
 threshold-free AUROC of the image scores. Outputs:
@@ -214,6 +217,7 @@ All key parameters live in `config.yaml`, with one subsection per module.
 | `wbf`         | `skip_box_threshold` | Input boxes scoring below this are dropped              |
 | `wbf`         | `conf_type`         | `avg` (mean score × min(boxes, sources) / sources) or `max` |
 | `evaluate`    | `iou_threshold`     | IoU for a merged box to match a ground-truth box (AP@0.25) |
+| `evaluate`    | `label_method`, `label_top_k` | How a class's probe probabilities become an image confidence: `max`, `mean` or `topk_mean` (mean of the best k) |
 | `test`        | `models`            | Models to evaluate, by registry name                     |
 | `test`        | `draw_top_k`        | Merged predictions drawn per class per image in model reports |
 | `test`        | `box_threshold`     | Replaces every model's `box_threshold` during evaluation (`null` keeps each model's own) |
@@ -323,8 +327,9 @@ classDiagram
     ImageProber *-- EmbeddingCache
     ImageProber ..> ProbeResult : returns
     class Evaluate {
-        +predict(prober, images, probes, probe_labels) dict
+        +run(prober, images, probes, probe_labels) tuple
         +merge_boxes(probe_results, probe_labels) dict
+        +label_confidences(probe_results, probe_labels) dict
         +average_precision(predictions, ground_truth, labels) dict
         +classification(predictions, ground_truth, labels) dict
     }

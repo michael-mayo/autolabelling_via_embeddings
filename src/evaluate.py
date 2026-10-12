@@ -1,13 +1,17 @@
-"""Box-level evaluation of any `ImageProber`, using only its public interface.
+"""Evaluation of any `ImageProber`, using only its public interface.
 
-`Evaluate` runs a prober over a set of images and labelled probes, merges
-the boxes of all probes that share a class with weighted boxes fusion
-(`merge_boxes`, the one merging step used for every model), and scores the
-merged boxes against ground truth with per-class average precision at a
-single IoU threshold (25% by default). It also scores per-image
-classification: an image is predicted to contain a class when one of its
-merged boxes of that class scores above a threshold, chosen per class to
-maximise F1.
+`Evaluate` runs a prober over a set of images and labelled probes and keeps
+two outputs apart:
+
+- box prediction: the boxes of all probes that share a class are merged with
+  weighted boxes fusion (`merge_boxes`, the one box-merging step used for
+  every model) and scored with per-class box AP at a single IoU threshold
+  (25% by default). WBF is used for boxes only;
+- image labelling: an image's confidence for a class combines the
+  probabilities of that class's probes (`label_confidences`: max, mean or
+  mean of the top k), and `classification` scores those confidences per
+  class (F1 at the F1-maximising threshold, the every-image-positive F1
+  baseline, and AUROC).
 """
 
 from collections.abc import Sequence
@@ -27,6 +31,12 @@ from .wbf import iou
 
 # Merged predictions: {image key: {label: [boxes, best first]}}.
 Predictions = dict[ResultKey, dict[str, list[DetectedBox]]]
+# Image labels: {image key: {label: confidence}}.
+LabelScores = dict[ResultKey, dict[str, float]]
+# Raw prober output: {image key: {probe key: ProbeResult}}.
+ProbeResults = dict[ResultKey, dict[ResultKey, ProbeResult]]
+# Ways of combining a class's probe probabilities into one image confidence.
+LABEL_METHODS = ("max", "mean", "topk_mean")
 
 
 @dataclass(frozen=True)
@@ -49,7 +59,7 @@ class ClassificationStats:
     for prevalence p), the score to beat; `auroc` is threshold-free.
     """
 
-    threshold: float | None  # images whose best box scores above this are positive (None: no useful threshold)
+    threshold: float | None  # images whose confidence exceeds this are positive (None: no useful threshold)
     precision: float
     recall: float
     f1: float                # threshold-tuned F1
@@ -71,12 +81,22 @@ class Dataset:
 
 
 class Evaluate:
-    """Evaluate image probers' boxes: merge per class with WBF, then score by per-class AP."""
+    """Evaluate image probers: WBF-merged boxes scored by box AP, and image labels scored per class."""
 
-    def __init__(self, wbf: WBF, iou_threshold: float = 0.25) -> None:
-        """Use `wbf` to merge boxes of same-class probes; count a match at IoU >= `iou_threshold`."""
+    def __init__(
+        self, wbf: WBF, iou_threshold: float = 0.25, label_method: str = "max", label_top_k: int = 2
+    ) -> None:
+        """Configure box merging (`wbf`, match at IoU >= `iou_threshold`) and label combining.
+
+        `label_method` (max, mean or topk_mean) and `label_top_k` set how a
+        class's probe probabilities become one image confidence.
+        """
+        if label_method not in LABEL_METHODS:
+            raise ValueError(f"label_method must be one of {LABEL_METHODS}, not {label_method!r}")
         self.wbf = wbf
         self.iou_threshold = iou_threshold
+        self.label_method = label_method
+        self.label_top_k = label_top_k
 
     @staticmethod
     def load_dataset(dataset_dir: Path) -> Dataset:
@@ -99,17 +119,49 @@ class Evaluate:
             ground_truth=ground_truth,
         )
 
-    def predict(
+    def run(
         self, prober: ImageProber, images: Sequence[ImageInput], probes: Sequence[ImageInput],
         probe_labels: dict[ResultKey, str],
-    ) -> Predictions:
-        """Run `prober.image_probe` and merge each image's boxes per class with `merge_boxes`.
+    ) -> tuple[Predictions, LabelScores]:
+        """Run `prober.image_probe` once; return the merged box predictions and the image label confidences.
 
         `probe_labels` maps each probe's result key (its path as a string, or
         its index for in-memory images) to its class.
         """
         results = prober.image_probe(images, probes)
+        return self.box_predictions(results, probe_labels), self.label_scores(results, probe_labels)
+
+    def box_predictions(self, results: ProbeResults, probe_labels: dict[ResultKey, str]) -> Predictions:
+        """Merge every image's boxes per class with `merge_boxes`."""
         return {image: self.merge_boxes(per_probe, probe_labels) for image, per_probe in results.items()}
+
+    def label_scores(self, results: ProbeResults, probe_labels: dict[ResultKey, str]) -> LabelScores:
+        """Combine every image's probe probabilities per class with `label_confidences`."""
+        return {image: self.label_confidences(per_probe, probe_labels) for image, per_probe in results.items()}
+
+    def label_confidences(
+        self, probe_results: dict[ResultKey, ProbeResult], probe_labels: dict[ResultKey, str],
+        method: str | None = None, top_k: int | None = None,
+    ) -> dict[str, float]:
+        """Combine one image's probe probabilities into one confidence per class.
+
+        For a class probed with P0..PN-1: `max` takes the highest probability
+        (one matching probe suffices), `mean` the average (rewards agreement,
+        robust to one bad probe), `topk_mean` the average of the best k
+        (`top_k`, capped at N). `method` and `top_k` default to the values
+        given at construction. Boxes play no part.
+        """
+        method = method or self.label_method
+        top_k = top_k or self.label_top_k
+        by_label: dict[str, list[float]] = {}
+        for key, result in probe_results.items():
+            by_label.setdefault(probe_labels[key], []).append(result.probability)
+        combine = {
+            "max": max,
+            "mean": lambda ps: sum(ps) / len(ps),
+            "topk_mean": lambda ps: sum(sorted(ps, reverse=True)[:top_k]) / min(top_k, len(ps)),
+        }[method]
+        return {label: combine(probs) for label, probs in by_label.items()}
 
     def merge_boxes(
         self, probe_results: dict[ResultKey, ProbeResult], probe_labels: dict[ResultKey, str]
@@ -146,13 +198,13 @@ class Evaluate:
         return {label: self._class_ap(predictions, ground_truth, label) for label in labels}
 
     def classification(
-        self, predictions: Predictions, ground_truth: dict[ResultKey, list[GroundTruthBox]], labels: Sequence[str]
+        self, label_scores: LabelScores, ground_truth: dict[ResultKey, list[GroundTruthBox]], labels: Sequence[str]
     ) -> dict[str, ClassificationStats | None]:
         """Return per-image classification stats per class (None for a class no image contains).
 
         An image is truly positive for a class if it has a ground-truth box of
-        that class, and predicted positive if its score (`image_scores`)
-        exceeds a threshold T. T is chosen per class from 0 and the distinct
+        that class, and predicted positive if its label confidence (from
+        `label_scores`, 0 if missing) exceeds a threshold T. T is chosen per class from 0 and the distinct
         image scores to maximise F1; ties keep the higher T. Also reported:
         the every-image-positive F1 baseline and the threshold-free AUROC of
         the image scores.
@@ -165,7 +217,7 @@ class Evaluate:
             if positives == 0:
                 stats[label] = None
                 continue
-            scores = image_scores(predictions, images, label)
+            scores = [label_scores.get(image, {}).get(label, 0.0) for image in images]
             prevalence = positives / len(images)
             baseline_f1 = 2 * prevalence / (1 + prevalence)
             auroc = roc_auc(scores, truth)
@@ -217,7 +269,7 @@ class Evaluate:
 def roc_auc(scores: Sequence[float], truth: Sequence[bool]) -> float | None:
     """Area under the ROC curve: the chance a random positive image outscores a random negative one.
 
-    Ties count half (images with no box all score 0). None if either class is empty.
+    Ties count half. None if either class is empty.
     """
     pos = sorted(s for s, t in zip(scores, truth) if t)
     neg = sorted(s for s, t in zip(scores, truth) if not t)
@@ -225,11 +277,6 @@ def roc_auc(scores: Sequence[float], truth: Sequence[bool]) -> float | None:
         return None
     wins = sum((p > n) + 0.5 * (p == n) for p in pos for n in neg)
     return wins / (len(pos) * len(neg))
-
-
-def image_scores(predictions: Predictions, images: Sequence[ResultKey], label: str) -> list[float]:
-    """Return each image's score for `label`: its best merged box's score, or 0 if it has none."""
-    return [max((b.score for b in predictions.get(image, {}).get(label, [])), default=0.0) for image in images]
 
 
 def predictions_to_dict(predictions: Predictions) -> dict[str, Any]:

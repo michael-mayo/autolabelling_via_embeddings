@@ -5,9 +5,11 @@ prober through `Evaluate`, merging the boxes of same-class probes with WBF,
 and scores the merged boxes with per-class box AP (IoU >= `evaluate.iou_threshold`).
 It then:
 
-- scores per-image classification: an image is predicted to contain a class
-  when one of its merged boxes of that class scores above a threshold T,
-  chosen per class to maximise F1 (precision, recall, F1 and T are reported);
+- scores per-image classification separately from boxes: an image's
+  confidence for a class combines that class's probe probabilities
+  (`evaluate.label_method`: max, mean or topk_mean), and the image is
+  predicted positive when it exceeds a threshold T chosen per class to
+  maximise F1 (baseline F1, tuned F1, AUROC, T, precision and recall are reported);
 - prints, at the end, a box-AP table per dataset (rows: models; columns:
   classes and mean AP) and a models x datasets summary, then the same for
   classification (rows: model x class; columns: P, R, F1, T), with the best
@@ -208,7 +210,7 @@ def print_classification_tables(cls: ClsTable, datasets: list[Dataset]) -> None:
     """
     console = Console(width=None if sys.stdout.isatty() else 200)
     console.print()
-    console.rule("[bold]Per-image classification[/]  (image score = best merged box of the class; "
+    console.rule("[bold]Per-image classification[/]  (confidence = combined probe probabilities of the class; "
                  "tuned F1 at the F1-maximising T; AUROC is threshold-free)")
     models = list(cls)
     for ds in datasets:
@@ -383,7 +385,7 @@ def render_classification_page(
     title = ImageFont.load_default(round(fs * 1.4))
     page = Image.new("RGB", (page_w, page_h), "white")
     draw = ImageDraw.Draw(page)
-    draw.text((20, 12), f"{dataset.name} - per-image classification (best merged box > T; T maximises F1 per class)",
+    draw.text((20, 12), f"{dataset.name} - per-image classification (label confidence > T; T maximises F1 per class)",
               fill="black", font=title)
     cols = [*dataset.labels, "mean F1"]
     name_w = 260
@@ -412,9 +414,9 @@ def render_classification_page(
                       fill="#555555", font=small)
         draw.text((20 + name_w + col_w * len(dataset.labels), y), _fmt(mean_f1(per_class)), fill="black", font=font)
         y += line
-    note = ("An image is predicted positive for a class if its best WBF-merged box of that class scores above T "
-            "(0 if it has none); T is chosen per class to maximise F1. base F1 = every image labelled positive; "
-            "AUROC uses the image scores directly.")
+    note = ("An image's label confidence combines the probabilities of the class's probes (evaluate.label_method); "
+            "it is positive above T, chosen per class to maximise F1. base F1 = every image labelled positive; "
+            "AUROC uses the confidences directly.")
     draw.text((20, page_h - round(fs * 1.6)), note, fill="#555555", font=small)
     return page
 
@@ -560,10 +562,10 @@ def main() -> None:
         prober = load_prober(model, config, cfg.get("box_threshold"))
         ap[model], cls[model], predictions[model] = {}, {}, {}
         for ds in datasets:
-            preds = evaluator.predict(prober, ds.image_paths, ds.probe_paths, ds.probe_labels)
+            preds, label_scores = evaluator.run(prober, ds.image_paths, ds.probe_paths, ds.probe_labels)
             predictions[model][ds.name] = preds
             ap[model][ds.name] = evaluator.average_precision(preds, ds.ground_truth, ds.labels)
-            cls[model][ds.name] = evaluator.classification(preds, ds.ground_truth, ds.labels)
+            cls[model][ds.name] = evaluator.classification(label_scores, ds.ground_truth, ds.labels)
             print(f"[{model}] evaluated {ds.name}")
         # Free the model before loading the next one.
         del prober
@@ -574,6 +576,8 @@ def main() -> None:
         "iou_threshold": evaluator.iou_threshold,
         "box_threshold": cfg.get("box_threshold"),
         "wbf": config["wbf"],
+        "label_method": evaluator.label_method,
+        "label_top_k": evaluator.label_top_k,
         "ap": {m: {d: {"mean": mean_ap(per_class), "per_class": per_class} for d, per_class in per_ds.items()}
                for m, per_ds in ap.items()},
         "classification": {
