@@ -40,6 +40,7 @@ threshold-tuned F1 / AUROC.
 | SAM 3 | 0.786 / 0.924 | **0.751** / 0.557 | 0.686 / 0.548 |
 | DINOv3 | 0.889 / 0.971 | 0.735 / 0.564 | 0.705 / **0.636** |
 | DINOv2 | **0.903 / 0.976** | 0.727 / 0.520 | 0.717 / 0.633 |
+| RAD-DINO (chest X-ray DINOv2) | 0.469 / 0.544 | 0.729 / 0.528 | 0.705 / 0.574 |
 | YOLOE | 0.726 / 0.880 | 0.725 / 0.432 | 0.686 / 0.565 |
 | EmbeddingGemma 2 | 0.841 / 0.939 | 0.748 / **0.632** | **0.720** / 0.600 |
 
@@ -54,7 +55,8 @@ How to read it:
 
 On everyday photos, the DINO models label images reliably (AUROC 0.97–0.98).
 On road cracks they are only modestly better than chance. On dental X-rays no
-model clearly beats the baseline. See [docs/evaluation.md](docs/evaluation.md)
+model clearly beats the baseline, not even RAD-DINO, a DINOv2 trained on chest
+X-rays. See [docs/evaluation.md](docs/evaluation.md)
 for box-level results and the full analysis.
 
 ## Examples
@@ -196,7 +198,7 @@ results. Details: [docs/evaluation.md](docs/evaluation.md).
 | Flag         | Type     | Required | Default       | Description                              |
 |--------------|----------|----------|---------------|------------------------------------------|
 | `--config`   | path     | no       | `config.yaml` | Config file to read                      |
-| `--models`   | names... | no       | `test.models` | Models to evaluate: `owlv2`, `sam3`, `dinov3`, `dinov2`, `yoloe`, `embeddinggemma2` |
+| `--models`   | names... | no       | `test.models` | Models to evaluate: `owlv2`, `sam3`, `dinov3`, `dinov2`, `raddino`, `yoloe`, `embeddinggemma2` |
 | `--datasets` | names... | no       | all           | Datasets to evaluate                     |
 
 ### `python -m src.sample_data`
@@ -230,7 +232,7 @@ flowchart LR
     data[sample_datasets/&lt;name&gt;<br/>probes + images] --> test[src/test.py]
     config[config.yaml] --> test
     test --> evaluate[evaluate.Evaluate]
-    evaluate --> probers["ImageProber subclasses<br/>OWLv2 · SAM 3 · DINOv3 · DINOv2 · YOLOE · EmbeddingGemma 2"]
+    evaluate --> probers["ImageProber subclasses<br/>OWLv2 · SAM 3 · DINOv3 · DINOv2 · RAD-DINO · YOLOE · EmbeddingGemma 2"]
     probers <--> weights[weights/ model weights]
     probers <--> cache[scratch/embedding_cache]
     evaluate --> labels["label_confidences<br/>image labels"]

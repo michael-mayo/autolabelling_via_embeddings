@@ -81,7 +81,7 @@ that maps to that URL.
 
 | Key | Default | Description |
 |---|---|---|
-| `model` | `dinov2` | Prober, by registry name: `owlv2`, `sam3`, `dinov3`, `dinov2`, `yoloe`, `embeddinggemma2` |
+| `model` | `dinov2` | Prober, by registry name: `owlv2`, `sam3`, `dinov3`, `dinov2`, `raddino`, `yoloe`, `embeddinggemma2` |
 | `model_config` | `config.yaml` | Model settings: the `image_prober` and `image_prober_<model>` sections |
 | `probes_dir` | `sample_datasets/coco_objects/probes` | Folder of labelled probe crops |
 | `probes_yaml` | `sample_datasets/coco_objects/probes.yaml` | Probe labels as `probes: [{file, label}]`. Each `file` is looked up under `probes_dir`, then relative to the YAML file. `null` takes labels from sub-folder names |

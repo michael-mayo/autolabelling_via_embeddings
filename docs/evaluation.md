@@ -94,6 +94,7 @@ Mean box AP at IoU 0.25:
 |---|---|---|---|
 | SAM 3 | **0.566** | **0.060** | 0.013 |
 | DINOv2 | 0.450 | 0.000 | 0.020 |
+| RAD-DINO | 0.017 | 0.003 | 0.016 |
 | DINOv3 | 0.438 | 0.000 | 0.031 |
 | OWLv2 | 0.307 | 0.001 | 0.026 |
 | YOLOE | 0.303 | 0.000 | 0.009 |
@@ -136,8 +137,13 @@ total about 140 MB.
 - **The features do carry location signal.** With DINO, patches inside
   ground-truth boxes score higher than patches outside. The problem is
   discrimination: every X-ray is full of teeth and every road is asphalt.
+- **A radiograph backbone alone doesn't help.** RAD-DINO (DINOv2 trained on
+  chest X-rays) reaches dental AUROC 0.528, below DINOv3 (0.564) and
+  EmbeddingGemma 2 (0.632). Its patch features are very similar everywhere:
+  the median presence similarity is 0.618 for present pairs and 0.612 for
+  absent ones. On COCO it is near chance (0.544), as expected.
 - **Most promising next steps:**
   - a per-dataset patch classifier on DINOv3 features, trained against the
     other classes' probes as negatives;
   - higher input resolution for small and thin targets;
-  - a domain backbone for radiographs, e.g. RAD-DINO.
+  - a dental-specific backbone, if one with public weights appears.

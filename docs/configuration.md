@@ -34,10 +34,10 @@ sample dataset's own build settings live in its `dataset.yaml`
 | `image_prober_sam3` | `strip_columns`, `max_strip_fraction` | Canvas: tiles per strip row; max share of canvas height for the strip |
 | `image_prober_sam3` | `probe_batch_size` | Probes per DETR encoder/decoder pass |
 | `image_prober_sam3` | `probability` | Transfer mode only: `max_score` or `presence` |
-| `image_prober_dinov3`, `image_prober_dinov2` | `repo_id` | DINO checkpoint (DINOv3 gated; DINOv2 open) |
-| `image_prober_dinov3`, `image_prober_dinov2` | `image_size`, `probe_size` | Longer side of images / probes fed to the backbone |
-| `image_prober_dinov3`, `image_prober_dinov2` | `probe_border`, `top_k` | Probe margin trimmed before averaging; presence = mean of the best k patch similarities |
-| `image_prober_dinov3`, `image_prober_dinov2` | `sim_offset`, `sim_temperature` | Calibration: `sigmoid((similarity - offset) / temperature)` |
+| `image_prober_dinov3`, `image_prober_dinov2`, `image_prober_raddino` | `repo_id` | DINO checkpoint (DINOv3 gated; DINOv2 and RAD-DINO open) |
+| `image_prober_dinov3`, `image_prober_dinov2`, `image_prober_raddino` | `image_size`, `probe_size` | Longer side of images / probes fed to the backbone |
+| `image_prober_dinov3`, `image_prober_dinov2`, `image_prober_raddino` | `probe_border`, `top_k` | Probe margin trimmed before averaging; presence = mean of the best k patch similarities |
+| `image_prober_dinov3`, `image_prober_dinov2`, `image_prober_raddino` | `sim_offset`, `sim_temperature` | Calibration: `sigmoid((similarity - offset) / temperature)` |
 | `image_prober_yoloe` | `weights_file` | Ultralytics YOLOE asset with a prompt-able NMS head (e.g. `yoloe-11l-seg.pt`) |
 | `image_prober_yoloe` | `imgsz`, `probe_size` | Letterbox size; longer side of a probe on its canvas |
 | `image_prober_embeddinggemma2` | `embedding_dim` | Matryoshka size: 768, 512, 256 or 128 |

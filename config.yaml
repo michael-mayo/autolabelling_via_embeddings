@@ -25,7 +25,7 @@ evaluate:
 
 # test: evaluates every model's boxes on every sample dataset and writes PDF/YAML reports to general.output_dir.
 test:
-  models: [owlv2, sam3, dinov3, dinov2, yoloe, embeddinggemma2]   # registry names in src/image_prober.py MODELS
+  models: [owlv2, sam3, dinov3, dinov2, raddino, yoloe, embeddinggemma2]   # registry names in src/image_prober.py MODELS
   draw_top_k: 3                   # merged predictions drawn per class per image in the model reports
   box_threshold: null             # if set, overrides every model's box_threshold during evaluation
   pdf_suffix: _ground_truth   # PDF name is <dataset><suffix>.pdf
@@ -102,6 +102,19 @@ image_prober_dinov2:
   box_threshold: 0.5              # min calibrated patch score for a patch to join a box region
   max_boxes: 20                   # max boxes returned per (image, probe)
 
+# image_prober_raddino: RAD-DINO (DINOv2-base trained on chest X-rays), same method as DINOv3 (src/image_prober_raddino.py).
+image_prober_raddino:
+  repo_id: microsoft/rad-dino     # ungated; MIT licence, research use only (not clinical)
+  dtype: float16                  # model precision on GPU (CPU always uses float32)
+  image_size: 1024                # longer side of images fed to the backbone (px; trained at 518)
+  probe_size: 224                 # longer side of probes fed to the backbone (px)
+  probe_border: 0.1               # fraction of probe patches trimmed at each edge before averaging
+  top_k: 3                        # presence = mean similarity of the best k patches
+  sim_offset: 0.615               # calibration: probability = sigmoid((similarity - offset) / temperature);
+  sim_temperature: 0.01           #   fitted by eye on dental_xray (present median 0.618, absent 0.612; coco 0.726/0.711)
+  box_threshold: 0.5              # min calibrated patch score for a patch to join a box region
+  max_boxes: 20                   # max boxes returned per (image, probe)
+
 # image_prober_yoloe: YOLOE with probe crops as visual prompts (src/image_prober_yoloe.py).
 # Weights are Ultralytics release assets (AGPL-3.0), downloaded once to <weights_dir>/ultralytics/.
 image_prober_yoloe:
@@ -126,3 +139,4 @@ image_prober_embeddinggemma2:
   box_threshold: 0.01              # min calibrated tile score for a returned box
   nms_iou: 0.5                    # overlap above which weaker tile boxes are suppressed
   max_boxes: 20                   # max boxes returned per (image, probe)
+

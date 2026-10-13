@@ -62,6 +62,7 @@ classDiagram
     ImageProber <|-- ImageProber_YOLOE
     ImageProber <|-- ImageProber_EmbeddingGemma2
     ImageProber_DINOv3 <|-- ImageProber_DINOv2
+    ImageProber_DINOv3 <|-- ImageProber_RADDINO
     ImageProber *-- EmbeddingCache
     ImageProber ..> ProbeResult : returns
 ```
@@ -74,6 +75,7 @@ classDiagram
 | `ImageProber_SAM3` | `image_prober_sam3.py` | SAM 3 (gated) | native | one DETR encoder/decoder pass, batched over probes |
 | `ImageProber_DINOv3` | `image_prober_dinov3.py` | DINOv3 ViT-B/16 (gated) | from patch regions | one matrix product over patches |
 | `ImageProber_DINOv2` | `image_prober_dinov2.py` | DINOv2 base (Apache-2.0) | from patch regions | one matrix product over patches |
+| `ImageProber_RADDINO` | `image_prober_raddino.py` | RAD-DINO: DINOv2-base trained on chest X-rays (MIT, research use only) | from patch regions | one matrix product over patches |
 | `ImageProber_YOLOE` | `image_prober_yoloe.py` | YOLOE-11L-seg (AGPL-3.0) | native | one detection-head pass per image, all probes at once |
 | `ImageProber_EmbeddingGemma2` | `image_prober_embeddinggemma2.py` | EmbeddingGemma 2 (Apache-2.0) | tile boxes | one matrix product over tiles |
 
@@ -119,6 +121,18 @@ This method is training-free.
 
 `ImageProber_DINOv2` reuses the DINOv3 class with DINOv2 weights and its own
 calibration.
+
+`ImageProber_RADDINO` is also a DINOv3 subclass. It loads Microsoft's
+RAD-DINO, a DINOv2-base trained further on about 880k chest X-rays, and
+overrides only what differs:
+
+- its greyscale input normalisation (mean 0.5307, std 0.2583, not ImageNet);
+- its downloads: the backbone only, not the repo's training head or duplicate
+  backbone;
+- its calibration, fitted on `dental_xray`.
+
+Its features barely separate present from absent probes, on X-rays or
+elsewhere (see [evaluation.md](evaluation.md)).
 
 ### YOLOE
 

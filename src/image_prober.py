@@ -49,6 +49,7 @@ MODELS = {
     "sam3": ("image_prober_sam3", "ImageProber_SAM3"),
     "dinov3": ("image_prober_dinov3", "ImageProber_DINOv3"),
     "dinov2": ("image_prober_dinov2", "ImageProber_DINOv2"),
+    "raddino": ("image_prober_raddino", "ImageProber_RADDINO"),
     "yoloe": ("image_prober_yoloe", "ImageProber_YOLOE"),
     "embeddinggemma2": ("image_prober_embeddinggemma2", "ImageProber_EmbeddingGemma2"),
 }

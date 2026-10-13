@@ -3,7 +3,7 @@
 
 # Model: a registry name from src/image_prober.py MODELS. Its settings (and the shared
 # image_prober settings: device, batch size, embedding cache) are read from model_config.
-model: dinov2                     # owlv2 | sam3 | dinov3 | dinov2 | yoloe | embeddinggemma2
+model: dinov2                     # owlv2 | sam3 | dinov3 | dinov2 | raddino | yoloe | embeddinggemma2
 model_config: config.yaml
 
 # Labelled probes: cropped images, each showing one object of a known class.
